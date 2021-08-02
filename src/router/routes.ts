@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router'
-import { DashboardFilled, AccountBookFilled, UsbFilled } from '@vicons/antd'
+import { DashboardFilled, AccountBookFilled, UsbFilled, IeOutlined } from '@vicons/antd'
 import Layout from '@/layout'
 
 /**
@@ -98,4 +98,17 @@ export const constantRoutes: Array<RouteRecordRaw> = [
   },
 ]
 
-export const asyncRoutes: Array<RouteRecordRaw> = []
+export const asyncRoutes: Array<RouteRecordRaw> = [
+  {
+    path: '/icon',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/icons'),
+        name: 'Icons',
+        meta: { title: 'Icons', icon: IeOutlined, noCache: true },
+      },
+    ],
+  },
+]
