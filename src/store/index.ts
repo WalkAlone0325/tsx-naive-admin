@@ -1,5 +1,6 @@
 import { InjectionKey } from 'vue'
 import { createStore, useStore as useBaseStore, Store, ModuleTree } from 'vuex'
+import getters from './getters'
 import { IRootState } from './interface'
 
 /**
@@ -19,6 +20,7 @@ Object.keys(allModules).map(path => {
 export const key: InjectionKey<Store<IRootState>> = Symbol()
 
 const store = createStore({
+  getters,
   modules,
 })
 
