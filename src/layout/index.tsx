@@ -3,6 +3,7 @@ import { NLayout, NLayoutContent, NLayoutFooter, NLayoutHeader, NLayoutSider } f
 import NavBar from './components/NavBar'
 import AppMain from './components/AppMain'
 import { useSettings } from '@/hooks/use-settings'
+import SideBar from './components/SideBar'
 
 export default defineComponent({
   name: 'Layout',
@@ -15,7 +16,9 @@ export default defineComponent({
 
     return () => (
       <NLayout hasSider position="absolute">
-        <NLayoutSider bordered>侧边栏</NLayoutSider>
+        <NLayoutSider bordered>
+          <SideBar />
+        </NLayoutSider>
 
         <NLayout nativeScrollbar={false}>
           {/* 顶栏部分 */}
