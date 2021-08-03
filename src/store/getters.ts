@@ -1,6 +1,7 @@
 import { GetterTree } from 'vuex'
 import { IRootState } from './interface'
 
+//! 还没有做好相关的 ts 类型支持，待改进
 const getters: GetterTree<IRootState, IRootState> = {
   // app
   collapsed: state => state.app.collapsed,
