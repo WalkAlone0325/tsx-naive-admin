@@ -1,10 +1,13 @@
 import Hamburger from '@/components/Hamburger'
 import GitAddress from '@/components/GitAddress'
 import { useStore } from '@/store'
-import { NSpace } from 'naive-ui'
 import { computed, CSSProperties, defineComponent } from 'vue'
 import classes from './index.module.scss'
 import Screenfull from '@/components/Screenfull'
+import DropProfile from '@/components/DropProfile'
+import { useSettings } from '@/hooks/use-settings'
+import SideBar from '../SideBar'
+import ConfigSettings from '../ConfigSettings'
 
 export default defineComponent({
   name: 'NavBar',
@@ -12,6 +15,7 @@ export default defineComponent({
     const store = useStore()
 
     // computed
+    const { menuMode } = useSettings()
     const collapsed = computed(() => store.getters.collapsed)
 
     // methods
@@ -22,12 +26,12 @@ export default defineComponent({
     // css
     const headerStyle: CSSProperties = {
       height: '84px',
-      borderBottom: '1px solid #000',
+      // borderBottom: '1px solid #000',
     }
     const navBarConStyle: CSSProperties = {
       display: 'flex',
       justifyContent: 'space-between',
-      paddingRight: '20px',
+      marginRight: '10px',
       height: '50px',
       lineHeight: '50px',
     }
@@ -37,20 +41,32 @@ export default defineComponent({
       <div style={headerStyle}>
         {/* 导航栏 */}
         <div style={navBarConStyle}>
-          {/* 左侧 */}
-          <div>
-            <Hamburger
-              class={classes.hoverClass}
-              collapsed={collapsed.value}
-              //@ts-ignore
-              onClick={toggleCollapsed}
-            />
-          </div>
+          {menuMode.value === 'horizontal' ? (
+            <SideBar menuMode="horizontal" v-model={[collapsed.value, 'collapsed']} />
+          ) : (
+            <div>
+              {/* 左侧 */}
+              <Hamburger
+                class={classes.hoverClass}
+                collapsed={collapsed.value}
+                //@ts-ignore
+                onClick={toggleCollapsed}
+              />
+            </div>
+          )}
+
+          {/* 右侧菜单 */}
           <div style="display: flex;">
             <GitAddress class={classes.hoverClass} />
             <Screenfull class={classes.hoverClass} />
+            <DropProfile />
           </div>
         </div>
+
+        {/* 多标签 */}
+
+        {/* 全局配置抽屉 */}
+        <ConfigSettings />
       </div>
     )
   },

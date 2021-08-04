@@ -39,4 +39,7 @@ export interface ISettings {
 
   // 标题
   adminTitle?: string
+
+  // 全局配置抽屉
+  openConfig: boolean
 }

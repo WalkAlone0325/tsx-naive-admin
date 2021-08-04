@@ -3,7 +3,7 @@ import { ISettings } from './types/vite-env'
 const settings: ISettings = {
   /** 主题颜色 */
   // 主题颜色
-  globalTheme: 'darkTheme',
+  globalTheme: 'lightTheme',
   // 侧边栏和顶栏主题颜色 暗色，亮色，顶栏暗色
   sideOrHeaderTheme: 'dark',
   // 主题编辑器 默认为false
@@ -28,6 +28,9 @@ const settings: ISettings = {
 
   // 标题
   adminTitle: '',
+
+  // 是否打开全局配置
+  openConfig: true,
 }
 
 export default settings

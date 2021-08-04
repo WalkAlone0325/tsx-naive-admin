@@ -85,14 +85,40 @@ export const constantRoutes: Array<RouteRecordRaw> = [
   {
     path: '/profile',
     component: Layout,
+    name: 'Profile',
     redirect: '/profile/index',
-
     children: [
       {
         path: 'index',
         component: () => import('@/views/profile'),
         name: 'Profile',
         meta: { hidden: true, title: 'Profile', icon: UsbFilled, noCache: true },
+      },
+      {
+        path: '1index',
+        component: () => import('@/views/profile'),
+        name: '1Profile',
+        meta: { hidden: true, title: 'Profile1', icon: UsbFilled, noCache: true },
+      },
+    ],
+  },
+  {
+    path: '/profile',
+    component: Layout,
+    name: 'Profile',
+    redirect: '/profile/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/profile'),
+        name: 'Profile',
+        meta: { hidden: true, title: 'Profile', icon: UsbFilled, noCache: true },
+      },
+      {
+        path: '1index',
+        component: () => import('@/views/profile'),
+        name: '1Profile',
+        meta: { title: 'Profile1', icon: UsbFilled, noCache: true },
       },
     ],
   },

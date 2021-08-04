@@ -15,5 +15,6 @@ export function useSettings() {
     breadcrumb: computed(() => store.state.settings.breadcrumb),
     fixedHeader: computed(() => store.state.settings.fixedHeader),
     adminTitle: computed(() => store.state.settings.adminTitle),
+    openConfig: computed(() => store.state.settings.openConfig),
   }
 }

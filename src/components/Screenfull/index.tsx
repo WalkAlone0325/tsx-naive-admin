@@ -16,6 +16,7 @@ export default defineComponent({
       textAlign: 'center',
       lineHeight: '63px',
       cursor: 'pointer',
+      marginRight: '20px',
     }
 
     return () => (

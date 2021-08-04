@@ -14,9 +14,10 @@ const {
   breadcrumb,
   fixedHeader,
   adminTitle,
+  openConfig,
 } = defaultSettings
 
-type TKey = keyof ISettings
+export type TKey = keyof ISettings
 
 const settingsModule: Module<ISettings, IRootState> = {
   namespaced: true,
@@ -31,16 +32,18 @@ const settingsModule: Module<ISettings, IRootState> = {
     breadcrumb,
     fixedHeader,
     adminTitle,
+    openConfig,
   },
   mutations: {
     CHANGE_SETTING: (state, { key, value }: { key: TKey; value: string | boolean }) => {
+      console.log(key, value)
       if (state.hasOwnProperty(key)) {
         ;(state[key] as string | boolean) = value
       }
     },
   },
   actions: {
-    changeSetting({ commit }, data: string | boolean) {
+    changeSetting({ commit }, data) {
       commit('CHANGE_SETTING', data)
     },
   },
