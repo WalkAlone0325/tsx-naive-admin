@@ -30,7 +30,7 @@ const settings: ISettings = {
   adminTitle: '',
 
   // 是否打开全局配置
-  openConfig: true,
+  openConfig: false,
 }
 
 export default settings

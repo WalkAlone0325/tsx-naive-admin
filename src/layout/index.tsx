@@ -13,8 +13,10 @@ export default defineComponent({
     const store = useStore()
 
     // computed
-    const { menuMode, fixedHeader, showTrigger, showLogo } = useSettings()
+    const { menuMode, sideOrHeaderTheme, fixedHeader, showTrigger, showLogo } = useSettings()
     const collapsed = computed(() => store.getters.collapsed)
+    // 反转
+    const inverted = computed(() => ['dark', 'header-dark'].includes(sideOrHeaderTheme.value))
 
     // 是否固定头部
     let position: Ref<'absolute' | 'static'> = ref('static')
@@ -31,6 +33,9 @@ export default defineComponent({
           marginStyle.value = {}
         }
       },
+      {
+        immediate: true,
+      },
     )
     // const position = fixedHeader.value ? 'absolute' : 'static'
     // const marginStyle: CSSProperties = fixedHeader.value ? { marginTop: '84px' } : {}
@@ -44,13 +49,13 @@ export default defineComponent({
             nativeScrollbar={false}
             width={220}
             collapsedWidth={64}
-            inverted={false}
+            inverted={inverted.value}
             collapsed={collapsed.value}
             showTrigger={showTrigger.value}
             onCollapse={() => store.dispatch('app/toggleCollapsed')}
             onExpand={() => store.dispatch('app/toggleCollapsed')}>
             <Logo collapsed={collapsed.value} v-show={showLogo.value} />
-            <SideBar v-model={[collapsed.value, 'collapsed']} inverted={false} />
+            <SideBar v-model={[collapsed.value, 'collapsed']} inverted={inverted.value} />
           </NLayoutSider>
         ) : (
           <div></div>
@@ -58,8 +63,11 @@ export default defineComponent({
 
         <NLayout nativeScrollbar={false}>
           {/* 顶栏部分 */}
-          <NLayoutHeader>
-            <NavBar />
+          <NLayoutHeader
+            inverted={sideOrHeaderTheme.value === 'dark' ? !inverted.value : inverted.value}>
+            <NavBar
+              inverted={sideOrHeaderTheme.value === 'dark' ? !inverted.value : inverted.value}
+            />
           </NLayoutHeader>
 
           {/* 主体内容 */}

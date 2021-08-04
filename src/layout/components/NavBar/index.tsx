@@ -11,7 +11,13 @@ import ConfigSettings from '../ConfigSettings'
 
 export default defineComponent({
   name: 'NavBar',
-  setup() {
+  props: {
+    inverted: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
     const store = useStore()
 
     // computed
@@ -42,7 +48,11 @@ export default defineComponent({
         {/* 导航栏 */}
         <div style={navBarConStyle}>
           {menuMode.value === 'horizontal' ? (
-            <SideBar menuMode="horizontal" v-model={[collapsed.value, 'collapsed']} />
+            <SideBar
+              inverted={props.inverted}
+              menuMode="horizontal"
+              v-model={[collapsed.value, 'collapsed']}
+            />
           ) : (
             <div>
               {/* 左侧 */}
