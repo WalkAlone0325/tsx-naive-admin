@@ -1,4 +1,6 @@
+import { renderIcon } from '@/utils'
 import { RouteRecordRaw } from 'vue-router'
+import { AimOutlined } from '@vicons/antd'
 
 let onlyOneChild = {}
 function hasOneShowingChild(children: RouteRecordRaw[] = [], parent) {
@@ -26,25 +28,50 @@ function hasOneShowingChild(children: RouteRecordRaw[] = [], parent) {
   return false
 }
 
-export function useRoutesMenu(routes: RouteRecordRaw[]) {
-  let menuItem
-  routes
-    .filter(item => !item.meta || !item.meta.hidden)
-    .map(route => {
-      if (
-        hasOneShowingChild(route.children, route) &&
-        (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
-        !route.meta?.alwaysShow
-      ) {
-        menuItem = route
-        console.log('if', menuItem)
-      } else {
-        menuItem = route
-        // if (route.children) {
-        menuItem.children = useRoutesMenu(route.children)
-        // }
-        console.log('else', menuItem)
+// export function useRoutesMenu(routes: RouteRecordRaw[]) {
+//   let menuItem
+//   routes
+//     .filter(item => !item.meta || !item.meta.hidden)
+//     .map(route => {
+//       if (
+//         hasOneShowingChild(route.children, route) &&
+//         (!onlyOneChild.children || onlyOneChild.noShowingChildren) &&
+//         !route.meta?.alwaysShow
+//       ) {
+//         menuItem = route
+//         console.log('if', menuItem)
+//       } else {
+//         menuItem = route
+//         // if (route.children) {
+//         menuItem.children = useRoutesMenu(route.children)
+//         // }
+//         console.log('else', menuItem)
+//       }
+//       // return menuItem
+//     })
+// }
+// && !['/:path(.*)*', '/', PageEnum.REDIRECT, PageEnum.BASE_LOGIN].includes(item.path)
+export function useRoutesMenu(routerMap: Array<any>) {
+  return routerMap
+    .filter(item => {
+      return item.meta?.hidden != true
+    })
+    .map(item => {
+      if (item.children?.length === 1) {
+        item = item.children[0]
       }
-      // return menuItem
+      const currentMenu = {
+        ...item,
+        ...item.meta,
+        label: item.meta?.title,
+        key: item.name,
+        icon: renderIcon(item.meta?.icon || AimOutlined),
+      }
+      // 是否有子菜单，并递归处理
+      if (item.children && item.children.length > 0) {
+        // Recursion
+        currentMenu.children = useRoutesMenu(item.children)
+      }
+      return currentMenu
     })
 }

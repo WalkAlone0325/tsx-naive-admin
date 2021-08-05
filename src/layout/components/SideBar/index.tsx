@@ -56,6 +56,7 @@ export default defineComponent({
         inverted={props.inverted}
         mode={props.menuMode}
         collapsed={props.collapsed}
+        indent={20}
         collapsedWidth={64}
         collapsedIconSize={22}
         options={menuOptions}
