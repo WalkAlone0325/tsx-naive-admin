@@ -1,6 +1,14 @@
 import { RouteRecordRaw } from 'vue-router'
-import { DashboardFilled, AccountBookFilled, UsbFilled, IeOutlined } from '@vicons/antd'
+import {
+  DashboardFilled,
+  AccountBookFilled,
+  GatewayOutlined,
+  UsbFilled,
+  IeOutlined,
+} from '@vicons/antd'
 import Layout from '@/layout'
+import nestedRouter from './modules/nested'
+import tableRouter from './modules/table'
 
 /**
  * 参数解析：
@@ -63,6 +71,11 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     meta: { hidden: true },
   },
   {
+    path: '/auth-redirect',
+    component: () => import('@/views/login/auth-redirect'),
+    meta: { hidden: true },
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',
@@ -88,22 +101,15 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     ],
   },
   {
-    path: '/profile',
+    path: '/guide',
     component: Layout,
-    name: 'Profile',
-    redirect: '/profile/index',
+    redirect: '/guide/index',
     children: [
       {
         path: 'index',
-        component: () => import('@/views/profile'),
-        name: 'Profile',
-        meta: { hidden: true, title: 'Profile', icon: UsbFilled, noCache: true },
-      },
-      {
-        path: '1index',
-        component: () => import('@/views/profile'),
-        name: '1Profile',
-        meta: { hidden: true, title: 'Profile1', icon: UsbFilled, noCache: true },
+        component: () => import('@/views/guide'),
+        name: 'Guide',
+        meta: { title: 'Guide', icon: GatewayOutlined, noCache: true },
       },
     ],
   },
@@ -112,24 +118,21 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     component: Layout,
     name: 'Profile',
     redirect: '/profile/index',
+    meta: { hidden: true },
     children: [
       {
         path: 'index',
         component: () => import('@/views/profile'),
         name: 'Profile',
-        meta: { hidden: true, title: 'Profile', icon: UsbFilled, noCache: true },
-      },
-      {
-        path: '1index',
-        component: () => import('@/views/profile'),
-        name: '1Profile',
-        meta: { title: 'Profile1', icon: UsbFilled, noCache: true },
+        meta: { title: 'Profile', icon: UsbFilled, noCache: true },
       },
     ],
   },
 ]
 
 export const asyncRoutes: Array<RouteRecordRaw> = [
+  nestedRouter,
+  tableRouter,
   {
     path: '/icon',
     component: Layout,
