@@ -13,7 +13,8 @@ export default defineComponent({
     const store = useStore()
 
     // computed
-    const { menuMode, sideOrHeaderTheme, fixedHeader, showTrigger, showLogo } = useSettings()
+    const { tagsView, menuMode, sideOrHeaderTheme, fixedHeader, showTrigger, showLogo } =
+      useSettings()
     const collapsed = computed(() => store.getters.collapsed)
     // 反转
     const inverted = computed(() => ['dark', 'header-dark'].includes(sideOrHeaderTheme.value))
@@ -21,6 +22,20 @@ export default defineComponent({
     // 是否固定头部
     let position: Ref<'absolute' | 'static'> = ref('static')
     let marginStyle: Ref<CSSProperties> = ref({})
+
+    const headerStyle: Ref<CSSProperties> = ref({})
+
+    watch(
+      () => tagsView.value,
+      () => {
+        if (tagsView.value) {
+          marginStyle.value = { marginTop: '84px' }
+        } else {
+          marginStyle.value = { marginTop: '50px' }
+        }
+      },
+      { immediate: true },
+    )
 
     watch(
       () => fixedHeader.value,
@@ -30,7 +45,7 @@ export default defineComponent({
           marginStyle.value = { marginTop: '84px' }
         } else {
           position.value = 'static'
-          marginStyle.value = {}
+          marginStyle.value = { marginTop: '0' }
         }
       },
       {

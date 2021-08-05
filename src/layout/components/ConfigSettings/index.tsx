@@ -1,5 +1,14 @@
 import { computed, CSSProperties, defineComponent, watch } from 'vue'
-import { NBadge, NDivider, NDrawer, NDrawerContent, NSpace, NSwitch, NTooltip } from 'naive-ui'
+import {
+  NBadge,
+  NDivider,
+  NDrawer,
+  NDrawerContent,
+  NSpace,
+  NSwitch,
+  NTooltip,
+  useMessage,
+} from 'naive-ui'
 import { useStore } from '@/store'
 import { useSettings } from '@/hooks/use-settings'
 import navLeft from '@/assets/images/nav-theme-dark.svg'
@@ -13,9 +22,11 @@ export default defineComponent({
   name: 'ConfigSettings',
   setup() {
     const store = useStore()
+    const message = useMessage()
 
     // computed
     const {
+      themeEditor,
       globalTheme,
       openConfig,
       menuMode,
@@ -23,10 +34,12 @@ export default defineComponent({
       fixedHeader,
       showLogo,
       showTrigger,
+      tagsView,
     } = useSettings()
 
     // methods
     const changeSetting = (key: TKey, value: boolean | string) => {
+      message.success(`${key}切换成功！`)
       store.dispatch('settings/changeSetting', { key, value })
     }
 
@@ -211,6 +224,26 @@ export default defineComponent({
                   <NSwitch
                     value={showTrigger.value}
                     onUpdateValue={() => changeSetting('showTrigger', !showTrigger.value)}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '14px' }}>
+                <div>显示主题编辑器</div>
+                <div>
+                  <NSwitch
+                    value={themeEditor.value}
+                    onUpdateValue={() => changeSetting('themeEditor', !themeEditor.value)}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '14px' }}>
+                <div>显示多标签</div>
+                <div>
+                  <NSwitch
+                    value={tagsView.value}
+                    onUpdateValue={() => changeSetting('tagsView', !tagsView.value)}
                   />
                 </div>
               </div>

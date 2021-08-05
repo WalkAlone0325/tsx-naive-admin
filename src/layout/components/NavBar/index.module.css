@@ -1,0 +1,3 @@
+.hoverClass:hover {
+  background-color: var(--hover-color);
+}
