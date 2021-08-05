@@ -2,6 +2,7 @@ import { computed, defineComponent, PropType, ref, toRaw, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { NMenu } from 'naive-ui'
 import { useMenu } from './use-menu'
+import { useRoutesMenu } from './use-routes-menu'
 import { useStore } from '@/store'
 import { isExternal } from '@/utils/validate'
 
@@ -36,7 +37,8 @@ export default defineComponent({
     // 路由表
     const routes = computed(() => store.getters.routes)
     // 菜单
-    const menuOptions = useMenu(toRaw(routes.value))
+    // const menuOptions = useMenu(toRaw(routes.value))
+    const menuOptions = useRoutesMenu(toRaw(routes.value))
     console.log(menuOptions)
 
     // methods
