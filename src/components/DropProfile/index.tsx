@@ -68,7 +68,7 @@ export default defineComponent({
           store.dispatch('settings/changeSetting', { key: 'openConfig', value: true })
           break
         case 'logout':
-          logout()
+          router.push('/login')
         default:
           break
       }

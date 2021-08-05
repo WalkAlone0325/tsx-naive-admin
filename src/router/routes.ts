@@ -58,6 +58,11 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     ],
   },
   {
+    path: '/login',
+    component: () => import('@/views/login'),
+    meta: { hidden: true },
+  },
+  {
     path: '/',
     component: Layout,
     redirect: '/dashboard',

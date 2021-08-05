@@ -5,6 +5,9 @@ import store from '@/store'
 
 const title = useTitle()
 
+// 白名单
+const whiteList = ['/login', '/auth-redirect']
+
 router.beforeEach(async (to, from, next) => {
   // 开启加载条
   window.$loadingBar.start()

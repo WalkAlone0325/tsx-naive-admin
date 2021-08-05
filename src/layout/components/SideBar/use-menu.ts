@@ -3,34 +3,35 @@ import { RouteRecordRaw } from 'vue-router'
 import { MenuOption } from 'naive-ui'
 import { renderIcon } from '@/utils'
 
+let onlyOneChild = {}
+function hasOneShowingChild(children: RouteRecordRaw[] = [], parent: {}) {
+  const showingChildren = children.filter(item => {
+    if (item.meta?.hidden) {
+      return false
+    } else {
+      onlyOneChild = item
+      return true
+    }
+  })
+
+  if (showingChildren.length === 1) {
+    return true
+  }
+
+  if (showingChildren.length === 0) {
+    onlyOneChild = { ...parent, path: '', noShowingChildren: true }
+    return true
+  }
+
+  return false
+}
+
 /**
  * 递归组装菜单格式
  * @param {RouteRecordRaw[]} routes
  * @return {*}  {MenuOption[]}
  */
-export function useMenu(routes: RouteRecordRaw[]): MenuOption[] {
+export function useMenu(routes: RouteRecordRaw[]): any {
   let menuItem: MenuOption
   return routes
-    .filter(item => !item.meta?.hidden)
-
-    .map(route => {
-      menuItem = {
-        label: route.meta?.title,
-        key: route.name as string,
-        icon: renderIcon(route.meta?.icon as VNode),
-        // extra: route.path,
-      }
-      // 是否有子菜单，并递归处理
-      if (route.children) {
-        menuItem.children = useMenu(route.children!)
-      }
-      return menuItem
-    })
-
-    .map(item => {
-      if (item.children?.length === 1) {
-        item = item.children[0]
-      }
-      return item
-    })
 }
