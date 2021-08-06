@@ -177,7 +177,7 @@ export default defineComponent({
 
     return () => (
       <NElement style={{ borderColor: 'var(--border-color)' }}>
-        <NSpace style={{ maxHeight: '30px', marginLeft: '16px' }}>
+        <NSpace style={{ maxHeight: '34px', marginLeft: '16px' }}>
           {visitedViews.value.map(tag => (
             <div onContextmenu={handleContextMenu}>
               <NTag

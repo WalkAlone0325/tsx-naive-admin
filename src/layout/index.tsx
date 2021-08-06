@@ -23,35 +23,27 @@ export default defineComponent({
     let position: Ref<'absolute' | 'static'> = ref('static')
     let marginStyle: Ref<CSSProperties> = ref({})
 
-    const headerStyle: Ref<CSSProperties> = ref({})
-
     watch(
-      () => tagsView.value,
+      () => [fixedHeader.value, tagsView.value],
       () => {
-        if (tagsView.value) {
-          marginStyle.value = { marginTop: '84px' }
+        // 顶栏固定
+        if (fixedHeader.value) {
+          position.value = 'absolute'
+          // 多标签存在
+          if (tagsView.value) {
+            marginStyle.value = { marginTop: '84px' }
+          } else {
+            marginStyle.value = { marginTop: '50px' }
+          }
         } else {
-          marginStyle.value = { marginTop: '50px' }
+          // 顶栏不固定
+          position.value = 'static'
+          marginStyle.value = { marginTop: '0' }
         }
       },
       { immediate: true },
     )
 
-    watch(
-      () => fixedHeader.value,
-      () => {
-        if (fixedHeader.value) {
-          position.value = 'absolute'
-          marginStyle.value = { marginTop: '84px' }
-        } else {
-          position.value = 'static'
-          marginStyle.value = { marginTop: '0' }
-        }
-      },
-      {
-        immediate: true,
-      },
-    )
     // const position = fixedHeader.value ? 'absolute' : 'static'
     // const marginStyle: CSSProperties = fixedHeader.value ? { marginTop: '84px' } : {}
 
