@@ -13,6 +13,7 @@ export function useSettings() {
     showLogo: computed(() => store.state.settings.showLogo),
     tagsView: computed(() => store.state.settings.tagsView),
     breadcrumb: computed(() => store.state.settings.breadcrumb),
+    breadcrumbIcon: computed(() => store.state.settings.breadcrumbIcon),
     fixedHeader: computed(() => store.state.settings.fixedHeader),
     adminTitle: computed(() => store.state.settings.adminTitle),
     openConfig: computed(() => store.state.settings.openConfig),

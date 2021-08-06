@@ -1,7 +1,6 @@
 import { computed, defineComponent, PropType, ref, toRaw, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { NMenu } from 'naive-ui'
-import { useMenu } from './use-menu'
 import { useRoutesMenu } from './use-routes-menu'
 import { useStore } from '@/store'
 import { isExternal } from '@/utils/validate'

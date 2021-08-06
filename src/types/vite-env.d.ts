@@ -32,6 +32,8 @@ export interface ISettings {
   tagsView: boolean
   // 是否显示面包屑 默认为 true
   breadcrumb: boolean
+  // 是否显示面包屑图标 默认为 true
+  breadcrumbIcon: boolean
 
   /** 界面功能 */
   // 是否固定头部（导航和多标签） 默认为 true

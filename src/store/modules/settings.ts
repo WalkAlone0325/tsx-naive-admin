@@ -15,6 +15,7 @@ const {
   fixedHeader,
   adminTitle,
   openConfig,
+  breadcrumbIcon,
 } = defaultSettings
 
 export type TKey = keyof ISettings
@@ -30,6 +31,7 @@ const settingsModule: Module<ISettings, IRootState> = {
     showLogo,
     tagsView,
     breadcrumb,
+    breadcrumbIcon,
     fixedHeader,
     adminTitle,
     openConfig,

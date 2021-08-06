@@ -8,6 +8,8 @@ import { useSettings } from '@/hooks/use-settings'
 import SideBar from '../SideBar'
 import ConfigSettings from '../ConfigSettings'
 import TagsView from '../TagsView'
+import Breadcrumb from '@/components/Breadcrumb'
+import { NSpace } from 'naive-ui'
 
 export default defineComponent({
   name: 'NavBar',
@@ -68,13 +70,17 @@ export default defineComponent({
               v-model={[collapsed.value, 'collapsed']}
             />
           ) : (
-            <div>
+            <div style={{ display: 'flex' }}>
               {/* 左侧 */}
               <Hamburger
+                style={{ marginRight: '4px' }}
                 collapsed={collapsed.value}
                 //@ts-ignore
                 onClick={toggleCollapsed}
               />
+
+              {/* 面包屑 */}
+              <Breadcrumb />
             </div>
           )}
 

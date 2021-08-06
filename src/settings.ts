@@ -12,7 +12,7 @@ const settings: ISettings = {
   // 菜单栏模式
   menuMode: 'vertical',
 
-  /** 控件相关 */
+  /** 界面控件 */
   // 是否显示 showTrigger 默认为 true
   showTrigger: true,
   // 是否显示头部logo 默认为 true
@@ -21,6 +21,8 @@ const settings: ISettings = {
   tagsView: true,
   // 是否显示面包屑 默认为 true
   breadcrumb: true,
+  // 是否显示面包屑图标
+  breadcrumbIcon: true,
 
   /** 界面功能 */
   // 是否固定头部（导航和多标签） 默认为 true

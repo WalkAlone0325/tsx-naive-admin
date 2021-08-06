@@ -35,6 +35,8 @@ export default defineComponent({
       showLogo,
       showTrigger,
       tagsView,
+      breadcrumb,
+      breadcrumbIcon,
     } = useSettings()
 
     // methods
@@ -198,6 +200,20 @@ export default defineComponent({
             {/* 界面功能 */}
             <NDivider titlePlacement="center">界面功能</NDivider>
             <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '14px' }}>
+                <div>固定顶栏</div>
+                <div>
+                  <NSwitch
+                    value={fixedHeader.value}
+                    onUpdateValue={() => changeSetting('fixedHeader', !fixedHeader.value)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 界面功能 */}
+            <NDivider titlePlacement="center">界面控件</NDivider>
+            <div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <div>显示 LOGO</div>
                 <div>
@@ -209,11 +225,11 @@ export default defineComponent({
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '14px' }}>
-                <div>固定顶栏</div>
+                <div>显示多标签</div>
                 <div>
                   <NSwitch
-                    value={fixedHeader.value}
-                    onUpdateValue={() => changeSetting('fixedHeader', !fixedHeader.value)}
+                    value={tagsView.value}
+                    onUpdateValue={() => changeSetting('tagsView', !tagsView.value)}
                   />
                 </div>
               </div>
@@ -229,21 +245,32 @@ export default defineComponent({
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '14px' }}>
-                <div>显示主题编辑器</div>
+                <div>显示面包屑</div>
                 <div>
                   <NSwitch
-                    value={themeEditor.value}
-                    onUpdateValue={() => changeSetting('themeEditor', !themeEditor.value)}
+                    value={breadcrumb.value}
+                    onUpdateValue={() => changeSetting('breadcrumb', !breadcrumb.value)}
                   />
                 </div>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '14px' }}>
-                <div>显示多标签</div>
+                <div>显示面包屑图标</div>
                 <div>
                   <NSwitch
-                    value={tagsView.value}
-                    onUpdateValue={() => changeSetting('tagsView', !tagsView.value)}
+                    disabled={breadcrumb.value ? false : true}
+                    value={breadcrumbIcon.value}
+                    onUpdateValue={() => changeSetting('breadcrumbIcon', !breadcrumbIcon.value)}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '14px' }}>
+                <div>显示主题编辑器</div>
+                <div>
+                  <NSwitch
+                    value={themeEditor.value}
+                    onUpdateValue={() => changeSetting('themeEditor', !themeEditor.value)}
                   />
                 </div>
               </div>
