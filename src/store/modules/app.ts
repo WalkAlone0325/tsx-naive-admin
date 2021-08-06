@@ -1,16 +1,22 @@
+import { getCollapsed, Keys, setCollapsed } from '@/utils/cookies'
 import { Module } from 'vuex'
 import { IAppState, IRootState } from '../interface'
 
 const appModules: Module<IAppState, IRootState> = {
   namespaced: true,
   state: {
-    collapsed: false,
+    collapsed: getCollapsed() === 'close' ? true : false || false,
     device: 'desktop',
     size: 'medium',
   },
   mutations: {
     TOGGLE_COLLAPSED: state => {
       state.collapsed = !state.collapsed
+      if (state.collapsed) {
+        setCollapsed('open')
+      } else {
+        setCollapsed('close')
+      }
     },
   },
   actions: {

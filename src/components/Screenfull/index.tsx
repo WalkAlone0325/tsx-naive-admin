@@ -23,7 +23,7 @@ export default defineComponent({
       <div onClick={toggle}>
         <NTooltip placement="bottom" trigger="hover">
           {{
-            default: () => <span>全屏</span>,
+            default: () => (isFullscreen.value ? <span>退出全屏</span> : <span>全屏</span>),
             trigger: () => (
               <NElement style={screenfullStyle} class="hoverClass">
                 <NIcon size={26}>
