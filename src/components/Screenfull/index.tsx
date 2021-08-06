@@ -1,5 +1,5 @@
 import { defineComponent, CSSProperties } from 'vue'
-import { NIcon, NTooltip } from 'naive-ui'
+import { NElement, NIcon, NTooltip } from 'naive-ui'
 import { useFullscreen } from '@vueuse/core'
 import { FullscreenOutlined, FullscreenExitOutlined } from '@vicons/antd'
 
@@ -20,14 +20,16 @@ export default defineComponent({
     }
 
     return () => (
-      <div style={screenfullStyle} onClick={toggle}>
+      <div onClick={toggle}>
         <NTooltip placement="bottom" trigger="hover">
           {{
             default: () => <span>全屏</span>,
             trigger: () => (
-              <NIcon size={26}>
-                {!isFullscreen.value ? <FullscreenOutlined /> : <FullscreenExitOutlined />}
-              </NIcon>
+              <NElement style={screenfullStyle} class="hoverClass">
+                <NIcon size={26}>
+                  {!isFullscreen.value ? <FullscreenOutlined /> : <FullscreenExitOutlined />}
+                </NIcon>
+              </NElement>
             ),
           }}
         </NTooltip>

@@ -1,5 +1,5 @@
 import { CSSProperties, defineComponent } from 'vue'
-import { NIcon, NTooltip } from 'naive-ui'
+import { NElement, NIcon, NTooltip } from 'naive-ui'
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@vicons/antd'
 
 export default defineComponent({
@@ -21,9 +21,9 @@ export default defineComponent({
     }
 
     return () => (
-      <div style={hamburgerStyle}>
+      <NElement style={hamburgerStyle} class="hoverClass">
         <NIcon size={22}>{props.collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</NIcon>
-      </div>
+      </NElement>
     )
   },
 })

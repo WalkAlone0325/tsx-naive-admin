@@ -2,7 +2,6 @@ import Hamburger from '@/components/Hamburger'
 import GitAddress from '@/components/GitAddress'
 import { useStore } from '@/store'
 import { computed, CSSProperties, defineComponent, Ref, ref, watch } from 'vue'
-import classes from './index.module.css'
 import Screenfull from '@/components/Screenfull'
 import DropProfile from '@/components/DropProfile'
 import { useSettings } from '@/hooks/use-settings'
@@ -72,7 +71,6 @@ export default defineComponent({
             <div>
               {/* 左侧 */}
               <Hamburger
-                class={classes.hoverClass}
                 collapsed={collapsed.value}
                 //@ts-ignore
                 onClick={toggleCollapsed}
@@ -82,8 +80,8 @@ export default defineComponent({
 
           {/* 右侧菜单 */}
           <div style="display: flex;">
-            <GitAddress class={classes.hoverClass} />
-            <Screenfull class={classes.hoverClass} />
+            <GitAddress />
+            <Screenfull />
             <DropProfile />
           </div>
         </div>

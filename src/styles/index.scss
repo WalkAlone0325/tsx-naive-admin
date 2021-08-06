@@ -49,3 +49,9 @@ div:focus {
     height: 100%;
   }
 }
+
+.hoverClass {
+  &:hover {
+    background-color: var(--hover-color);
+  }
+}

@@ -1,5 +1,5 @@
 import { defineComponent, CSSProperties } from 'vue'
-import { NIcon, NTooltip } from 'naive-ui'
+import { NIcon, NTooltip, NElement } from 'naive-ui'
 import { GithubFilled } from '@vicons/antd'
 
 export default defineComponent({
@@ -17,20 +17,20 @@ export default defineComponent({
     }
 
     return () => (
-      <div style={githubStyle}>
-        <NTooltip placement="bottom" trigger="hover">
-          {{
-            default: () => <span>GitHub</span>,
-            trigger: () => (
+      <NTooltip placement="bottom" trigger="hover">
+        {{
+          default: () => <span>GitHub</span>,
+          trigger: () => (
+            <NElement tag="div" class="hoverClass" style={githubStyle}>
               <a href={href} target="_blank" rel="noopenner noreferrer">
                 <NIcon size={26}>
                   <GithubFilled />
                 </NIcon>
               </a>
-            ),
-          }}
-        </NTooltip>
-      </div>
+            </NElement>
+          ),
+        }}
+      </NTooltip>
     )
   },
 })
