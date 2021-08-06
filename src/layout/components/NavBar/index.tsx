@@ -9,7 +9,6 @@ import SideBar from '../SideBar'
 import ConfigSettings from '../ConfigSettings'
 import TagsView from '../TagsView'
 import Breadcrumb from '@/components/Breadcrumb'
-import { NSpace } from 'naive-ui'
 
 export default defineComponent({
   name: 'NavBar',

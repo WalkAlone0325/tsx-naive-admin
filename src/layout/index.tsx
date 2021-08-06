@@ -79,6 +79,7 @@ export default defineComponent({
         <NLayout nativeScrollbar={false}>
           {/* 顶栏部分 */}
           <NLayoutHeader
+            bordered
             inverted={sideOrHeaderTheme.value === 'dark' ? !inverted.value : inverted.value}>
             <NavBar
               inverted={sideOrHeaderTheme.value === 'dark' ? !inverted.value : inverted.value}

@@ -55,3 +55,13 @@ div:focus {
     background-color: var(--hover-color);
   }
 }
+
+.active {
+  background-color: rgb(42, 148, 125);
+  color: #fff;
+  border-color: rgb(42, 148, 125);
+  .n-tag__close {
+    color: #fff;
+  }
+  // border-color: #42b983;
+}
