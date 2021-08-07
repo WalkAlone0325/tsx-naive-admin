@@ -18,7 +18,7 @@ const settings: ISettings = {
   // 是否显示头部logo 默认为 true
   showLogo: true,
   // 是否显示多标签 默认为 true
-  tagsView: false,
+  tagsView: true,
   // 是否显示面包屑 默认为 true
   breadcrumb: true,
   // 是否显示面包屑图标
