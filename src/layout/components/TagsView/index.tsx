@@ -1,26 +1,27 @@
 import { defineComponent, withModifiers } from 'vue'
 import { RouterLink } from 'vue-router'
 import { NDropdown, NElement, NSpace, NTag } from 'naive-ui'
-import { useContextmenu } from './hooks/use-contextmenu'
-import { useTagsView } from './hooks/use-tags-view'
+import { useContextmenu } from './hooks/use-contentmenu'
 
 export default defineComponent({
   name: 'TagsView',
   setup() {
     // tagsView
-    const { affixTags, isActive, visitedViews, toLastViews, handleClose } = useTagsView()
+    // const { affixTags, isActive, visitedViews, toLastViews, handleClose } = useTagsView()
 
     // 右键菜单
     const {
+      isActive,
+      visitedViews,
+      closeSelectedTag,
       handleContextMenu,
-      handleBlur,
       handleSelect,
       onClickoutside,
       options,
       xRef,
       yRef,
       showDropdownRef,
-    } = useContextmenu(affixTags.value, isActive, toLastViews)
+    } = useContextmenu()
 
     return () => (
       <NElement style={{ borderColor: 'var(--border-color)' }}>
@@ -31,7 +32,7 @@ export default defineComponent({
                 class={isActive(tag) ? 'active' : ''}
                 key={tag.path}
                 closable={!tag.meta.affix}
-                onClose={withModifiers(() => handleClose(tag), ['prevent', 'stop'])}>
+                onClose={withModifiers(() => closeSelectedTag(tag), ['prevent', 'stop'])}>
                 {/* <RouterLink to={{ path: tag.path, query: tag.query }}>{tag.meta?.title}</RouterLink> */}
                 <RouterLink to={{ path: tag.path, query: tag.query }}>{tag.meta?.title}</RouterLink>
               </NTag>

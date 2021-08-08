@@ -96,7 +96,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         path: 'index',
         component: () => import('@/views/documentation'),
         name: 'Documentation',
-        meta: { title: '文档', icon: AccountBookFilled, affix: true },
+        meta: { title: '文档', icon: AccountBookFilled },
       },
     ],
   },

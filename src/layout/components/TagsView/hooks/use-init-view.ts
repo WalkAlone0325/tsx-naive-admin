@@ -1,21 +1,23 @@
 import { useStore } from '@/store'
-import { computed, ComputedRef, onMounted, Ref, ref, toRaw, watch } from 'vue'
+import { computed, ComputedRef, nextTick, onMounted, ref, Ref, toRaw, watch } from 'vue'
 import { RouteLocationNormalized, RouteRecordRaw, useRoute, useRouter } from 'vue-router'
 import { useFilterAffixTags } from './use-filter-affix-tags'
 
-export function useTagsView() {
+export function useInitView(selectedTag) {
   const route = useRoute()
   const router = useRouter()
   const store = useStore()
 
-  // state
+  // 固定的tag
   const affixTags: Ref<RouteRecordRaw[]> = ref([])
 
-  // computed
+  /** computed */
+  // 访问过的路由
   const visitedViews: ComputedRef<RouteLocationNormalized[]> = computed(
     () => store.getters.visitedViews,
   )
-  console.log(visitedViews.value)
+
+  // routes
   const routes = computed(() => store.getters.routes)
 
   // watch
@@ -26,7 +28,7 @@ export function useTagsView() {
     },
   )
 
-  // methods
+  /** methods */
   // 加载固定tag
   const initTags = () => {
     affixTags.value = useFilterAffixTags(toRaw(routes.value))
@@ -38,23 +40,26 @@ export function useTagsView() {
   }
   // 添加访问的tag
   const addTags = () => {
-    console.log(route.name)
     if (route.name) {
       store.dispatch('tagsView/addView', route)
     }
     return false
   }
 
-  // 关闭tag
-  const handleClose = (view: RouteLocationNormalized) => {
-    store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
-      if (isActive(view)) {
-        toLastViews(visitedViews, view)
+  // 去当前tag
+  const toCurrentTag = () => {
+    nextTick(() => {
+      for (const tag of selectedTag) {
+        if (tag.to.path === route.path) {
+          if (tag.to.fullPath !== route.fullPath) {
+            store.dispatch('tagsView/updateVisitedView', route)
+          }
+          break
+        }
       }
     })
-    console.log(view)
   }
-
+  // 去上一个 tag
   const toLastViews = (visitedViews: RouteLocationNormalized[], view: RouteLocationNormalized) => {
     const latestView = visitedViews.slice(-1)[0]
     if (latestView) {
@@ -67,6 +72,7 @@ export function useTagsView() {
       }
     }
   }
+
   // 是否为活跃状态
   const isActive = (item: RouteLocationNormalized) => item.path === route.path
 
@@ -77,10 +83,12 @@ export function useTagsView() {
   })
 
   return {
+    route,
+    router,
+    store,
     affixTags,
     visitedViews,
     addTags,
-    handleClose,
     toLastViews,
     isActive,
   }
