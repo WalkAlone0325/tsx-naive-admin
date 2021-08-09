@@ -3,7 +3,7 @@ import { computed, ComputedRef, nextTick, onMounted, ref, Ref, toRaw, watch } fr
 import { RouteLocationNormalized, RouteRecordRaw, useRoute, useRouter } from 'vue-router'
 import { useFilterAffixTags } from './use-filter-affix-tags'
 
-export function useInitView(selectedTag) {
+export function useInitView(selectedTag: any) {
   const route = useRoute()
   const router = useRouter()
   const store = useStore()

@@ -1,6 +1,6 @@
 import { useMessage } from 'naive-ui'
 import { nextTick, ref } from 'vue'
-import { RouteLocationNormalized } from 'vue-router'
+import { RouteLocationNormalized, RouteRecordRaw } from 'vue-router'
 import { useInitView } from './use-init-view'
 
 export function useContextmenu() {
@@ -103,7 +103,7 @@ export function useContextmenu() {
   }
 
   // 开启右键菜单
-  const handleContextMenu = (tag, e) => {
+  const handleContextMenu = (tag: RouteRecordRaw, e: MouseEvent) => {
     console.log(tag)
     selectedTag.value = tag
     e.preventDefault()
