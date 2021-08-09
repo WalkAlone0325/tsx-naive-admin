@@ -6,6 +6,7 @@ export interface IRootState {
   permission: IPermissState
   tagsView: ITagsViewState
   settings: ISettings
+  user: IUserState
 }
 
 export interface IAppState {
@@ -22,4 +23,11 @@ export interface IPermissState {
 export interface ITagsViewState {
   visitedViews: RouteLocationNormalized[]
   cachedViews: RouteLocationNormalized[]
+}
+
+export interface IUserState {
+  token: string | undefined
+  name: string
+  avatar: string
+  roles: string[]
 }

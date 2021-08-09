@@ -5,7 +5,7 @@ import { GithubFilled } from '@vicons/antd'
 export default defineComponent({
   name: 'GitAddress',
   setup() {
-    const href = 'http://www.baidu.com'
+    const href = 'https://github.com/WalkAlone0325/tsx-naive-admin'
 
     const githubStyle: CSSProperties = {
       width: '50px',

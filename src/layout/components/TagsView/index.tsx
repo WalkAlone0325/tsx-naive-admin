@@ -27,7 +27,9 @@ export default defineComponent({
       <NElement style={{ borderColor: 'var(--border-color)' }}>
         <NSpace style={{ maxHeight: '34px', marginLeft: '16px' }}>
           {visitedViews.value.map(tag => (
-            <div onContextmenu={e => handleContextMenu(tag, e)}>
+            <div
+              onContextmenu={e => handleContextMenu(tag, e)}
+              style={{ borderColor: 'rgb(42, 148, 125)' }}>
               <NTag
                 class={isActive(tag) ? 'active' : ''}
                 key={tag.path}
