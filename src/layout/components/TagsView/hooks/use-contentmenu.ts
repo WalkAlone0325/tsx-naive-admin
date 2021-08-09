@@ -103,7 +103,7 @@ export function useContextmenu() {
   }
 
   // 开启右键菜单
-  const handleContextMenu = (tag: RouteRecordRaw, e: MouseEvent) => {
+  const handleContextMenu = (tag: RouteLocationNormalized, e: MouseEvent) => {
     console.log(tag)
     selectedTag.value = tag
     e.preventDefault()
