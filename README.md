@@ -46,12 +46,12 @@
 
 ## 首页
 
-![首页](md/首页.png)
+![首页](http://vue-node-blog.oss-cn-qingdao.aliyuncs.com/799b954aaf244e6a70b86c75c43fa7fd.png)
 
 ## 暗色主题
 
-![暗色](md/暗色.png)
+![暗色](http://vue-node-blog.oss-cn-qingdao.aliyuncs.com/41751847bf8c62af68ce21467db76d10.png)
 
 ## 主题配置选项
 
-![主题配置](md/主题配置.png)
+![主题配置](http://vue-node-blog.oss-cn-qingdao.aliyuncs.com/231618299d921fcb57cc78d98a841320.png)
