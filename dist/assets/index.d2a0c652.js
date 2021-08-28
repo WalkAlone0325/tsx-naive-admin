@@ -1,0 +1,1 @@
+import{d as e,c as a,au as s,o as t,Z as u}from"./vendor.815c0cce.js";var l=e({name:"Menu1-1",setup:()=>a("div",{style:"padding:30px"},[a(s,{title:"menu 1-1",type:"success"},{default:()=>[t("1111"),a(u,null,null)]})])});export{l as default};

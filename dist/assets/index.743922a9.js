@@ -1,0 +1,1 @@
+import{d as a,x as e,s as r,f as s,c as t,F as c}from"./vendor.815c0cce.js";var n=a({name:"Redirect",setup(){const{params:a,query:n}=e();return r().replace({path:`/${a.path}`,query:n}).catch((a=>{s().warning(a)})),()=>t(c,null,null)}});export{n as default};
