@@ -19,6 +19,7 @@ export default defineComponent({
     return (
       <div style="padding:30px">
         <NAlert title="menu 1-1" type="success">
+          1111
           <RouterView />
         </NAlert>
       </div>
