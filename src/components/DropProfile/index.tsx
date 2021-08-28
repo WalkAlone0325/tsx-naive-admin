@@ -1,8 +1,16 @@
-import { DropdownOption, NIcon, NDropdown, NAvatar, useDialog, useMessage } from 'naive-ui'
+import {
+  DropdownOption,
+  NIcon,
+  NDropdown,
+  NAvatar,
+  useDialog,
+  useMessage,
+} from 'naive-ui'
 import { CSSProperties, defineComponent } from 'vue'
 import { useRouter } from 'vue-router'
 import { LogoutOutlined } from '@vicons/antd'
 import { useStore } from '@/store'
+import avatar from '@/assets/images/avatar.jpg'
 
 export default defineComponent({
   name: 'DropProfile',
@@ -65,7 +73,10 @@ export default defineComponent({
           router.push('/user/profile')
           break
         case 'layoutsetting':
-          store.dispatch('settings/changeSetting', { key: 'openConfig', value: true })
+          store.dispatch('settings/changeSetting', {
+            key: 'openConfig',
+            value: true,
+          })
           break
         case 'logout':
           router.push('/login')
@@ -91,12 +102,7 @@ export default defineComponent({
           placement="bottom-start"
           options={optionMenus}
           onSelect={handleSelect}>
-          <NAvatar
-            style={imgStyle}
-            round
-            size="medium"
-            src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
-          />
+          <NAvatar style={imgStyle} round size="medium" src={avatar} />
         </NDropdown>
       </span>
     )

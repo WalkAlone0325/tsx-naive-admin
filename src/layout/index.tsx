@@ -1,5 +1,11 @@
 import { computed, CSSProperties, defineComponent, Ref, ref, watch } from 'vue'
-import { NLayout, NLayoutContent, NLayoutFooter, NLayoutHeader, NLayoutSider } from 'naive-ui'
+import {
+  NLayout,
+  NLayoutContent,
+  NLayoutFooter,
+  NLayoutHeader,
+  NLayoutSider,
+} from 'naive-ui'
 import NavBar from './components/NavBar'
 import AppMain from './components/AppMain'
 import Logo from './components/Logo'
@@ -13,11 +19,19 @@ export default defineComponent({
     const store = useStore()
 
     // computed
-    const { tagsView, menuMode, sideOrHeaderTheme, fixedHeader, showTrigger, showLogo } =
-      useSettings()
+    const {
+      tagsView,
+      menuMode,
+      sideOrHeaderTheme,
+      fixedHeader,
+      showTrigger,
+      showLogo,
+    } = useSettings()
     const collapsed = computed(() => store.getters.collapsed)
     // 反转
-    const inverted = computed(() => ['dark', 'header-dark'].includes(sideOrHeaderTheme.value))
+    const inverted = computed(() =>
+      ['dark', 'header-dark'].includes(sideOrHeaderTheme.value),
+    )
 
     // 是否固定头部
     let position: Ref<'absolute' | 'static'> = ref('static')
@@ -46,6 +60,12 @@ export default defineComponent({
 
     // const position = fixedHeader.value ? 'absolute' : 'static'
     // const marginStyle: CSSProperties = fixedHeader.value ? { marginTop: '84px' } : {}
+    // const footerStyle: CSSProperties = {
+    //   position: 'fixed',
+    //   right: 0,
+    //   bottom: 0,
+    //   width: '100%',
+    // }
 
     return () => (
       <NLayout hasSider position="absolute">
@@ -62,7 +82,10 @@ export default defineComponent({
             onCollapse={() => store.dispatch('app/toggleCollapsed')}
             onExpand={() => store.dispatch('app/toggleCollapsed')}>
             <Logo collapsed={collapsed.value} v-show={showLogo.value} />
-            <SideBar v-model={[collapsed.value, 'collapsed']} inverted={inverted.value} />
+            <SideBar
+              v-model={[collapsed.value, 'collapsed']}
+              inverted={inverted.value}
+            />
           </NLayoutSider>
         ) : (
           <div></div>
@@ -72,9 +95,17 @@ export default defineComponent({
           {/* 顶栏部分 */}
           <NLayoutHeader
             bordered
-            inverted={sideOrHeaderTheme.value === 'dark' ? !inverted.value : inverted.value}>
+            inverted={
+              sideOrHeaderTheme.value === 'dark'
+                ? !inverted.value
+                : inverted.value
+            }>
             <NavBar
-              inverted={sideOrHeaderTheme.value === 'dark' ? !inverted.value : inverted.value}
+              inverted={
+                sideOrHeaderTheme.value === 'dark'
+                  ? !inverted.value
+                  : inverted.value
+              }
             />
           </NLayoutHeader>
 
@@ -88,9 +119,9 @@ export default defineComponent({
             <AppMain />
 
             {/* 底部 */}
-            <NLayoutFooter>
+            {/* <NLayoutFooter style={footerStyle}>
               <h2>底部</h2>
-            </NLayoutFooter>
+            </NLayoutFooter> */}
           </NLayoutContent>
         </NLayout>
       </NLayout>
