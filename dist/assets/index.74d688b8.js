@@ -1,1 +1,0 @@
-import{d as o,c as e,at as a}from"./vendor.815c0cce.js";var t=o({name:"AuthRedirect",setup(){const o=window.location.search.slice(1);return window.localStorage&&(window.localStorage.setItem("x-admin-oauth-code",o),window.close()),()=>e(a,null,null)}});export{t as default};

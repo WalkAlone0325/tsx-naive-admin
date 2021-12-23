@@ -1,1 +1,0 @@
-import{d as e,c as a,au as s,Z as t}from"./vendor.815c0cce.js";var d=e({name:"Nested",setup:()=>a("div",{style:"padding: 30px"},[a(s,{title:"menu1"},{default:()=>[a(t,null,null)]})])});export{d as default};

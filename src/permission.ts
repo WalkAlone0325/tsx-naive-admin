@@ -1,36 +1,34 @@
-import { RouteRecordRaw } from 'vue-router'
-import { useTitle } from '@vueuse/core'
-import router from '@/router'
-import store from '@/store'
+// import { getToken } from '@/utils/auth'
+import { useNProgress } from '@vueuse/integrations/useNProgress'
+import router from './router'
 
 const title = useTitle()
+const nprogress = useNProgress()
 
-// 白名单
-const whiteList = ['/login', '/auth-redirect']
+// const whiteList = ['/login']
 
-router.beforeEach(async (to, from, next) => {
-  // 开启加载条
-  window.$loadingBar.start()
+router.beforeEach((to, from, next) => {
+  nprogress.start()
 
-  // 动态标题栏
-  title.value = `后台管理-${to.meta.title}`
+  title.value = '后台管理系统 | ' + to.meta.title
 
-  const accessRoutes: RouteRecordRaw[] = await store.dispatch('permission/generateRoutes', [
-    'admin',
-  ])
-
-  // 动态添加路由表
-  accessRoutes.map(route => {
-    router.addRoute(route)
-  })
+  // const hasToken = getToken()
 
   next()
-})
 
-router.afterEach(() => {
-  window.$loadingBar.finish()
-})
-
-router.onError(() => {
-  window.$loadingBar.error()
+  // if (hasToken) {
+  //   if (to.path === '/login') {
+  //     next({ path: '/' })
+  //     nprogress.done()
+  //   } else {
+  //     const hasGetUserInfo = ''
+  //     if (hasGetUserInfo) {
+  //       next()
+  //     } else {
+  //       try {
+  //         // await
+  //       } catch (error) {}
+  //     }
+  //   }
+  // }
 })

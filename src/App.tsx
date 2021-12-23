@@ -1,33 +1,64 @@
-import { defineComponent } from 'vue'
-import { darkTheme, NConfigProvider, NThemeEditor, dateZhCN, zhCN } from 'naive-ui'
+import {
+  NConfigProvider,
+  NLoadingBarProvider,
+  NMessageProvider,
+  NNotificationProvider,
+  darkTheme,
+  zhCN,
+  dateZhCN
+} from 'naive-ui'
 import { RouterView } from 'vue-router'
-import GlobalProvider from './components/GlobalProvider'
-import GloablInject from './components/GlobalProvider/GloablInject'
-import '@/styles/index.scss'
-import { useSettings } from './hooks/use-settings'
+import { useSettings } from '@/stores'
 
-export default defineComponent({
-  name: 'App',
-  setup() {
-    const { globalTheme, themeEditor } = useSettings()
+const App = () => {
+  const { globalTheme } = storeToRefs(useSettings())
 
-    return () => (
-      <NConfigProvider
-        theme={globalTheme.value === 'darkTheme' ? darkTheme : undefined}
-        locale={zhCN}
-        dateLocale={dateZhCN}>
-        <GlobalProvider>
-          <GloablInject>
-            {themeEditor.value ? (
-              <NThemeEditor>
-                <RouterView />
-              </NThemeEditor>
-            ) : (
-              <RouterView />
-            )}
-          </GloablInject>
-        </GlobalProvider>
-      </NConfigProvider>
-    )
-  },
-})
+  return (
+    <NConfigProvider
+      theme={globalTheme.value === 'darkTheme' ? darkTheme : undefined}
+      dateLocale={dateZhCN}
+      locale={zhCN}
+    >
+      <NMessageProvider>
+        <NNotificationProvider>
+          <NLoadingBarProvider>
+            <RouterView />
+          </NLoadingBarProvider>
+        </NNotificationProvider>
+      </NMessageProvider>
+    </NConfigProvider>
+  )
+}
+
+export default App
+
+{
+  /* <script setup lang="ts">
+import { useSettings } from '@/stores'
+import { darkTheme, zhCN, dateZhCN } from 'naive-ui'
+
+const { globalTheme } = toRefs(useSettings())
+
+// const THEME_LIST = {
+//   darkTheme: darkTheme,
+//   lightTheme: null,
+//   sideDarkTheme: ''
+// }
+</script>
+
+<template>
+  <n-config-provider
+    :theme="globalTheme === 'darkTheme' ? darkTheme : undefined"
+    :date-locale="dateZhCN"
+    :locale="zhCN"
+  >
+    <n-message-provider>
+      <n-notification-provider>
+        <n-loading-bar-provider>
+          <router-view />
+        </n-loading-bar-provider>
+      </n-notification-provider>
+    </n-message-provider>
+  </n-config-provider>
+</template> */
+}

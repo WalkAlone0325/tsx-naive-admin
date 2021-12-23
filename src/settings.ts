@@ -1,38 +1,44 @@
-import { ISettings } from './types/vite-env'
-
-const settings: ISettings = {
-  /** 主题颜色 */
-  // 主题颜色
+export default {
   globalTheme: 'lightTheme',
-  // 侧边栏和顶栏主题颜色 暗色，亮色，顶栏暗色
-  sideOrHeaderTheme: 'dark',
-  // 主题编辑器 默认为false
+  sideHeaderTheme: 'dark',
   themeEditor: false,
+  menuMode: 'vertical',
+  showTrigger: 'bar',
+  showLogo: true,
+  showBorder: true,
+  showBreadcrumb: true,
+  showBreadcrumbIcon: true,
+  isFixedHeader: true,
+  adminTitle: '后台管理系统'
+} as ISettings
+
+export interface ISettings {
+  /** 主题 */
+  // 主题颜色
+  globalTheme: 'darkTheme' | 'lightTheme' | 'sideDarkTheme'
+  // 侧边栏和顶栏主题颜色
+  sideHeaderTheme: 'dark' | 'light' | 'header-dark'
+  // 主题编辑器
+  themeEditor: boolean
 
   // 菜单栏模式
-  menuMode: 'vertical',
+  menuMode: 'vertical' | 'horizontal'
 
-  /** 界面控件 */
-  // 是否显示 showTrigger 默认为 true
-  showTrigger: true,
-  // 是否显示头部logo 默认为 true
-  showLogo: true,
-  // 是否显示多标签 默认为 true
-  tagsView: true,
-  // 是否显示面包屑 默认为 true
-  breadcrumb: true,
-  // 是否显示面包屑图标
-  breadcrumbIcon: true,
+  /** 控件 */
+  // showTrigger
+  showTrigger: boolean | 'bar' | 'arrow-circle'
+  // Logo
+  showLogo: boolean
+  // border
+  showBorder: boolean
+  // 面包屑
+  showBreadcrumb: boolean
+  // 面包屑图标
+  showBreadcrumbIcon: boolean
 
   /** 界面功能 */
-  // 是否固定头部（导航和多标签） 默认为 true
-  fixedHeader: true,
-
+  // 固定头部
+  isFixedHeader: boolean
   // 标题
-  adminTitle: '',
-
-  // 是否打开全局配置
-  openConfig: false,
+  adminTitle?: string
 }
-
-export default settings

@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+file='/test.js'
+
+if [ ! -f "file1" ]; then
+  echo "凯弟 不让提交"
+  exit 0
+fi
+
+pnpm exec lint-staged

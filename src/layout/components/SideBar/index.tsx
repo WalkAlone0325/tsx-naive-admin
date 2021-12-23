@@ -1,67 +1,79 @@
-import { computed, defineComponent, PropType, ref, toRaw, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { NMenu } from 'naive-ui'
-import { useRoutesMenu } from './use-routes-menu'
-import { useStore } from '@/store'
-import { isExternal } from '@/utils/validate'
+import { useApp, useSettings } from '@/stores'
+import { NLayoutSider, NMenu } from 'naive-ui'
+import TheLogo from './TheLogo.vue'
+import './index.scss'
+import { renderIcon } from '@/utils/utils'
+import { LogOutOutline } from '@vicons/ionicons5'
 
-export default defineComponent({
-  name: 'SideBar',
-  props: {
-    collapsed: {
-      type: Boolean,
-      default: true,
+// const IProps = withDefaults(
+//   defineProps<{
+//     showTrigger: boolean | 'bar' | 'arrow-circle' | undefined
+//     showLogo: boolean
+//     showBorder: boolean
+//   }>(),
+//   {}
+// )
+interface Props {
+  showTrigger: boolean | 'bar' | 'arrow-circle' | undefined
+  showLogo: boolean
+  showBorder: boolean
+}
+
+const SideBar = (props: Props) => {
+  // const { showTrigger, showLogo, showBorder } = toRefs(props)
+  const { collapsed } = storeToRefs(useApp())
+  const appStore = useApp()
+  const { adminTitle, inverted } = storeToRefs(useSettings())
+
+  const activeKey = ref(null)
+
+  const menuOptions = ref([
+    {
+      label: '且听风吟',
+      key: 'hear-the-wind-sing',
+      icon: renderIcon(LogOutOutline)
     },
-    menuMode: {
-      type: String as PropType<'vertical' | 'horizontal'>,
-      default: 'vertical',
-    },
-    inverted: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  setup(props) {
-    const route = useRoute()
-    const router = useRouter()
-    const store = useStore()
-
-    // 高亮菜单
-    const activeKey = ref(route.name)
-    watch(
-      () => route.fullPath,
-      () => (activeKey.value = route.name),
-    )
-
-    // 路由表
-    const routes = computed(() => store.getters.routes)
-    // 菜单
-    // const menuOptions = useMenu(toRaw(routes.value))
-    const menuOptions = useRoutesMenu(toRaw(routes.value))
-    console.log(menuOptions)
-
-    // methods
-    const handleClickItem = (key: string) => {
-      if (isExternal(key)) {
-        // 使用name做外链跳转
-        return window.open(key)
-      } else {
-        return router.push({ name: key })
-      }
+    {
+      label: '1973年的弹珠玩具',
+      key: 'pinball-1973',
+      icon: renderIcon(LogOutOutline),
+      children: [
+        {
+          label: '鼠',
+          key: 'rat'
+        }
+      ]
     }
+  ])
 
-    return () => (
-      <NMenu
-        inverted={props.inverted}
-        mode={props.menuMode}
-        collapsed={props.collapsed}
-        indent={20}
-        collapsedWidth={64}
-        collapsedIconSize={22}
-        options={menuOptions}
-        onUpdateValue={handleClickItem}
-        v-model={[activeKey.value, 'value']}
+  return (
+    <NLayoutSider
+      collapseMode="width"
+      inverted={inverted.value}
+      showTrigger={props.showTrigger}
+      bordered={props.showBorder}
+      collapsed={collapsed.value}
+      collapsedWidth={64}
+      width={240}
+      onExpand={appStore.toggleCollapsed}
+      onCollapse={appStore.toggleCollapsed}
+    >
+      <TheLogo
+        class="vertical-logo"
+        v-show={props.showLogo}
+        collapsed={collapsed.value}
+        adminTitle={adminTitle.value}
       />
-    )
-  },
-})
+      <NMenu
+        inverted={inverted.value}
+        collapsed={collapsed.value}
+        collapsedWidth={64}
+        collapsedIconSize={24}
+        options={menuOptions.value}
+        v-model:value={activeKey.value}
+      />
+    </NLayoutSider>
+  )
+}
+
+export default SideBar
