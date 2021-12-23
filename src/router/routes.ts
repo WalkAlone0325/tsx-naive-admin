@@ -11,13 +11,13 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/redirect/:path().*',
-        component: () => import('@/views/redirect.vue')
+        component: () => import('@/views/redirect')
       }
     ]
   },
   {
     path: '/login',
-    component: () => import('@/views/login.vue'),
+    component: () => import('@/views/login'),
     meta: { hidden: true }
   },
   {
@@ -28,7 +28,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'dashboard',
-        component: () => import('@/views/dashboard.vue'),
+        component: () => import('@/views/dashboard'),
         name: 'Dashboard',
         meta: { title: '首页', icon: HomeOutline, affix: true }
       }
@@ -40,7 +40,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/documentation.vue'),
+        component: () => import('@/views/documentation'),
         name: 'Documentation',
         meta: { title: '文档', icon: DocumentLockOutline }
       }

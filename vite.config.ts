@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import viteCompression from 'vite-plugin-compression'
 import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
+// import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { viteMockServe } from 'vite-plugin-mock'
 
@@ -21,13 +21,14 @@ export default defineConfig({
       // '@vueuse/core', '@vueuse/head'
       imports: ['vue', 'vue-router', '@vueuse/core', '@vueuse/head', 'pinia']
     }),
-    Components({
-      dirs: ['src/components'],
-      extensions: ['vue', 'tsx'],
-      resolvers: [NaiveUiResolver()],
-      include: [/\.vue$/, /\.vue\?vue/, /\.tsx$/],
-      dts: 'src/components.d.ts'
-    }),
+    // ! 这玩意儿这 tsx 里面虽然页面能用，但是识别不了，不知道咋弄，先放着吧
+    // Components({
+    //   dirs: ['src/components'],
+    //   extensions: ['vue', 'tsx'],
+    //   resolvers: [NaiveUiResolver()],
+    //   include: [/\.vue$/, /\.vue\?vue/, /\.tsx$/],
+    //   dts: 'src/components.d.ts'
+    // }),
     // prod generator .gz files
     viteCompression({
       verbose: true,
