@@ -1,7 +1,8 @@
 import { useSettings } from '@/stores'
 import { renderIcon } from '@/utils/utils'
 import { LogOutOutline } from '@vicons/ionicons5'
-import { NLayoutHeader, NMenu } from 'naive-ui'
+import { NLayoutHeader, NMenu, NSpace } from 'naive-ui'
+import TheLogo from '../SideBar/TheLogo'
 import './index.scss'
 
 const NavHeader = () => {
@@ -64,7 +65,7 @@ const NavHeader = () => {
       <div class={menuMode.value === 'horizontal' ? 'horizontal-container' : 'vertical-container'}>
         {menuMode.value === 'horizontal' ? (
           <div class="left-container">
-            {/* <TheLogo adminTitle={adminTitle.value} /> */}
+            <TheLogo adminTitle={adminTitle.value} />
             <NMenu
               dropdownPlacement="bottom"
               mode="horizontal"
@@ -74,7 +75,9 @@ const NavHeader = () => {
             />
           </div>
         ) : (
-          <div class="right-container"></div>
+          <div class="right-container">
+            <NSpace size="small"></NSpace>
+          </div>
         )}
       </div>
     </NLayoutHeader>

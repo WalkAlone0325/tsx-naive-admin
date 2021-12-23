@@ -11,3 +11,12 @@ body,
   width: 100%;
   height: 100%;
 }
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .logo-text {
+    margin-left: 12px;
+  }
+}

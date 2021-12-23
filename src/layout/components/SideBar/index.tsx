@@ -1,6 +1,6 @@
 import { useApp, useSettings } from '@/stores'
 import { NLayoutSider, NMenu } from 'naive-ui'
-import TheLogo from './TheLogo.vue'
+import TheLogo from './TheLogo'
 import './index.scss'
 import { renderIcon } from '@/utils/utils'
 import { LogOutOutline } from '@vicons/ionicons5'
