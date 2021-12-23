@@ -1,5 +1,5 @@
 {
-  "name": "naive-ts-template",
+  "name": "tsx-naive-admin",
   "version": "0.1.0",
   "engines": {
     "node": ">=12.0.0"
