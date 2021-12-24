@@ -15,9 +15,7 @@ const BaseLayout = () => {
           showTrigger={showTrigger.value}
           showBorder={showBorder.value}
         />
-      ) : (
-        <></>
-      )}
+      ) : null}
       <NLayout>
         <NScrollbar>
           <NavHeader />

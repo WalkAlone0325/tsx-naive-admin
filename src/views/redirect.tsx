@@ -9,7 +9,7 @@ const Redirect = () => {
     message.warning(err)
   })
 
-  return <></>
+  return null
 }
 
 export default Redirect

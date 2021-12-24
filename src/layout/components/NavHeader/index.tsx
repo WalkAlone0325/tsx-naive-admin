@@ -64,7 +64,7 @@ const NavHeader = () => {
 
   return (
     <NLayoutHeader class="layout-header-container" bordered>
-      {menuMode.value === 'vertical' ? <div /> : <></>}
+      {menuMode.value === 'vertical' ? <div /> : null}
       <div class={menuMode.value === 'horizontal' ? 'horizontal-container' : 'vertical-container'}>
         {menuMode.value === 'horizontal' ? (
           <div class="left-container">
@@ -83,9 +83,11 @@ const NavHeader = () => {
               <TooltipIcon tipTitle="全屏" icon={ScanCircle} />
               <TooltipIcon tipTitle="GitHub" icon={LogoGithub} />
             </NSpace>
-            <PersonalCenter />
           </div>
         )}
+        <div style={{ marginRight: '20px' }}>
+          <PersonalCenter />
+        </div>
       </div>
       <DrawerConfig />
     </NLayoutHeader>
