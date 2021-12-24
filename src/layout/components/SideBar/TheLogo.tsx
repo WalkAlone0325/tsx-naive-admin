@@ -1,11 +1,12 @@
 import { NGradientText, NIcon } from 'naive-ui'
+import { HTMLAttributes } from 'vue'
 
 interface IProps {
   collapsed?: boolean
   adminTitle?: string
 }
 
-const TheLogo = (props: IProps) => {
+const TheLogo = (props: IProps & HTMLAttributes) => {
   return (
     <div class="logo-container">
       <NIcon size={30} class="logo-icon">

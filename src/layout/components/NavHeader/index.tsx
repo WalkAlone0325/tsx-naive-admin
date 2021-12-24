@@ -1,6 +1,9 @@
+import DrawerConfig from '@/components/DrawerConfig'
+import PersonalCenter from '@/components/PersonalCenter'
+import TooltipIcon from '@/components/TooltipIcon'
 import { useSettings } from '@/stores'
 import { renderIcon } from '@/utils/utils'
-import { LogOutOutline } from '@vicons/ionicons5'
+import { LogoGithub, LogOutOutline, ScanCircle } from '@vicons/ionicons5'
 import { NLayoutHeader, NMenu, NSpace } from 'naive-ui'
 import TheLogo from '../SideBar/TheLogo'
 import './index.scss'
@@ -76,10 +79,15 @@ const NavHeader = () => {
           </div>
         ) : (
           <div class="right-container">
-            <NSpace size="small"></NSpace>
+            <NSpace size="small">
+              <TooltipIcon tipTitle="全屏" icon={ScanCircle} />
+              <TooltipIcon tipTitle="GitHub" icon={LogoGithub} />
+            </NSpace>
+            <PersonalCenter />
           </div>
         )}
       </div>
+      <DrawerConfig />
     </NLayoutHeader>
   )
 }
