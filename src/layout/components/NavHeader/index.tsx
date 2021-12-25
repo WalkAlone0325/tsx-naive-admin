@@ -74,7 +74,11 @@ const NavHeader = () => {
   }
 
   return (
-    <NLayoutHeader class="layout-header-container" bordered>
+    <NLayoutHeader
+      class="layout-header-container"
+      bordered
+      inverted={menuMode.value === 'horizontal' ? inverted.value : false}
+    >
       {menuMode.value === 'vertical' ? <div /> : null}
       <div class={menuMode.value === 'horizontal' ? 'horizontal-container' : 'vertical-container'}>
         {menuMode.value === 'horizontal' ? (
