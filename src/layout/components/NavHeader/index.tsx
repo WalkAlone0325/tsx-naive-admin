@@ -1,3 +1,4 @@
+import Breadcrumb from '@/components/Breadcrumb'
 import DrawerConfig from '@/components/DrawerConfig'
 import PersonalCenter from '@/components/PersonalCenter'
 import TooltipIcon from '@/components/TooltipIcon'
@@ -39,7 +40,12 @@ const NavHeader = () => {
       bordered
       inverted={menuMode.value === 'horizontal' ? inverted.value : false}
     >
-      {menuMode.value === 'vertical' ? <div /> : null}
+      {menuMode.value === 'vertical' ? (
+        <div>
+          <Breadcrumb />
+        </div>
+      ) : null}
+
       <div class={menuMode.value === 'horizontal' ? 'horizontal-container' : 'vertical-container'}>
         {menuMode.value === 'horizontal' ? (
           <div class="left-container">
@@ -53,14 +59,15 @@ const NavHeader = () => {
               v-model:value={activeKey.value}
             />
           </div>
-        ) : (
+        ) : null}
+        {menuMode.value === 'vertical' ? (
           <div class="right-container">
             <NSpace size="small">
               <TooltipIcon tipTitle="全屏" icon={ScanCircle} onClick={handleClickScreen} />
               <TooltipIcon tipTitle="GitHub" icon={LogoGithub} onClick={handleToGithub} />
             </NSpace>
           </div>
-        )}
+        ) : null}
         <div style={{ marginRight: '20px' }}>
           <PersonalCenter />
         </div>
