@@ -1,6 +1,6 @@
 import { renderIcon } from '@/utils/utils'
 import { MenuOption } from 'naive-ui'
-import { RouteRecordRaw } from 'vue-router'
+import { RouteRecordRaw, RouterLink } from 'vue-router'
 import { DesktopOutline } from '@vicons/ionicons5'
 import { VNode } from 'vue'
 
@@ -11,7 +11,7 @@ export function useMenus(routesMap: RouteRecordRaw[]): MenuOption[] {
       route.children?.length === 1 && (route = route.children[0])
 
       const currentMenu: MenuOption = {
-        label: route.meta?.title,
+        label: () => <RouterLink to={{ name: route.name }}>{route.meta?.title}</RouterLink>,
         key: route.name as string,
         icon: renderIcon(route.meta?.icon as VNode) || DesktopOutline,
         children:
