@@ -12,14 +12,20 @@ interface Props {
 }
 
 const SideBar = (props: Props) => {
+  const route = useRoute()
   const appStore = useApp()
   const { adminTitle, inverted } = storeToRefs(useSettings())
-
-  const activeKey = ref(null)
 
   // 生成侧边栏菜单
   const { routes } = useRouterList()
   const menuOptions = useMenus(toRaw(routes))
+
+  // 高亮选中菜单
+  const activeKey = ref(route.name)
+  watch(
+    () => route.fullPath,
+    () => (activeKey.value = route.name)
+  )
 
   return (
     <NLayoutSider

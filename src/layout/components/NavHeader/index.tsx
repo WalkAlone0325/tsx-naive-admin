@@ -9,12 +9,11 @@ import TheLogo from '../SideBar/TheLogo'
 import './index.scss'
 
 const NavHeader = () => {
+  const route = useRoute()
   const { inverted, adminTitle, menuMode } = storeToRefs(useSettings())
 
   const { routes } = useRouterList()
   const menuOptions = useMenus(toRaw(routes))
-
-  const activeKey = ref(null)
 
   // 全屏
   const { toggle, isSupported } = useFullscreen()
@@ -26,6 +25,13 @@ const NavHeader = () => {
   const handleToGithub = () => {
     window.open(href)
   }
+
+  // 高亮选中菜单
+  const activeKey = ref(route.name)
+  watch(
+    () => route.fullPath,
+    () => (activeKey.value = route.name)
+  )
 
   return (
     <NLayoutHeader
