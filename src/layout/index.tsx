@@ -26,7 +26,7 @@ const BaseLayout = () => {
             nativeScrollbar
             position={isFixedHeader.value ? 'absolute' : 'static'}
             style={isFixedHeader.value ? { top: '64px' } : {}}
-            contentStyle={{ padding: '24px' }}
+            contentStyle={{ padding: '10px' }}
           >
             <NScrollbar>
               <AppMain />
