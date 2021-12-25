@@ -1,16 +1,30 @@
-export default {
-  globalTheme: 'lightTheme',
-  sideHeaderTheme: 'dark',
-  themeEditor: false,
-  menuMode: 'vertical',
-  showTrigger: 'bar',
-  showLogo: true,
-  showBorder: true,
-  showBreadcrumb: true,
-  showBreadcrumbIcon: true,
-  isFixedHeader: true,
-  adminTitle: '后台管理系统'
-} as ISettings
+const globalTheme = 'lightTheme'
+const sideHeaderTheme = 'dark'
+const themeEditor = false
+const menuMode = 'vertical'
+const showTrigger = 'bar'
+const showLogo = true
+const showBorder = true
+const showBreadcrumb = true
+const showBreadcrumbIcon = true
+const isFixedHeader = true
+const adminTitle = '后台管理系统'
+
+// export default settings as ISettings
+
+export {
+  globalTheme,
+  sideHeaderTheme,
+  themeEditor,
+  menuMode,
+  showTrigger,
+  showLogo,
+  showBorder,
+  showBreadcrumb,
+  showBreadcrumbIcon,
+  isFixedHeader,
+  adminTitle
+}
 
 export interface ISettings {
   /** 主题 */

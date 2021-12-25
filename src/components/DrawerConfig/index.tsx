@@ -1,4 +1,15 @@
-import { NBadge, NDrawer, NDrawerContent, NImage, NInput, NSelect, NSpace, NSwitch } from 'naive-ui'
+import {
+  NBadge,
+  NButton,
+  NDrawer,
+  NDrawerContent,
+  NImage,
+  NInput,
+  NSelect,
+  NSpace,
+  NSwitch,
+  useMessage
+} from 'naive-ui'
 import TheTooltip from '../TheTooltip'
 import lightSvg from '@/assets/images/light.svg'
 import headerDarkSvg from '@/assets/images/header-dark.svg'
@@ -30,6 +41,30 @@ const DrawerConfig = () => {
     { label: '竖线', value: 'bar' },
     { label: '隐藏', value: false }
   ] as SelectBaseOption[])
+
+  // 配置
+  const message = useMessage()
+  const configObj = {
+    isFixedHeader: isFixedHeader.value,
+    showLogo: showLogo.value,
+    showBorder: showBorder.value,
+    showTrigger: showTrigger.value,
+    showBreadcrumb: showBreadcrumb.value,
+    showBreadcrumbIcon: showBreadcrumbIcon.value,
+    adminTitle: adminTitle.value,
+    globalTheme: globalTheme.value,
+    menuMode: menuMode.value
+  }
+  const submitConfig = () => {
+    window.localStorage.setItem('settingConfig', JSON.stringify(configObj))
+    message.success('保存配置成功！')
+    window.location.reload()
+  }
+  const resetConfig = () => {
+    window.localStorage.removeItem('settingConfig')
+    message.success('重置配置成功！')
+    window.location.reload()
+  }
 
   return (
     <NDrawer show={drawerActive.value} onUpdateShow={toggleDrawer} width={300} placement="right">
@@ -134,6 +169,15 @@ const DrawerConfig = () => {
               <span>更改 Title</span>
               <NInput v-model:value={adminTitle.value} maxlength={10} style={{ width: '60%' }} />
             </div>
+          </NSpace>
+        </div>
+
+        <div class="footer-btn-group">
+          <NSpace>
+            <NButton type="primary" onClick={submitConfig}>
+              保存配置
+            </NButton>
+            <NButton onClick={resetConfig}>重置配置</NButton>
           </NSpace>
         </div>
       </NDrawerContent>
