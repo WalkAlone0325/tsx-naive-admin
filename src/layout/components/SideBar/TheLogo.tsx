@@ -1,3 +1,4 @@
+import { useSettings } from '@/stores'
 import { NGradientText, NIcon } from 'naive-ui'
 import { HTMLAttributes } from 'vue'
 
@@ -7,8 +8,13 @@ interface IProps {
 }
 
 const TheLogo = (props: IProps & HTMLAttributes) => {
+  const { showBorder } = storeToRefs(useSettings())
+
   return (
-    <div class="logo-container">
+    <div
+      class="logo-container"
+      style={showBorder.value ? { borderBottom: '1px solid var(--border-color)' } : {}}
+    >
       <NIcon size={30} class="logo-icon">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 261.76 226.69">
           <path

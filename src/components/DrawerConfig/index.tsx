@@ -56,6 +56,7 @@ const DrawerConfig = () => {
     menuMode: menuMode.value
   }
   const submitConfig = () => {
+    window.localStorage.removeItem('settingConfig')
     window.localStorage.setItem('settingConfig', JSON.stringify(configObj))
     message.success('保存配置成功！')
     window.location.reload()

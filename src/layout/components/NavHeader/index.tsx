@@ -11,7 +11,7 @@ import './index.scss'
 
 const NavHeader = () => {
   const route = useRoute()
-  const { inverted, adminTitle, menuMode } = storeToRefs(useSettings())
+  const { inverted, adminTitle, menuMode, showBorder } = storeToRefs(useSettings())
 
   const { routes } = useRouterList()
   const menuOptions = useMenus(toRaw(routes))
@@ -37,7 +37,7 @@ const NavHeader = () => {
   return (
     <NLayoutHeader
       class="layout-header-container"
-      bordered
+      bordered={showBorder.value}
       inverted={menuMode.value === 'horizontal' ? inverted.value : false}
     >
       {menuMode.value === 'vertical' ? (
