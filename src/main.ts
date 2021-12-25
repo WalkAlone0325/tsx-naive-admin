@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 
 import App from './App'
 import router from './router'
-// import './permission'
+import './permission'
 
 // 通用字体
 // import 'vfonts/Lato.css'
