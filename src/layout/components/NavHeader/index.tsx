@@ -62,6 +62,17 @@ const NavHeader = () => {
 
   const activeKey = ref(null)
 
+  // 全屏
+  const { toggle, isSupported } = useFullscreen()
+  const handleClickScreen = () => {
+    isSupported && toggle()
+  }
+  // github
+  const href = 'https://github.com/WalkAlone0325/tsx-naive-admin'
+  const handleToGithub = () => {
+    window.open(href)
+  }
+
   return (
     <NLayoutHeader class="layout-header-container" bordered>
       {menuMode.value === 'vertical' ? <div /> : null}
@@ -80,8 +91,8 @@ const NavHeader = () => {
         ) : (
           <div class="right-container">
             <NSpace size="small">
-              <TooltipIcon tipTitle="全屏" icon={ScanCircle} />
-              <TooltipIcon tipTitle="GitHub" icon={LogoGithub} />
+              <TooltipIcon tipTitle="全屏" icon={ScanCircle} onClick={handleClickScreen} />
+              <TooltipIcon tipTitle="GitHub" icon={LogoGithub} onClick={handleToGithub} />
             </NSpace>
           </div>
         )}

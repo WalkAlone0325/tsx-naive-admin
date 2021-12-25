@@ -13,22 +13,24 @@ interface IProps {
 
 const TooltipIcon = (props: IProps & HTMLAttributes) => {
   return (
-    <NTooltip>
-      {{
-        trigger: () => (
-          <NIcon
-            style={{ cursor: 'pointer' }}
-            color={props.color}
-            depth={props.depth}
-            size={props.size || 34}
-          >
-            {/* {slots.default!()} */}
-            <props.icon />
-          </NIcon>
-        ),
-        default: () => <span>{props.tipTitle}</span>
-      }}
-    </NTooltip>
+    <div>
+      <NTooltip>
+        {{
+          trigger: () => (
+            <NIcon
+              style={{ cursor: 'pointer' }}
+              color={props.color}
+              depth={props.depth}
+              size={props.size || 34}
+            >
+              {/* {slots.default!()} */}
+              <props.icon />
+            </NIcon>
+          ),
+          default: () => <span>{props.tipTitle}</span>
+        }}
+      </NTooltip>
+    </div>
   )
 }
 
