@@ -5,7 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 // your UI resolver
-import {} from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,12 +18,13 @@ export default defineConfig({
       dts: resolve(__dirname, './src/auto-import.d.ts'),
       resolvers: [
         // your UI Resolver
+        NaiveUiResolver()
       ]
     }),
     Components({
       dirs: ['src/components'],
       dts: resolve(__dirname, './src/components.d.ts'),
-      resolvers: []
+      resolvers: [NaiveUiResolver()]
     })
   ],
   resolve: {

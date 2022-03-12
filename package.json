@@ -16,7 +16,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@vicons/antd": "^0.12.0",
+    "naive-ui": "^2.26.4",
     "pinia": "^2.0.11",
+    "vfonts": "^0.0.3",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13"
   },
@@ -33,6 +36,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.5.0",
     "husky": "^7.0.4",
+    "less": "^4.1.2",
     "lint-staged": "^12.1.2",
     "mrm": "^3.0.10",
     "prettier": "^2.5.1",
