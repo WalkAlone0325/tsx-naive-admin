@@ -24,7 +24,7 @@ module.exports = defineConfig({
   ],
   overrides: [
     {
-      files: ['*.ts', '*.vue'],
+      files: ['*.ts', '*.vue', '*.tsx'],
       rules: {
         'no-undef': 'off'
       }
@@ -39,9 +39,16 @@ module.exports = defineConfig({
     'no-var': 'error',
     'no-empty': ['error', { allowEmptyCatch: true }],
     'no-void': 'error',
-    'prefer-const': ['warn', { destructuring: 'all', ignoreReadBeforeAssign: true }],
+    'prefer-const': [
+      'warn',
+      { destructuring: 'all', ignoreReadBeforeAssign: true }
+    ],
     'prefer-template': 'error',
-    'object-shorthand': ['error', 'always', { ignoreConstructors: false, avoidQuotes: true }],
+    'object-shorthand': [
+      'error',
+      'always',
+      { ignoreConstructors: false, avoidQuotes: true }
+    ],
     'block-scoped-var': 'error',
     'no-constant-condition': ['error', { checkLoops: false }],
 
@@ -49,7 +56,10 @@ module.exports = defineConfig({
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
-    '@typescript-eslint/consistent-type-imports': ['error', { disallowTypeAnnotations: false }],
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      { disallowTypeAnnotations: false }
+    ],
 
     // vue
     'vue/no-v-html': 'off',

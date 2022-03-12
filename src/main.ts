@@ -1,20 +1,24 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import App from './App.vue'
 
-import App from './App'
-import router from './router'
-import './permission'
+// your global css
 
-// 通用字体
-// import 'vfonts/Lato.css'
-// 等宽字体
-import 'vfonts/FiraCode.css'
+import { router, setupRouter, setupRouterGuard } from '@/router'
+import { setupStore } from '@/store'
 
-import '@/assets/styles/index.scss'
+function bootstrap() {
+  const app = createApp(App)
 
-const app = createApp(App)
+  // store
+  setupStore(app)
 
-app.use(createPinia())
-app.use(router)
+  // router
+  setupRouter(app)
 
-app.mount('#app')
+  // router guard
+  setupRouterGuard(router)
+
+  // mount
+  app.mount('#app')
+}
+
+bootstrap()
