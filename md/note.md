@@ -2,7 +2,7 @@
 
 ## 创建项目
 
-`pnpm create vue@next`
+`pnpm create vite`
 
 ### 配置包管理器
 
