@@ -1,36 +1,63 @@
-/** @type {import('eslint').Linter.Config} */
-module.exports = {
+const { defineConfig } = require('eslint-define-config')
+
+module.exports = defineConfig({
   root: true,
-  env: {
-    browser: true,
-    es2021: true,
-    node: true
-  },
   parser: 'vue-eslint-parser',
-  extends: [
-    'plugin:vue/vue3-essential',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'plugin:prettier/recommended'
-  ],
   parserOptions: {
-    ecmaVersion: 13,
     parser: '@typescript-eslint/parser',
     sourceType: 'module',
-    jsxPragma: 'React',
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
+      tsx: true
     }
   },
-  plugins: ['vue', '@typescript-eslint', 'prettier'],
-  rules: {
-    'vue/multi-word-component-names': 0,
-    '@typescript-eslint/no-non-null-assertion': 0
+  env: {
+    browser: true,
+    node: true
   },
-  globals: {
-    defineProps: 'readonly',
-    defineEmits: 'readonly',
-    defineExpose: 'readonly',
-    withDefaults: 'readonly'
+  plugins: ['@typescript-eslint', 'prettier', 'import'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/vue3-recommended',
+    'prettier'
+  ],
+  overrides: [
+    {
+      files: ['*.ts', '*.vue'],
+      rules: {
+        'no-undef': 'off'
+      }
+    }
+  ],
+  rules: {
+    // js/ts
+    'no-console': ['warn', { allow: ['error'] }],
+    'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
+    camelcase: ['error', { properties: 'never' }],
+
+    'no-var': 'error',
+    'no-empty': ['error', { allowEmptyCatch: true }],
+    'no-void': 'error',
+    'prefer-const': ['warn', { destructuring: 'all', ignoreReadBeforeAssign: true }],
+    'prefer-template': 'error',
+    'object-shorthand': ['error', 'always', { ignoreConstructors: false, avoidQuotes: true }],
+    'block-scoped-var': 'error',
+    'no-constant-condition': ['error', { checkLoops: false }],
+
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-non-null-asserted-optional-chain': 'off',
+    '@typescript-eslint/consistent-type-imports': ['error', { disallowTypeAnnotations: false }],
+
+    // vue
+    'vue/no-v-html': 'off',
+    'vue/require-default-prop': 'off',
+    'vue/require-explicit-emits': 'off',
+    'vue/multi-word-component-names': 'off',
+
+    // prettier
+    'prettier/prettier': 'error'
   }
-}
+})
