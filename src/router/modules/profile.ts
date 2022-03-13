@@ -1,3 +1,4 @@
+import BlankLayout from '@/layout/blank-layout'
 import type { RouteRecordRaw } from 'vue-router'
 
 export default {

@@ -1,3 +1,7 @@
 import { RouterView } from 'vue-router'
 
-export default () => <RouterView />
+export default defineComponent({
+  render() {
+    return <RouterView />
+  }
+})

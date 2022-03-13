@@ -1,94 +1,93 @@
 import type { PropType } from 'vue'
-import { BookFilled, PrinterFilled } from '@vicons/antd'
-import { NMenu } from 'naive-ui'
+import type { MenuOption } from 'naive-ui'
+import { NEllipsis, NMenu } from 'naive-ui'
 import renderIcon from '@/utils/renderIcon'
+import usePermission from '@/hooks/permission'
+import type { RouteRecordNormalized, RouteRecordRaw } from 'vue-router'
+import { RouterLink } from 'vue-router'
 
 const Menu = defineComponent({
   props: {
-    inverted: Boolean as PropType<boolean>
+    inverted: Boolean as PropType<boolean>,
+    collapsed: Boolean as PropType<boolean>
   },
   setup(props) {
-    const menuOptions = [
-      {
-        label: '且听风吟',
-        key: 'hear-the-wind-sing',
-        icon: renderIcon(BookFilled)
-      },
-      {
-        label: '1973年的弹珠玩具',
-        key: 'pinball-1973',
-        icon: renderIcon(BookFilled),
-        disabled: true,
-        children: [
-          {
-            label: '鼠',
-            key: 'rat'
+    const permission = usePermission()
+    const route = useRoute()
+    const router = useRouter()
+
+    // root
+    const appRoute = computed(() => {
+      return router
+        .getRoutes()
+        .find((el) => el.name === 'root') as RouteRecordNormalized
+    })
+    // menuTree
+    const menuTree = computed(() => {
+      const copyRouter = JSON.parse(JSON.stringify(appRoute.value.children))
+      function travel(_routes: RouteRecordRaw[], layer: number) {
+        if (!_routes) return null
+        const collector: any = _routes.map((element) => {
+          const flatElement = {
+            ...element,
+            // ...element.meta,
+            key: element.name,
+            icon: renderIcon(element.meta?.icon || 'AppstoreFilled'),
+            label: () => (
+              <NEllipsis>{{ default: () => element.meta?.title }}</NEllipsis>
+              // <RouterLink to={{ name: element.name }}>
+              //   {element.meta?.title}
+              // </RouterLink>
+            ),
+            children: element.children
           }
-        ]
-      },
-      {
-        label: '寻羊冒险记',
-        key: 'a-wild-sheep-chase',
-        disabled: true,
-        icon: renderIcon(BookFilled)
-      },
-      {
-        label: '舞，舞，舞',
-        key: 'dance-dance-dance',
-        icon: renderIcon(BookFilled),
-        children: [
-          {
-            type: 'group',
-            label: '人物',
-            key: 'people',
-            children: [
-              {
-                label: '叙事者',
-                key: 'narrator',
-                icon: renderIcon(PrinterFilled)
-              },
-              {
-                label: '羊男',
-                key: 'sheep-man',
-                icon: renderIcon(PrinterFilled)
-              }
-            ]
-          },
-          {
-            label: '饮品',
-            key: 'beverage',
-            icon: renderIcon(PrinterFilled),
-            children: [
-              {
-                label: '威士忌',
-                key: 'whisky'
-              }
-            ]
-          },
-          {
-            label: '食物',
-            key: 'food',
-            children: [
-              {
-                label: '三明治',
-                key: 'sandwich'
-              }
-            ]
-          },
-          {
-            label: '过去增多，未来减少',
-            key: 'the-past-increases-the-future-recedes'
+          // no access
+          if (!permission.accessRouter(flatElement)) return null
+
+          // leaf node
+          if (!flatElement.children) return flatElement
+
+          // associated child node
+          const subItem = travel(flatElement.children, layer)
+          if (subItem.length) {
+            flatElement.children = subItem
+            return flatElement
           }
-        ]
+          // the else logic
+          if (layer > 1) {
+            flatElement.children = subItem
+            return flatElement
+          }
+          return null
+        })
+        return collector.filter(Boolean)
       }
-    ]
+      return travel(copyRouter, 0)
+    })
+
+    // select
+    const activeKey = ref(route.name)
+    watch(route, (newVal) => {
+      if (newVal.meta.requiresAuth) {
+        const lastLen = newVal.matched.length - 1
+        const key = newVal.matched[lastLen].name as string
+        activeKey.value = key
+      }
+    })
+    const handleUpdateValue = (key: string) => {
+      router.push({ name: key })
+    }
 
     return () => (
       <NMenu
+        collapsed={props.collapsed}
         inverted={props.inverted}
-        collapsedWidth={64}
+        collapsedWidth={50}
         collapsedIconSize={22}
-        options={menuOptions}
+        indent={18}
+        options={menuTree.value}
+        v-model:value={activeKey.value}
+        onUpdateValue={handleUpdateValue}
       />
     )
   }

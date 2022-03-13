@@ -22,7 +22,7 @@ const AppMain = defineComponent({
                   <Suspense>
                     {{
                       default: () => h(Component, { key: route.path }),
-                      fallback: () => <div>Loading...</div>
+                      fallback: () => <h3>Loading...</h3>
                     }}
                   </Suspense>
                 </KeepAlive>
@@ -30,6 +30,29 @@ const AppMain = defineComponent({
             )
           }}
         </RouterView>
+        {/* <RouterView>
+          {{
+            default: ({
+              Component,
+              route
+            }: {
+              Component: VNode
+              route: RouteLocationNormalizedLoaded
+            }) =>
+              Component && (
+                <Transition name="fade" mode="out-in">
+                  <KeepAlive>
+                    <Suspense>
+                      {{
+                        default: () => h(Component, { key: route.path }),
+                        fallback: () => <div>Loading...</div>
+                      }}
+                    </Suspense>
+                  </KeepAlive>
+                </Transition>
+              )
+          }}
+        </RouterView> */}
       </NLayoutContent>
     )
   }

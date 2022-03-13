@@ -4,11 +4,11 @@ import appRoutes from './modules'
 import login from './modules/login'
 
 export const routes: RouteRecordRaw[] = [
-  // {
-  // path: '/',
-  // redirect: 'login'
-  // },
-  // login,
+  {
+    path: '/',
+    redirect: 'login'
+  },
+  login,
   {
     path: '/',
     name: 'root',

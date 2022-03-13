@@ -5,15 +5,21 @@ import '@/style/index.less'
 
 import { router, setupRouter, setupRouterGuard } from '@/router'
 import { setupStore } from '@/store'
+import { setupIcons } from './icons'
 
-function bootstrap() {
+async function bootstrap() {
   const app = createApp(App)
+
+  // icons
+  setupIcons(app)
 
   // store
   setupStore(app)
 
   // router
   setupRouter(app)
+
+  // await router.isReady()
 
   // router guard
   setupRouterGuard(router)
