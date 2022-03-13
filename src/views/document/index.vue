@@ -1,3 +1,3 @@
 <template>
-  <div>example</div>
+  <h2>document</h2>
 </template>

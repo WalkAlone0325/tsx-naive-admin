@@ -1,6 +1,7 @@
-import App from './App.vue'
+import App from './App'
 
-// your global css
+// global less
+import '@/style/index.less'
 
 import { router, setupRouter, setupRouterGuard } from '@/router'
 import { setupStore } from '@/store'

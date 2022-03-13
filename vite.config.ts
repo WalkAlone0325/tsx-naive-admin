@@ -18,14 +18,16 @@ export default defineConfig({
       dts: resolve(__dirname, './src/auto-import.d.ts'),
       resolvers: [
         // your UI Resolver
-        NaiveUiResolver()
+        // NaiveUiResolver()
       ]
-    }),
-    Components({
-      dirs: ['src/components'],
-      dts: resolve(__dirname, './src/components.d.ts'),
-      resolvers: [NaiveUiResolver()]
     })
+    // Components({
+    //   dirs: ['src/components'],
+    //   extensions: ['tsx'],
+    //   include: [/\.tsx$/],
+    //   dts: resolve(__dirname, './src/components.d.ts')
+    //   // resolvers: [NaiveUiResolver()]
+    // })
   ],
   resolve: {
     alias: [

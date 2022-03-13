@@ -1,3 +1,3 @@
 <template>
-  <div>Layout</div>
+  <h2>basic</h2>
 </template>
