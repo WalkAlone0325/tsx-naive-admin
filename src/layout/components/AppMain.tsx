@@ -5,6 +5,7 @@ import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { RouterView } from 'vue-router'
 
 const AppMain = defineComponent({
+  name: 'AppMain',
   setup() {
     return () => (
       <NLayoutContent>

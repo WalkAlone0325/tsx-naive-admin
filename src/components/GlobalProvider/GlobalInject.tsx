@@ -1,6 +1,7 @@
 import { useDialog, useLoadingBar, useMessage, useNotification } from 'naive-ui'
 
 const GlobalInject = defineComponent({
+  name: 'GlobalInject',
   setup() {
     const slots = useSlots()
 

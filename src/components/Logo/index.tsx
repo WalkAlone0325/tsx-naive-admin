@@ -1,8 +1,9 @@
 import logoImg from '@/assets/images/logo.png'
-import { NCollapseTransition, NGradientText, NImage } from 'naive-ui'
+import { NCollapseTransition, NGradientText } from 'naive-ui'
 import style from './style/index.module.less'
 
 const Logo = defineComponent({
+  name: 'Logo',
   props: {
     collapsed: Boolean
   },

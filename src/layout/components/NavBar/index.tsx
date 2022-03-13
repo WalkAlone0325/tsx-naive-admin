@@ -5,6 +5,7 @@ import { NLayoutHeader, NSpace } from 'naive-ui'
 import style from './style/index.module.less'
 
 const NavBar = defineComponent({
+  name: 'NavBar',
   setup() {
     return () => (
       <NLayoutHeader bordered class={style['header-container']}>

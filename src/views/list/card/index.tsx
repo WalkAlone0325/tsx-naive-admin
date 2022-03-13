@@ -1,4 +1,5 @@
 const ListCard = defineComponent({
+  name: 'ListCard',
   setup() {
     return () => <div>ListCard</div>
   }

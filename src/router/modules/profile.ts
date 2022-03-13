@@ -4,7 +4,7 @@ import type { RouteRecordRaw } from 'vue-router'
 export default {
   path: 'profile',
   name: 'profile',
-  component: () => import('@/views/profile/index.vue'),
+  component: BlankLayout,
   meta: {
     locale: 'menu.profile',
     requiresAuth: true,
@@ -14,7 +14,7 @@ export default {
     {
       path: 'basic',
       name: 'basic',
-      component: () => import('@/views/profile/basic/index.vue'),
+      component: () => import('@/views/profile/basic'),
       meta: {
         locale: 'menu.profile.basic',
         requiresAuth: true,

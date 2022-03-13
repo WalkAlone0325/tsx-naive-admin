@@ -1,12 +1,11 @@
 import type { PropType } from 'vue'
-import type { MenuOption } from 'naive-ui'
 import { NEllipsis, NMenu } from 'naive-ui'
 import renderIcon from '@/utils/renderIcon'
 import usePermission from '@/hooks/permission'
 import type { RouteRecordNormalized, RouteRecordRaw } from 'vue-router'
-import { RouterLink } from 'vue-router'
 
 const Menu = defineComponent({
+  name: 'Menu',
   props: {
     inverted: Boolean as PropType<boolean>,
     collapsed: Boolean as PropType<boolean>

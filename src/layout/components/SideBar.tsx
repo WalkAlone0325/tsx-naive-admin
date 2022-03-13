@@ -4,6 +4,7 @@ import Menu from './Menu'
 import { useAppStore } from '@/store'
 
 const SideBar = defineComponent({
+  name: 'SideBar',
   setup() {
     const appStore = useAppStore()
     const { collapsed } = storeToRefs(appStore)

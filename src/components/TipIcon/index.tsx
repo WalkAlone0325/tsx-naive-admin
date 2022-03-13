@@ -2,6 +2,7 @@ import { NIcon, NTooltip } from 'naive-ui'
 import type { Component, CSSProperties, PropType } from 'vue'
 
 const TipIcon = defineComponent({
+  name: 'TipIcon',
   props: {
     icon: {
       type: Object as PropType<Component>,

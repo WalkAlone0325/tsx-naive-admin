@@ -8,6 +8,7 @@ import {
 import GlobalInject from './GlobalInject'
 
 const GlobalProvider = defineComponent({
+  name: 'GlobalProvider',
   setup(_, { slots }) {
     return () => (
       <NConfigProvider>

@@ -1,5 +1,5 @@
 import type { App } from 'vue'
-import type { Router } from 'vue-router'
+import type { LocationQueryRaw, Router } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserStore } from '@/store'
 import { isLogin } from '@/utils/auth'
@@ -20,7 +20,7 @@ export function setupRouter(app: App<Element>) {
 
 // guard
 export function setupRouterGuard(router: Router) {
-  router.beforeEach((to, from, next) => {
+  router.beforeEach(async (to, from, next) => {
     window.$loadingBar.start()
 
     const userStore = useUserStore()

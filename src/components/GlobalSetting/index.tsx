@@ -2,6 +2,7 @@ import { useAppStore } from '@/store'
 import { NDrawer, NDrawerContent } from 'naive-ui'
 
 const GlobalSetting = defineComponent({
+  name: 'GlobalSetting',
   setup() {
     const appStore = useAppStore()
     const { showDrawer } = storeToRefs(appStore)

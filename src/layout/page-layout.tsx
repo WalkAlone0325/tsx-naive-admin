@@ -5,6 +5,7 @@ import AppMain from './components/AppMain'
 import GlobalSetting from '@/components/GlobalSetting'
 
 const PageLayout = defineComponent({
+  name: 'PageLayout',
   setup() {
     return () => (
       <NLayout class="layout-container" hasSider position="absolute">

@@ -4,6 +4,7 @@ import renderIcon from '@/utils/renderIcon'
 import { SettingOutlined, UserOutlined, LogoutOutlined } from '@vicons/antd'
 
 const PersonalCenter = defineComponent({
+  name: 'PersonalCenter',
   setup() {
     const appStore = useAppStore()
 
