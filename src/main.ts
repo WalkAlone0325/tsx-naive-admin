@@ -19,7 +19,7 @@ async function bootstrap() {
   // router
   setupRouter(app)
 
-  // await router.isReady()
+  await router.isReady()
 
   // router guard
   setupRouterGuard(router)
