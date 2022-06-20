@@ -1,5 +1,5 @@
 import { defineComponent, KeepAlive, Suspense, Transition } from 'vue'
-import { NLayout, NLayoutContent } from 'naive-ui'
+import { NLayout, NLayoutContent, NSpin } from 'naive-ui'
 import BaseSider from '@/components/layouts/BaseSider'
 import BaseHeader from '@/components/layouts/BaseHeader'
 import GlobalDraw from '@/components/GlobalDraw'
@@ -15,7 +15,7 @@ const PageLayout = defineComponent({
     const supSlots = (Component, route) => {
       return {
         default: () => <Component key={route.path} />,
-        fallback: () => <div>loading...</div>
+        fallback: () => <NSpin size={'large'} />
       }
     }
 
