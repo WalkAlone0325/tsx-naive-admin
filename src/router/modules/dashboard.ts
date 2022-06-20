@@ -1,4 +1,5 @@
 import BlankLayout from '@/layout/BlankLayout'
+import { DashboardFilled } from '@vicons/antd'
 import type { RouteRecordRaw } from 'vue-router'
 
 export default {
@@ -9,7 +10,7 @@ export default {
   meta: {
     locale: 'dashboard',
     requiresAuth: true,
-    icon: 'DashboardFilled',
+    icon: DashboardFilled,
     title: '仪表管理'
   },
   children: [
@@ -22,7 +23,7 @@ export default {
         requiresAuth: true,
         role: ['*'],
         title: '工作站',
-        icon: 'DashboardFilled'
+        icon: DashboardFilled
       }
     },
     {
@@ -34,7 +35,7 @@ export default {
         requiresAuth: true,
         role: ['*'],
         title: '仪表盘',
-        icon: 'DashboardFilled'
+        icon: DashboardFilled
       }
     }
   ]

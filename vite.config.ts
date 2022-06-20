@@ -11,7 +11,9 @@ export default defineConfig({
     include: ['vue', 'vue-router', 'pinia']
   },
   plugins: [
-    vue(),
+    vue({
+      reactivityTransform: true
+    }),
     vueJsx(),
     AutoImport({
       imports: ['vue', 'vue-router', 'pinia'],
