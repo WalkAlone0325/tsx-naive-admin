@@ -21,7 +21,8 @@ export default {
         locale: 'workplace',
         requiresAuth: true,
         role: ['*'],
-        title: '工作站'
+        title: '工作站',
+        icon: 'DashboardFilled'
       }
     },
     {
@@ -32,7 +33,8 @@ export default {
         locale: 'monitor',
         requiresAuth: true,
         role: ['*'],
-        title: '仪表盘'
+        title: '仪表盘',
+        icon: 'DashboardFilled'
       }
     }
   ]

@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
 import { NH2, NLayoutSider } from 'naive-ui'
+import Menu from './Menu'
 
 const BaseSider = defineComponent({
   name: 'BaseSider',
@@ -28,26 +29,8 @@ const BaseSider = defineComponent({
             logo
           </div>
         )}
-        <div style={props.isShowLogo ? { marginTop: '50px' } : {}}>
-          1<NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-          <NH2>海淀桥</NH2>
-        </div>
+
+        <Menu style={props.isShowLogo ? { marginTop: '50px' } : {}} />
       </NLayoutSider>
     )
   }

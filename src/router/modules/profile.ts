@@ -8,7 +8,8 @@ export default {
   meta: {
     locale: 'menu.profile',
     requiresAuth: true,
-    icon: 'UserOutlined'
+    icon: 'UserOutlined',
+    title: '个人中心'
   },
   children: [
     {
@@ -18,7 +19,9 @@ export default {
       meta: {
         locale: 'menu.profile.basic',
         requiresAuth: true,
-        role: ['admin']
+        role: ['admin'],
+        title: '基本资料',
+        icon: 'UserOutlined'
       }
     }
   ]
