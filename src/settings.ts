@@ -1,7 +1,9 @@
 export interface SettingConfig {
   isShowDraw: boolean
+  isFixedHeader: boolean
 }
 
 export default {
-  isShowDraw: false
+  isShowDraw: false,
+  isFixedHeader: true
 } as SettingConfig

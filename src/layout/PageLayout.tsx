@@ -4,7 +4,8 @@ import {
   NLayoutSider,
   NLayoutHeader,
   NLayoutContent,
-  NButton
+  NButton,
+  NH2
 } from 'naive-ui'
 import BaseSider from '@/components/layouts/BaseSider'
 import BaseHeader from '@/components/layouts/BaseHeader'
@@ -15,22 +16,46 @@ const PageLayout = defineComponent({
   name: 'PageLayout',
   setup() {
     const settingStore = useSettingStore()
-    const { isShowDraw } = storeToRefs(settingStore)
+    const { isShowDraw, isFixedHeader } = storeToRefs(settingStore)
 
     return () => (
-      <NLayout hasSider>
+      <NLayout hasSider position="absolute">
         <BaseSider />
-        <NLayout>
+
+        <NLayout nativeScrollbar={false}>
           <BaseHeader />
-          <NLayoutContent>
+
+          <NLayoutContent
+            style={isFixedHeader.value ? { marginTop: '84px' } : {}}
+            position={isFixedHeader.value ? 'absolute' : 'static'}
+            nativeScrollbar={false}
+            contentStyle={{ padding: '20px' }}
+          >
             Content
             <NButton onClick={() => (isShowDraw.value = true)}>
               打开设置
             </NButton>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
+            <NH2>海淀桥</NH2>
           </NLayoutContent>
         </NLayout>
 
-        {/* <GlobalDraw isShowDraw={isShowDraw.value} /> */}
         <GlobalDraw />
       </NLayout>
     )
