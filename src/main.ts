@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 
 import App from './App'
-import { setupStore } from './stores'
+import { setupStore } from './store'
 import { router, setupRouter, setupRouterGuard } from './router'
 
 function bootstrap() {

@@ -1,13 +1,21 @@
 import { defineComponent, ref } from 'vue'
-import { NLayout, NLayoutSider, NLayoutHeader, NLayoutContent, NButton } from 'naive-ui'
+import {
+  NLayout,
+  NLayoutSider,
+  NLayoutHeader,
+  NLayoutContent,
+  NButton
+} from 'naive-ui'
 import BaseSider from '@/components/layouts/BaseSider'
 import BaseHeader from '@/components/layouts/BaseHeader'
 import GlobalDraw from '@/components/GlobalDraw'
+import { useSettingStore } from '@/store'
 
 const PageLayout = defineComponent({
   name: 'PageLayout',
   setup() {
-    const isShowDraw = ref(false)
+    const settingStore = useSettingStore()
+    const { isShowDraw } = storeToRefs(settingStore)
 
     return () => (
       <NLayout hasSider>
@@ -22,9 +30,10 @@ const PageLayout = defineComponent({
           </NLayoutContent>
         </NLayout>
 
-        <GlobalDraw isShowDraw={isShowDraw.value} />
+        {/* <GlobalDraw isShowDraw={isShowDraw.value} /> */}
+        <GlobalDraw />
       </NLayout>
-    ) 
+    )
   }
 })
 

@@ -1,15 +1,18 @@
-import { defineComponent, toRef } from 'vue'
-import type { PropType } from 'vue'
-import { NDrawer } from 'naive-ui'
+import { defineComponent } from 'vue'
+import { NDrawer, NDrawerContent } from 'naive-ui'
+import { useSettingStore } from '@/store'
 
 const GlobalDraw = defineComponent({
   name: 'GlobalDraw',
-  props: {
-    isShowDraw: Boolean as PropType<boolean>
-  },
-  setup(props) {
-    // const isShowDraw = toRef('')
-    return () => <NDrawer v-model:show={props.isShowDraw}></NDrawer>
+  setup(props, { emit }) {
+    const settingStore = useSettingStore()
+    const { isShowDraw } = storeToRefs(settingStore)
+
+    return () => (
+      <NDrawer v-model:show={isShowDraw.value} width={350}>
+        <NDrawerContent title="全局配置"></NDrawerContent>
+      </NDrawer>
+    )
   }
 })
 

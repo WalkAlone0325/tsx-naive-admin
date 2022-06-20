@@ -2,12 +2,21 @@ import { defineComponent, ref } from 'vue'
 import { NAvatar, NDivider, NDropdown, NLayoutHeader, NSpace } from 'naive-ui'
 import styles from './style/header.module.less'
 import TipIcon from '@/components/TipIcon'
-import { GithubOutlined, FileWordOutlined, UserOutlined, SettingOutlined, LogoutOutlined } from '@vicons/antd'
+import {
+  GithubOutlined,
+  FileWordOutlined,
+  UserOutlined,
+  SettingOutlined,
+  LogoutOutlined
+} from '@vicons/antd'
 import { renderIcon } from '@/utils'
+import { useSettingStore } from '@/store'
 
 const BaseHeader = defineComponent({
   name: 'BaseHeader',
   setup() {
+    const settingStore = useSettingStore()
+
     const userUrl = 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
 
     const dropOptions = [
@@ -37,11 +46,11 @@ const BaseHeader = defineComponent({
       console.log(key)
       switch (key) {
         case 'setting':
-          // changeSetting('isShowDraw', true)
-          break;
-      
+          settingStore.changeSetting('isShowDraw', true)
+          break
+
         default:
-          break;
+          break
       }
     }
 
@@ -50,7 +59,6 @@ const BaseHeader = defineComponent({
         <header class={styles.headerContainer}>
           <div>left</div>
           <NSpace style={{ height: '50px' }} align="center" justify="center">
-
             <TipIcon iconName={FileWordOutlined} tipContent={'Docs'} />
             <TipIcon iconName={GithubOutlined} tipContent={'GitHub'} />
 
