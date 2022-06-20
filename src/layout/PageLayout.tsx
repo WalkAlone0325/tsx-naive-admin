@@ -1,22 +1,34 @@
-import { defineComponent, ref } from 'vue'
-import {
-  NLayout,
-  NLayoutSider,
-  NLayoutHeader,
-  NLayoutContent,
-  NButton,
-  NH2
-} from 'naive-ui'
+import { defineComponent, KeepAlive, Suspense, Transition } from 'vue'
+import { NLayout, NLayoutContent } from 'naive-ui'
 import BaseSider from '@/components/layouts/BaseSider'
 import BaseHeader from '@/components/layouts/BaseHeader'
 import GlobalDraw from '@/components/GlobalDraw'
 import { useSettingStore } from '@/store'
+import { RouterView } from 'vue-router'
 
 const PageLayout = defineComponent({
   name: 'PageLayout',
   setup() {
     const settingStore = useSettingStore()
-    const { isShowDraw, isShowLogo, isFixedHeader } = storeToRefs(settingStore)
+    const { isShowLogo, isFixedHeader } = storeToRefs(settingStore)
+
+    const supSlots = (Component, route) => {
+      return {
+        default: () => <Component key={route.path} />,
+        fallback: () => <div>loading...</div>
+      }
+    }
+
+    const slots = {
+      default: ({ Component, route }) =>
+        Component && (
+          <Transition name="fade" mode="out-in">
+            <KeepAlive>
+              <Suspense v-slots={supSlots(Component, route)}></Suspense>
+            </KeepAlive>
+          </Transition>
+        )
+    }
 
     return () => (
       <NLayout hasSider position="absolute">
@@ -31,28 +43,7 @@ const PageLayout = defineComponent({
             nativeScrollbar={false}
             contentStyle={{ padding: '20px' }}
           >
-            Content
-            <NButton onClick={() => (isShowDraw.value = true)}>
-              打开设置
-            </NButton>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
-            <NH2>海淀桥</NH2>
+            <RouterView v-slots={slots}></RouterView>
           </NLayoutContent>
         </NLayout>
 
