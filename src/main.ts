@@ -7,6 +7,9 @@ import { router, setupRouter, setupRouterGuard } from './router'
 function bootstrap() {
   const app = createApp(App)
 
+  // 全局组件
+  app.component('BlankLayout', () => import('@/layout/BlankLayout'))
+
   // store
   setupStore(app)
 
