@@ -16,11 +16,11 @@ const PageLayout = defineComponent({
   name: 'PageLayout',
   setup() {
     const settingStore = useSettingStore()
-    const { isShowDraw, isFixedHeader } = storeToRefs(settingStore)
+    const { isShowDraw, isShowLogo, isFixedHeader } = storeToRefs(settingStore)
 
     return () => (
       <NLayout hasSider position="absolute">
-        <BaseSider />
+        <BaseSider isShowLogo={isShowLogo.value} />
 
         <NLayout nativeScrollbar={false}>
           <BaseHeader />

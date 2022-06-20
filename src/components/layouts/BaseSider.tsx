@@ -3,7 +3,10 @@ import { NH2, NLayoutSider } from 'naive-ui'
 
 const BaseSider = defineComponent({
   name: 'BaseSider',
-  setup() {
+  props: {
+    isShowLogo: Boolean
+  },
+  setup(props) {
     return () => (
       <NLayoutSider
         width={200}
@@ -12,25 +15,39 @@ const BaseSider = defineComponent({
         showTrigger="bar"
         collapseMode="width"
       >
-        <div style={{ height: '50px' }}>logo</div>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
+        {props.isShowLogo && (
+          <div
+            style={{
+              height: '50px',
+              position: 'fixed',
+              top: '0',
+              backgroundColor: '#fff',
+              width: '200px'
+            }}
+          >
+            logo
+          </div>
+        )}
+        <div style={props.isShowLogo ? { marginTop: '50px' } : {}}>
+          1<NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+          <NH2>海淀桥</NH2>
+        </div>
       </NLayoutSider>
     )
   }
