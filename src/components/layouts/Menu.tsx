@@ -17,13 +17,12 @@ const Menu = defineComponent({
 
     // 高亮菜单
     let activeKey = $ref(route.name)
-    // watch(
-    //   () => route.fullPath,
-    //   () => {
-    //     activeKey = route.name as string
-    //   },
-    //   { immediate: true }
-    // )
+    watch(
+      () => route.fullPath,
+      () => {
+        activeKey = route.name as string
+      }
+    )
 
     const handleClickItem = (key: string) => {
       return router.push({ name: key })
@@ -65,7 +64,7 @@ const Menu = defineComponent({
         options={menuTree as MenuOption[]}
         onUpdateValue={handleClickItem}
         inverted={props.isInverted}
-        v-model={activeKey}
+        v-model:value={activeKey}
         style={{ zIndex: 1 }}
       ></NMenu>
     )
