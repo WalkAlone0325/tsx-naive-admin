@@ -20,6 +20,7 @@ const BaseHeader = defineComponent({
   props: {
     isCollapse: Boolean,
     isShowTagViews: Boolean,
+    isInverted: Boolean,
     triggerStyle: String as PropType<TriggerStyle>
   },
   setup(props) {
@@ -64,7 +65,7 @@ const BaseHeader = defineComponent({
     }
 
     return () => (
-      <NLayoutHeader bordered>
+      <NLayoutHeader bordered inverted={props.isInverted}>
         <header
           class={styles.headerContainer}
           style={
@@ -82,7 +83,12 @@ const BaseHeader = defineComponent({
             )}
 
             {isShowBreadcrumb && (
-              <Breadcrumb style={props.triggerStyle !== 'custom' ? {marginLeft: '10px'} : {}} isShowBreadcrumbIcon={isShowBreadcrumbIcon} />
+              <Breadcrumb
+                style={
+                  props.triggerStyle !== 'custom' ? { marginLeft: '10px' } : {}
+                }
+                isShowBreadcrumbIcon={isShowBreadcrumbIcon}
+              />
             )}
           </NSpace>
           <NSpace style={{ height: '50px' }} align="center" justify="center">

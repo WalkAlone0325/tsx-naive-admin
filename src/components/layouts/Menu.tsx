@@ -6,7 +6,10 @@ import { RouteRecordRaw } from 'vue-router'
 
 const Menu = defineComponent({
   name: 'Menu',
-  setup() {
+  props: {
+    isInverted: Boolean
+  },
+  setup(props) {
     const route = useRoute()
     const router = useRouter()
 
@@ -58,6 +61,7 @@ const Menu = defineComponent({
         collapsedIconSize={22}
         options={menuTree as MenuOption[]}
         onUpdateValue={handleClickItem}
+        inverted={props.isInverted}
         v-model={activeKey}
         style={{zIndex: 1}}
       ></NMenu>

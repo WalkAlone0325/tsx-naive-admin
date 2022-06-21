@@ -8,6 +8,7 @@ export interface SettingConfig {
   isShowTagViews: boolean
   isShowBreadcrumb: boolean
   isShowBreadcrumbIcon: boolean
+  isInverted: boolean
   triggerStyle: TriggerStyle
 }
 
@@ -19,5 +20,6 @@ export default {
   isShowTagViews: true,
   isShowBreadcrumb: true,
   isShowBreadcrumbIcon: true,
+  isInverted: true,
   triggerStyle: 'custom'
 } as SettingConfig

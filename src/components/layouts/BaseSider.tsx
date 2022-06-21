@@ -11,7 +11,8 @@ const BaseSider = defineComponent({
   props: {
     isShowLogo: Boolean,
     triggerStyle: String as PropType<TriggerStyle>,
-    isCollapse: Boolean
+    isCollapse: Boolean,
+    isInverted: Boolean
   },
   emits: ['changeCollapsed'],
   setup(props, { emit }) {
@@ -26,7 +27,10 @@ const BaseSider = defineComponent({
         showTrigger={triggerStyle as Trigger}
         collapseMode="width"
         collapsed={props.isCollapse}
-        onUpdateCollapsed={() => emit('changeCollapsed', 'isCollapse', !props.isCollapse)}
+        onUpdateCollapsed={() =>
+          emit('changeCollapsed', 'isCollapse', !props.isCollapse)
+        }
+        inverted={props.isInverted}
       >
         {props.isShowLogo && (
           <BaseLogo
@@ -35,7 +39,10 @@ const BaseSider = defineComponent({
           />
         )}
 
-        <Menu style={props.isShowLogo ? { marginTop: '50px' } : {}} />
+        <Menu
+          style={props.isShowLogo ? { marginTop: '50px' } : {}}
+          isInverted={props.isInverted}
+        />
       </NLayoutSider>
     )
   }

@@ -11,7 +11,7 @@ const PageLayout = defineComponent({
   name: 'PageLayout',
   setup() {
     const settingStore = useSettingStore()
-    const { isShowLogo, isFixedHeader, isCollapse, isShowTagViews, triggerStyle } = $(storeToRefs(settingStore))
+    const { isShowLogo, isFixedHeader, isCollapse, isShowTagViews, isInverted, triggerStyle } = $(storeToRefs(settingStore))
 
     const contentStyle = $computed(() => {
       if (isFixedHeader) {
@@ -59,6 +59,7 @@ const PageLayout = defineComponent({
           isShowLogo={isShowLogo}
           triggerStyle={triggerStyle}
           isCollapse={isCollapse}
+          isInverted={isInverted}
           onChangeCollapsed={settingStore.changeSetting}
         />
 
@@ -67,6 +68,7 @@ const PageLayout = defineComponent({
             isCollapse={isCollapse}
             triggerStyle={triggerStyle}
             isShowTagViews={isShowTagViews}
+            isInverted={isInverted}
           />
 
           <NLayoutContent
