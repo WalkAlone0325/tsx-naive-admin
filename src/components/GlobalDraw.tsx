@@ -1,5 +1,13 @@
 import { defineComponent } from 'vue'
-import { NDivider, NDrawer, NDrawerContent, NSelect, NSpace, NSwitch } from 'naive-ui'
+import {
+  NDivider,
+  NDrawer,
+  NDrawerContent,
+  NInputNumber,
+  NSelect,
+  NSpace,
+  NSwitch
+} from 'naive-ui'
 import type { SelectOption } from 'naive-ui'
 import { useSettingStore } from '@/store'
 
@@ -8,9 +16,16 @@ const DescSetting = defineComponent({
   props: {
     title: String
   },
-  setup(props, {slots}) {
+  setup(props, { slots }) {
     return () => (
-      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '16px'}}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          fontSize: '16px'
+        }}
+      >
         <span>{props.title}</span>
         {slots.default!()}
       </div>
@@ -22,7 +37,19 @@ const GlobalDraw = defineComponent({
   name: 'GlobalDraw',
   setup(props, { emit }) {
     const settingStore = useSettingStore()
-    const { isShowDraw, isFixedHeader, isShowLogo, isShowTagViews, isShowBreadcrumb, isShowBreadcrumbIcon, triggerStyle } = $(storeToRefs(settingStore))
+    const {
+      isShowDraw,
+      isFixedHeader,
+      isShowLogo,
+      isShowTagViews,
+      isShowBreadcrumb,
+      isShowBreadcrumbIcon,
+      isInverted,
+      triggerStyle,
+      collapsedWidth,
+      collapsedIconSize,
+      globalTheme
+    } = $(storeToRefs(settingStore))
 
     // 折叠菜单风格
     const triggerOptions = $ref<SelectOption[]>([
@@ -31,9 +58,29 @@ const GlobalDraw = defineComponent({
       { label: '自定义', value: 'custom' }
     ])
 
+    // 主题色
+    const themeOptions = $ref<SelectOption[]>([
+      // { label: '默认', value: 'default' },
+      // { label: '蓝色', value: 'blue' },
+      // { label: '红色', value: 'red' }
+      { label: '亮色主题', value: 'lightTheme' },
+      { label: '暗色主题', value: 'darkTheme' }
+    ])
+
     return () => (
       <NDrawer v-model:show={isShowDraw} width={300}>
         <NDrawerContent title="界面显示设置">
+          <NDivider>主题</NDivider>
+          <NSpace vertical>
+            <DescSetting title="主题色">
+              <NSelect
+                style={{ width: '50%' }}
+                v-model:value={globalTheme}
+                options={themeOptions}
+              />
+            </DescSetting>
+          </NSpace>
+
           <NDivider>配置项</NDivider>
           <NSpace vertical>
             <DescSetting title="固定头部">
@@ -48,14 +95,18 @@ const GlobalDraw = defineComponent({
               <NSwitch v-model:value={isShowBreadcrumb} />
             </DescSetting>
 
-            {isShowBreadcrumb &&
+            {isShowBreadcrumb && (
               <DescSetting title="显示面包屑图标">
                 <NSwitch v-model:value={isShowBreadcrumbIcon} />
               </DescSetting>
-            }
+            )}
 
             <DescSetting title="显示 Logo">
               <NSwitch v-model:value={isShowLogo} />
+            </DescSetting>
+
+            <DescSetting title="反转主题色">
+              <NSwitch v-model:value={isInverted} />
             </DescSetting>
 
             <DescSetting title="折叠菜单风格">
@@ -63,6 +114,24 @@ const GlobalDraw = defineComponent({
                 style={{ width: '50%' }}
                 v-model:value={triggerStyle}
                 options={triggerOptions}
+              />
+            </DescSetting>
+
+            <DescSetting title="菜单图标大小">
+              <NInputNumber
+                style={{ width: '50%' }}
+                v-model:value={collapsedIconSize}
+                max={50}
+                min={10}
+              />
+            </DescSetting>
+
+            <DescSetting title="菜单折叠宽度">
+              <NInputNumber
+                style={{ width: '50%' }}
+                v-model:value={collapsedWidth}
+                max={64}
+                min={48}
               />
             </DescSetting>
           </NSpace>

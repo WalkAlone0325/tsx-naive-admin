@@ -11,9 +11,12 @@ const WorkPlaceView = defineComponent({
       settingStore.changeSetting('isShowLogo', !isShowLogo)
     }
 
-    return () => <div>WorkPlaceView
-      <NButton onClick={click}>按钮</NButton>
-    </div>
+    return () => (
+      <div>
+        WorkPlaceView
+        <NButton onClick={click}>按钮</NButton>
+      </div>
+    )
   }
 })
 

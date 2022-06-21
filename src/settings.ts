@@ -9,6 +9,9 @@ export interface SettingConfig {
   isShowBreadcrumb: boolean
   isShowBreadcrumbIcon: boolean
   isInverted: boolean
+  collapsedIconSize: number
+  collapsedWidth: number
+  globalTheme: 'darkTheme' | 'lightTheme'
   triggerStyle: TriggerStyle
 }
 
@@ -20,6 +23,9 @@ export default {
   isShowTagViews: true,
   isShowBreadcrumb: true,
   isShowBreadcrumbIcon: true,
-  isInverted: true,
+  isInverted: false,
+  collapsedIconSize: 24,
+  collapsedWidth: 50,
+  globalTheme: 'darkTheme',
   triggerStyle: 'custom'
 } as SettingConfig

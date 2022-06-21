@@ -1,6 +1,12 @@
-import { CSSProperties, defineComponent, KeepAlive, Suspense, Transition } from 'vue'
+import {
+  CSSProperties,
+  defineComponent,
+  KeepAlive,
+  Suspense,
+  Transition
+} from 'vue'
 import type { VNode } from 'vue'
-import { NLayout, NLayoutContent, NSpin } from 'naive-ui'
+import { NEl, NLayout, NLayoutContent, NSpin } from 'naive-ui'
 import BaseSider from '@/components/layouts/BaseSider'
 import BaseHeader from '@/components/layouts/BaseHeader'
 import GlobalDraw from '@/components/GlobalDraw'
@@ -11,14 +17,23 @@ const PageLayout = defineComponent({
   name: 'PageLayout',
   setup() {
     const settingStore = useSettingStore()
-    const { isShowLogo, isFixedHeader, isCollapse, isShowTagViews, isInverted, triggerStyle } = $(storeToRefs(settingStore))
+    const {
+      isShowLogo,
+      isFixedHeader,
+      isCollapse,
+      isShowTagViews,
+      isInverted,
+      triggerStyle,
+      collapsedIconSize,
+      collapsedWidth
+    } = $(storeToRefs(settingStore))
 
     const contentStyle = $computed(() => {
       if (isFixedHeader) {
         if (isShowTagViews) {
-          return { marginTop: '85px' }
+          return { marginTop: '84px' }
         } else {
-          return { marginTop: '51px' }
+          return { marginTop: '50px' }
         }
       } else {
         return {}
@@ -61,15 +76,29 @@ const PageLayout = defineComponent({
           isCollapse={isCollapse}
           isInverted={isInverted}
           onChangeCollapsed={settingStore.changeSetting}
+          collapsedIconSize={collapsedIconSize}
+          collapsedWidth={collapsedWidth}
         />
 
         <NLayout nativeScrollbar={false}>
           <BaseHeader
             isCollapse={isCollapse}
             triggerStyle={triggerStyle}
-            isShowTagViews={isShowTagViews}
             isInverted={isInverted}
           />
+
+          {isShowTagViews && (
+            <NEl
+              style={{
+                height: '34px',
+                background: 'var(--body-color)',
+                borderBottom: '1px solid var(--divider-color)',
+                transition: 'all 0.3s var(--cubic-bezier-ease-in-out)'
+              }}
+            >
+              tagviews
+            </NEl>
+          )}
 
           <NLayoutContent
             style={contentStyle}

@@ -19,13 +19,14 @@ const BaseHeader = defineComponent({
   name: 'BaseHeader',
   props: {
     isCollapse: Boolean,
-    isShowTagViews: Boolean,
     isInverted: Boolean,
     triggerStyle: String as PropType<TriggerStyle>
   },
   setup(props) {
     const settingStore = useSettingStore()
-    const {isShowBreadcrumb, isShowBreadcrumbIcon} = $(storeToRefs(settingStore))
+    const { isShowBreadcrumb, isShowBreadcrumbIcon } = $(
+      storeToRefs(settingStore)
+    )
 
     const userUrl = 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
 
@@ -65,47 +66,42 @@ const BaseHeader = defineComponent({
     }
 
     return () => (
-      <NLayoutHeader bordered inverted={props.isInverted}>
-        <header
-          class={styles.headerContainer}
-          style={
-            props.isShowTagViews
-              ? { borderBottom: 'solid 1px var(--n-border-color)' }
-              : {}
-          }
-        >
-          <NSpace align="center" justify="center">
-            {props.triggerStyle === 'custom' && (
-              <TriggerCollapse
-                isCollapse={props.isCollapse}
-                onChangeSetting={settingStore.changeSetting}
-              />
-            )}
+      <NLayoutHeader
+        bordered
+        inverted={props.isInverted}
+        class={styles.headerContainer}
+      >
+        <NSpace align="center" justify="center">
+          {props.triggerStyle === 'custom' && (
+            <TriggerCollapse
+              isCollapse={props.isCollapse}
+              onChangeSetting={settingStore.changeSetting}
+            />
+          )}
 
-            {isShowBreadcrumb && (
-              <Breadcrumb
-                style={
-                  props.triggerStyle !== 'custom' ? { marginLeft: '10px' } : {}
-                }
-                isShowBreadcrumbIcon={isShowBreadcrumbIcon}
-              />
-            )}
-          </NSpace>
-          <NSpace style={{ height: '50px' }} align="center" justify="center">
-            <TipIcon iconName={FileWordOutlined} tipContent={'Docs'} />
-            <TipIcon iconName={GithubOutlined} tipContent={'GitHub'} />
+          {isShowBreadcrumb && (
+            <Breadcrumb
+              style={
+                props.triggerStyle !== 'custom' ? { marginLeft: '10px' } : {}
+              }
+              isShowBreadcrumbIcon={isShowBreadcrumbIcon}
+            />
+          )}
+        </NSpace>
 
-            <NDropdown options={dropOptions} showArrow onSelect={handleSelect}>
-              <NAvatar
-                round
-                size="medium"
-                src={userUrl}
-                style={{ cursor: 'pointer' }}
-              />
-            </NDropdown>
-          </NSpace>
-        </header>
-        {props.isShowTagViews && <div class={styles.tagViews}>tagviews</div>}
+        <NSpace style={{ height: '50px' }} align="center" justify="center">
+          <TipIcon iconName={FileWordOutlined} tipContent={'Docs'} />
+          <TipIcon iconName={GithubOutlined} tipContent={'GitHub'} />
+
+          <NDropdown options={dropOptions} showArrow onSelect={handleSelect}>
+            <NAvatar
+              round
+              size="medium"
+              src={userUrl}
+              style={{ cursor: 'pointer' }}
+            />
+          </NDropdown>
+        </NSpace>
       </NLayoutHeader>
     )
   }

@@ -7,7 +7,9 @@ import { RouteRecordRaw } from 'vue-router'
 const Menu = defineComponent({
   name: 'Menu',
   props: {
-    isInverted: Boolean
+    isInverted: Boolean,
+    collapsedWidth: Number,
+    collapsedIconSize: Number
   },
   setup(props) {
     const route = useRoute()
@@ -58,12 +60,13 @@ const Menu = defineComponent({
     return () => (
       <NMenu
         indent={20}
-        collapsedIconSize={22}
+        collapsedWidth={props.collapsedWidth}
+        collapsedIconSize={props.collapsedIconSize}
         options={menuTree as MenuOption[]}
         onUpdateValue={handleClickItem}
         inverted={props.isInverted}
         v-model={activeKey}
-        style={{zIndex: 1}}
+        style={{ zIndex: 1 }}
       ></NMenu>
     )
   }

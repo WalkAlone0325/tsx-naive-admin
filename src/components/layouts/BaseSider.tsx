@@ -12,12 +12,15 @@ const BaseSider = defineComponent({
     isShowLogo: Boolean,
     triggerStyle: String as PropType<TriggerStyle>,
     isCollapse: Boolean,
-    isInverted: Boolean
+    isInverted: Boolean,
+    collapsedWidth: Number,
+    collapsedIconSize: Number
   },
   emits: ['changeCollapsed'],
   setup(props, { emit }) {
-
-    const triggerStyle = $computed(() => props.triggerStyle === 'custom' ? false : props.triggerStyle)
+    const triggerStyle = $computed(() =>
+      props.triggerStyle === 'custom' ? false : props.triggerStyle
+    )
 
     return () => (
       <NLayoutSider
@@ -26,6 +29,7 @@ const BaseSider = defineComponent({
         nativeScrollbar={false}
         showTrigger={triggerStyle as Trigger}
         collapseMode="width"
+        collapsedWidth={props.collapsedWidth}
         collapsed={props.isCollapse}
         onUpdateCollapsed={() =>
           emit('changeCollapsed', 'isCollapse', !props.isCollapse)
@@ -35,13 +39,17 @@ const BaseSider = defineComponent({
         {props.isShowLogo && (
           <BaseLogo
             isCollapse={props.isCollapse}
-            style={props.isCollapse ? { maxWidth: '48px' } : {}}
+            style={
+              props.isCollapse ? { maxWidth: `${props.collapsedWidth}px` } : {}
+            }
           />
         )}
 
         <Menu
           style={props.isShowLogo ? { marginTop: '50px' } : {}}
           isInverted={props.isInverted}
+          collapsedIconSize={props.collapsedIconSize}
+          collapsedWidth={props.collapsedWidth}
         />
       </NLayoutSider>
     )

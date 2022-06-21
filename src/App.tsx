@@ -1,21 +1,25 @@
-import {
-  darkTheme,
-  dateZhCN,
-  GlobalTheme,
-  NConfigProvider,
-  zhCN
-} from 'naive-ui'
+import { darkTheme, dateZhCN, NConfigProvider, zhCN } from 'naive-ui'
 import { defineComponent } from 'vue'
 import { RouterView } from 'vue-router'
 import GlobalProvider from '@/components/GlobalProvider'
+import { useSettingStore } from './store'
 
 export default defineComponent({
   name: 'App',
   setup() {
-    const globalTheme = $ref<GlobalTheme | null | undefined>()
+    const settingStore = useSettingStore()
+    const { globalTheme } = $(storeToRefs(settingStore))
+
+    const theme = $computed(() => {
+      if (globalTheme === 'darkTheme') {
+        return darkTheme
+      } else {
+        return null
+      }
+    })
 
     return () => (
-      <NConfigProvider theme={globalTheme} locale={zhCN} dateLocale={dateZhCN}>
+      <NConfigProvider theme={theme} locale={zhCN} dateLocale={dateZhCN}>
         <GlobalProvider>
           <RouterView />
         </GlobalProvider>
