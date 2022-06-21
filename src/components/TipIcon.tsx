@@ -8,10 +8,15 @@ const TipIcon = defineComponent({
     iconName: Object as PropType<Component>,
     tipContent: String
   },
-  setup(props) {
+  emits: ['clickIcon'],
+  setup(props, { emit }) {
     const slots = {
       trigger: () => (
-        <NIcon size={32} style={{ cursor: 'pointer' }}>
+        <NIcon
+          size={26}
+          style={{ cursor: 'pointer' }}
+          onClick={() => emit('clickIcon')}
+        >
           {h(props.iconName as Component)}
         </NIcon>
       ),

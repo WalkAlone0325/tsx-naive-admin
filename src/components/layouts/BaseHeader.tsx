@@ -4,16 +4,19 @@ import styles from './style/header.module.less'
 import TipIcon from '@/components/TipIcon'
 import {
   GithubOutlined,
-  FileWordOutlined,
   UserOutlined,
   SettingOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  FullscreenExitOutlined,
+  FullscreenOutlined,
+  ProfileOutlined
 } from '@vicons/antd'
 import { renderIcon } from '@/utils'
 import { useSettingStore } from '@/store'
 import TriggerCollapse from '../TriggerCollapse'
 import type { TriggerStyle } from '@/settings'
 import Breadcrumb from '../Breadcrumb'
+import { isFullscreen, toggleScreen } from '@/hooks'
 
 const BaseHeader = defineComponent({
   name: 'BaseHeader',
@@ -65,6 +68,11 @@ const BaseHeader = defineComponent({
       }
     }
 
+    // 跳转
+    const goToGithub = () => {
+      window.open('https://github.com/WalkAlone0325', '_blank')
+    }
+
     return () => (
       <NLayoutHeader
         bordered
@@ -90,8 +98,25 @@ const BaseHeader = defineComponent({
         </NSpace>
 
         <NSpace style={{ height: '50px' }} align="center" justify="center">
-          <TipIcon iconName={FileWordOutlined} tipContent={'Docs'} />
-          <TipIcon iconName={GithubOutlined} tipContent={'GitHub'} />
+          {isFullscreen.value ? (
+            <TipIcon
+              iconName={FullscreenExitOutlined}
+              tipContent={'退出全屏'}
+              onClickIcon={toggleScreen}
+            />
+          ) : (
+            <TipIcon
+              iconName={FullscreenOutlined}
+              tipContent={'进入全屏'}
+              onClickIcon={toggleScreen}
+            />
+          )}
+          <TipIcon iconName={ProfileOutlined} tipContent={'Docs'} />
+          <TipIcon
+            iconName={GithubOutlined}
+            tipContent={'GitHub'}
+            onClickIcon={goToGithub}
+          />
 
           <NDropdown options={dropOptions} showArrow onSelect={handleSelect}>
             <NAvatar

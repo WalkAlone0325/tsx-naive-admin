@@ -26,6 +26,6 @@ export default {
   isInverted: false,
   collapsedIconSize: 24,
   collapsedWidth: 50,
-  globalTheme: 'darkTheme',
+  globalTheme: 'lightTheme',
   triggerStyle: 'custom'
 } as SettingConfig
