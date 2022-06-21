@@ -82,7 +82,7 @@ const BaseHeader = defineComponent({
             )}
 
             {isShowBreadcrumb && (
-              <Breadcrumb isShowBreadcrumbIcon={isShowBreadcrumbIcon} />
+              <Breadcrumb style={props.triggerStyle !== 'custom' ? {marginLeft: '10px'} : {}} isShowBreadcrumbIcon={isShowBreadcrumbIcon} />
             )}
           </NSpace>
           <NSpace style={{ height: '50px' }} align="center" justify="center">
