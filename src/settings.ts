@@ -6,6 +6,6 @@ export interface SettingConfig {
 
 export default {
   isShowDraw: false,
-  isShowLogo: false,
+  isShowLogo: true,
   isFixedHeader: true
 } as SettingConfig

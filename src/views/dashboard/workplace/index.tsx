@@ -1,7 +1,19 @@
+import { useSettingStore } from '@/store'
+import { NButton } from 'naive-ui'
+
 const WorkPlaceView = defineComponent({
   name: 'WorkPlaceView',
   setup() {
-    return () => <div>WorkPlaceView</div>
+    const settingStore = useSettingStore()
+    let { isShowLogo } = $(storeToRefs(settingStore))
+
+    const click = () => {
+      settingStore.changeSetting('isShowLogo', !isShowLogo)
+    }
+
+    return () => <div>WorkPlaceView
+      <NButton onClick={click}>按钮</NButton>
+    </div>
   }
 })
 

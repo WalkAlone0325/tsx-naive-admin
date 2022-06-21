@@ -10,6 +10,20 @@ const Menu = defineComponent({
     const route = useRoute()
     const router = useRouter()
 
+    // 高亮菜单
+    let activeKey = $ref(route.name)
+    // watch(
+    //   () => route.fullPath,
+    //   () => {
+    //     activeKey = route.name as string
+    //   },
+    //   { immediate: true }
+    // )
+
+    const handleClickItem = (key: string) => {
+      return router.push({ name: key })
+    }
+
     // root menu
     const appRoute = $computed(() =>
       router.getRoutes().find((route) => route.name === 'root')
@@ -38,7 +52,15 @@ const Menu = defineComponent({
       return travel(copyRoutes, 0)
     })
 
-    return () => <NMenu options={menuTree as MenuOption[]}></NMenu>
+    return () => (
+      <NMenu
+        indent={20}
+        collapsedIconSize={22}
+        options={menuTree as MenuOption[]}
+        onUpdateValue={handleClickItem}
+        v-model={activeKey}
+      ></NMenu>
+    )
   }
 })
 

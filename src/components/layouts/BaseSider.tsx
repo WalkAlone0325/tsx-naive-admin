@@ -1,6 +1,6 @@
-import { defineComponent } from 'vue'
-import { NH2, NLayoutSider } from 'naive-ui'
+import { NLayoutSider } from 'naive-ui'
 import Menu from './Menu'
+import BaseLogo from './BaseLogo'
 
 const BaseSider = defineComponent({
   name: 'BaseSider',
@@ -8,6 +8,8 @@ const BaseSider = defineComponent({
     isShowLogo: Boolean
   },
   setup(props) {
+    const isCollapse = $ref(false)
+
     return () => (
       <NLayoutSider
         width={200}
@@ -15,22 +17,16 @@ const BaseSider = defineComponent({
         nativeScrollbar={false}
         showTrigger="bar"
         collapseMode="width"
+        v-model:collapsed={isCollapse}
       >
         {props.isShowLogo && (
-          <div
-            style={{
-              height: '50px',
-              position: 'fixed',
-              top: '0',
-              backgroundColor: '#fff',
-              width: '200px'
-            }}
-          >
-            logo
-          </div>
+          <BaseLogo
+            isCollapse={isCollapse}
+            style={isCollapse ? { maxWidth: '48px' } : {}}
+          />
         )}
 
-        <Menu style={props.isShowLogo ? { marginTop: '50px' } : {}} />
+        <Menu style={props.isShowLogo ? { marginTop: '50px', zIndex: 1 } : { zIndex: 1 }}/>
       </NLayoutSider>
     )
   }

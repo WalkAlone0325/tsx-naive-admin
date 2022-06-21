@@ -37,6 +37,176 @@ export default {
         title: '仪表盘',
         icon: DashboardFilled
       }
+    },
+
+    /****** */
+    {
+      path: 'workplace',
+      name: 'workplace',
+      component: () => import('@/views/dashboard/workplace'),
+      meta: {
+        locale: 'workplace',
+        requiresAuth: true,
+        role: ['*'],
+        title: '工作站',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'monitor',
+      name: 'monitor',
+      component: () => import('@/views/dashboard/monitor'),
+      meta: {
+        locale: 'monitor',
+        requiresAuth: true,
+        role: ['*'],
+        title: '仪表盘',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'workplace',
+      name: 'workplace',
+      component: () => import('@/views/dashboard/workplace'),
+      meta: {
+        locale: 'workplace',
+        requiresAuth: true,
+        role: ['*'],
+        title: '工作站',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'monitor',
+      name: 'monitor',
+      component: () => import('@/views/dashboard/monitor'),
+      meta: {
+        locale: 'monitor',
+        requiresAuth: true,
+        role: ['*'],
+        title: '仪表盘',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'workplace',
+      name: 'workplace',
+      component: () => import('@/views/dashboard/workplace'),
+      meta: {
+        locale: 'workplace',
+        requiresAuth: true,
+        role: ['*'],
+        title: '工作站',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'monitor',
+      name: 'monitor',
+      component: () => import('@/views/dashboard/monitor'),
+      meta: {
+        locale: 'monitor',
+        requiresAuth: true,
+        role: ['*'],
+        title: '仪表盘',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'workplace',
+      name: 'workplace',
+      component: () => import('@/views/dashboard/workplace'),
+      meta: {
+        locale: 'workplace',
+        requiresAuth: true,
+        role: ['*'],
+        title: '工作站',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'monitor',
+      name: 'monitor',
+      component: () => import('@/views/dashboard/monitor'),
+      meta: {
+        locale: 'monitor',
+        requiresAuth: true,
+        role: ['*'],
+        title: '仪表盘',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'workplace',
+      name: 'workplace',
+      component: () => import('@/views/dashboard/workplace'),
+      meta: {
+        locale: 'workplace',
+        requiresAuth: true,
+        role: ['*'],
+        title: '工作站',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'monitor',
+      name: 'monitor',
+      component: () => import('@/views/dashboard/monitor'),
+      meta: {
+        locale: 'monitor',
+        requiresAuth: true,
+        role: ['*'],
+        title: '仪表盘',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'workplace',
+      name: 'workplace',
+      component: () => import('@/views/dashboard/workplace'),
+      meta: {
+        locale: 'workplace',
+        requiresAuth: true,
+        role: ['*'],
+        title: '工作站',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'monitor',
+      name: 'monitor',
+      component: () => import('@/views/dashboard/monitor'),
+      meta: {
+        locale: 'monitor',
+        requiresAuth: true,
+        role: ['*'],
+        title: '仪表盘',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'workplace',
+      name: 'workplace',
+      component: () => import('@/views/dashboard/workplace'),
+      meta: {
+        locale: 'workplace',
+        requiresAuth: true,
+        role: ['*'],
+        title: '工作站',
+        icon: DashboardFilled
+      }
+    },
+    {
+      path: 'monitor',
+      name: 'monitor',
+      component: () => import('@/views/dashboard/monitor'),
+      meta: {
+        locale: 'monitor',
+        requiresAuth: true,
+        role: ['*'],
+        title: '仪表盘',
+        icon: DashboardFilled
+      }
     }
   ]
 } as RouteRecordRaw
