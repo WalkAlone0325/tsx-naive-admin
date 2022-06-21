@@ -13,6 +13,7 @@ import { renderIcon } from '@/utils'
 import { useSettingStore } from '@/store'
 import TriggerCollapse from '../TriggerCollapse'
 import type { TriggerStyle } from '@/settings'
+import Breadcrumb from '../Breadcrumb'
 
 const BaseHeader = defineComponent({
   name: 'BaseHeader',
@@ -67,18 +68,20 @@ const BaseHeader = defineComponent({
           class={styles.headerContainer}
           style={
             props.isShowTagViews
-              ? { borderBottom: 'solid 1px var(--n-border-color)'}
+              ? { borderBottom: 'solid 1px var(--n-border-color)' }
               : {}
           }
         >
-          <div>
+          <NSpace align="center" justify="center">
             {props.triggerStyle === 'custom' && (
               <TriggerCollapse
                 isCollapse={props.isCollapse}
                 onChangeSetting={settingStore.changeSetting}
               />
             )}
-          </div>
+
+            <Breadcrumb />
+          </NSpace>
           <NSpace style={{ height: '50px' }} align="center" justify="center">
             <TipIcon iconName={FileWordOutlined} tipContent={'Docs'} />
             <TipIcon iconName={GithubOutlined} tipContent={'GitHub'} />
