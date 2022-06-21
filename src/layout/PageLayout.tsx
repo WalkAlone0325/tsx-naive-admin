@@ -11,7 +11,7 @@ const PageLayout = defineComponent({
   name: 'PageLayout',
   setup() {
     const settingStore = useSettingStore()
-    const { isShowLogo, isFixedHeader } = $(storeToRefs(settingStore))
+    const { isShowLogo, isFixedHeader, isCollapse, triggerStyle } = $(storeToRefs(settingStore))
 
     const supSlots = (
       Component: VNode,
@@ -43,10 +43,15 @@ const PageLayout = defineComponent({
 
     return () => (
       <NLayout hasSider position="absolute">
-        <BaseSider isShowLogo={isShowLogo} />
+        <BaseSider
+          isShowLogo={isShowLogo}
+          triggerStyle={triggerStyle}
+          isCollapse={isCollapse}
+          onChangeCollapsed={settingStore.changeSetting}
+        />
 
         <NLayout nativeScrollbar={false}>
-          <BaseHeader />
+          <BaseHeader isCollapse={isCollapse} triggerStyle={triggerStyle} />
 
           <NLayoutContent
             style={isFixedHeader ? { marginTop: '86px' } : {}}

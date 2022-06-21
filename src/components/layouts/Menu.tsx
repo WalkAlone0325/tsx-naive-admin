@@ -59,6 +59,7 @@ const Menu = defineComponent({
         options={menuTree as MenuOption[]}
         onUpdateValue={handleClickItem}
         v-model={activeKey}
+        style={{zIndex: 1}}
       ></NMenu>
     )
   }

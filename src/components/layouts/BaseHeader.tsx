@@ -1,4 +1,4 @@
-import { defineComponent, ref } from 'vue'
+import type { PropType } from 'vue'
 import { NAvatar, NDivider, NDropdown, NLayoutHeader, NSpace } from 'naive-ui'
 import styles from './style/header.module.less'
 import TipIcon from '@/components/TipIcon'
@@ -11,10 +11,16 @@ import {
 } from '@vicons/antd'
 import { renderIcon } from '@/utils'
 import { useSettingStore } from '@/store'
+import TriggerCollapse from '../TriggerCollapse'
+import type { TriggerStyle } from '@/settings'
 
 const BaseHeader = defineComponent({
   name: 'BaseHeader',
-  setup() {
+  props: {
+    isCollapse: Boolean,
+    triggerStyle: String as PropType<TriggerStyle>
+  },
+  setup(props) {
     const settingStore = useSettingStore()
 
     const userUrl = 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
@@ -57,7 +63,14 @@ const BaseHeader = defineComponent({
     return () => (
       <NLayoutHeader bordered>
         <header class={styles.headerContainer}>
-          <div>left</div>
+          <div>
+            {props.triggerStyle === 'custom' &&
+              <TriggerCollapse
+                isCollapse={props.isCollapse}
+                onChangeSetting={settingStore.changeSetting}
+              />
+            }
+          </div>
           <NSpace style={{ height: '50px' }} align="center" justify="center">
             <TipIcon iconName={FileWordOutlined} tipContent={'Docs'} />
             <TipIcon iconName={GithubOutlined} tipContent={'GitHub'} />
