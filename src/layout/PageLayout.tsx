@@ -1,4 +1,4 @@
-import { defineComponent, KeepAlive, Suspense, Transition } from 'vue'
+import { CSSProperties, defineComponent, KeepAlive, Suspense, Transition } from 'vue'
 import type { VNode } from 'vue'
 import { NLayout, NLayoutContent, NSpin } from 'naive-ui'
 import BaseSider from '@/components/layouts/BaseSider'
@@ -11,7 +11,19 @@ const PageLayout = defineComponent({
   name: 'PageLayout',
   setup() {
     const settingStore = useSettingStore()
-    const { isShowLogo, isFixedHeader, isCollapse, triggerStyle } = $(storeToRefs(settingStore))
+    const { isShowLogo, isFixedHeader, isCollapse, isShowTagViews, triggerStyle } = $(storeToRefs(settingStore))
+
+    const contentStyle = $computed(() => {
+      if (isFixedHeader) {
+        if (isShowTagViews) {
+          return { marginTop: '85px' }
+        } else {
+          return { marginTop: '51px' }
+        }
+      } else {
+        return {}
+      }
+    })
 
     const supSlots = (
       Component: VNode,
@@ -51,10 +63,14 @@ const PageLayout = defineComponent({
         />
 
         <NLayout nativeScrollbar={false}>
-          <BaseHeader isCollapse={isCollapse} triggerStyle={triggerStyle} />
+          <BaseHeader
+            isCollapse={isCollapse}
+            triggerStyle={triggerStyle}
+            isShowTagViews={isShowTagViews}
+          />
 
           <NLayoutContent
-            style={isFixedHeader ? { marginTop: '86px' } : {}}
+            style={contentStyle}
             position={isFixedHeader ? 'absolute' : 'static'}
             nativeScrollbar={false}
             contentStyle={{ padding: '20px' }}

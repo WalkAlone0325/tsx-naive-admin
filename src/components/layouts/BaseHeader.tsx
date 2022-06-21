@@ -18,6 +18,7 @@ const BaseHeader = defineComponent({
   name: 'BaseHeader',
   props: {
     isCollapse: Boolean,
+    isShowTagViews: Boolean,
     triggerStyle: String as PropType<TriggerStyle>
   },
   setup(props) {
@@ -62,14 +63,21 @@ const BaseHeader = defineComponent({
 
     return () => (
       <NLayoutHeader bordered>
-        <header class={styles.headerContainer}>
+        <header
+          class={styles.headerContainer}
+          style={
+            props.isShowTagViews
+              ? { borderBottom: 'solid 1px var(--n-border-color)'}
+              : {}
+          }
+        >
           <div>
-            {props.triggerStyle === 'custom' &&
+            {props.triggerStyle === 'custom' && (
               <TriggerCollapse
                 isCollapse={props.isCollapse}
                 onChangeSetting={settingStore.changeSetting}
               />
-            }
+            )}
           </div>
           <NSpace style={{ height: '50px' }} align="center" justify="center">
             <TipIcon iconName={FileWordOutlined} tipContent={'Docs'} />
@@ -85,7 +93,7 @@ const BaseHeader = defineComponent({
             </NDropdown>
           </NSpace>
         </header>
-        <div class={styles.tagViews}>tagviews</div>
+        {props.isShowTagViews && <div class={styles.tagViews}>tagviews</div>}
       </NLayoutHeader>
     )
   }

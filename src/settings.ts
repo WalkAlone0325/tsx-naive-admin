@@ -5,6 +5,7 @@ export interface SettingConfig {
   isShowLogo: boolean
   isFixedHeader: boolean
   isCollapse: boolean
+  isShowTagViews: boolean
   triggerStyle: TriggerStyle
 }
 
@@ -13,5 +14,6 @@ export default {
   isShowLogo: true,
   isFixedHeader: true,
   isCollapse: true,
+  isShowTagViews: true,
   triggerStyle: 'custom'
 } as SettingConfig
