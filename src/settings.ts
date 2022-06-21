@@ -6,6 +6,8 @@ export interface SettingConfig {
   isFixedHeader: boolean
   isCollapse: boolean
   isShowTagViews: boolean
+  isShowBreadcrumb: boolean
+  isShowBreadcrumbIcon: boolean
   triggerStyle: TriggerStyle
 }
 
@@ -15,5 +17,7 @@ export default {
   isFixedHeader: true,
   isCollapse: true,
   isShowTagViews: true,
+  isShowBreadcrumb: true,
+  isShowBreadcrumbIcon: true,
   triggerStyle: 'custom'
 } as SettingConfig

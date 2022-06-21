@@ -2,11 +2,14 @@ import { NBreadcrumb, NBreadcrumbItem, NIcon } from 'naive-ui'
 
 const Breadcrumb = defineComponent({
   name: 'Breadcrumb',
-  setup() {
+  props: {
+    isShowBreadcrumbIcon: Boolean
+  },
+  setup(props) {
     const route = useRoute()
-    
+
     const breadList = $computed(() => {
-      return route.matched.map(i => {
+      return route.matched.map((i) => {
         return {
           title: i.meta.title,
           icon: i.meta.icon,
@@ -24,9 +27,9 @@ const Breadcrumb = defineComponent({
             clickable={i.clickable}
             key={i.href}
           >
-            <NIcon
-              component={typeof i.icon === 'string' ? h(i.icon) : i.icon}
-            />
+            {props.isShowBreadcrumbIcon &&
+              <NIcon component={typeof i.icon === 'string' ? h(i.icon) : i.icon}/>
+            }
             {i.title}
           </NBreadcrumbItem>
         ))}

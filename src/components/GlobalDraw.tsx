@@ -22,7 +22,7 @@ const GlobalDraw = defineComponent({
   name: 'GlobalDraw',
   setup(props, { emit }) {
     const settingStore = useSettingStore()
-    const { isShowDraw, isFixedHeader, isShowLogo, isShowTagViews, triggerStyle } = $(storeToRefs(settingStore))
+    const { isShowDraw, isFixedHeader, isShowLogo, isShowTagViews, isShowBreadcrumb, isShowBreadcrumbIcon, triggerStyle } = $(storeToRefs(settingStore))
 
     // 折叠菜单风格
     const triggerOptions = $ref<SelectOption[]>([
@@ -45,12 +45,14 @@ const GlobalDraw = defineComponent({
             </DescSetting>
 
             <DescSetting title="显示面包屑">
-              <NSwitch />
+              <NSwitch v-model:value={isShowBreadcrumb} />
             </DescSetting>
 
-            <DescSetting title="显示面包屑图标">
-              <NSwitch />
-            </DescSetting>
+            {isShowBreadcrumb &&
+              <DescSetting title="显示面包屑图标">
+                <NSwitch v-model:value={isShowBreadcrumbIcon} />
+              </DescSetting>
+            }
 
             <DescSetting title="显示 Logo">
               <NSwitch v-model:value={isShowLogo} />

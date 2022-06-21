@@ -24,6 +24,7 @@ const BaseHeader = defineComponent({
   },
   setup(props) {
     const settingStore = useSettingStore()
+    const {isShowBreadcrumb, isShowBreadcrumbIcon} = $(storeToRefs(settingStore))
 
     const userUrl = 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
 
@@ -80,7 +81,9 @@ const BaseHeader = defineComponent({
               />
             )}
 
-            <Breadcrumb />
+            {isShowBreadcrumb && (
+              <Breadcrumb isShowBreadcrumbIcon={isShowBreadcrumbIcon} />
+            )}
           </NSpace>
           <NSpace style={{ height: '50px' }} align="center" justify="center">
             <TipIcon iconName={FileWordOutlined} tipContent={'Docs'} />
