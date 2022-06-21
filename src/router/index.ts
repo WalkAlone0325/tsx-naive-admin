@@ -17,6 +17,16 @@ export function setupRouter(app: App<Element>) {
 // guard
 export function setupRouterGuard(router: Router) {
   router.beforeEach((to, from, next) => {
+    window.$loadingBar.start()
     next()
+  })
+
+  router.afterEach((to, from) => {
+    window.$loadingBar.finish()
+  })
+
+  router.onError((error) => {
+    window.$message.error(error.message)
+    window.$loadingBar.error()
   })
 }

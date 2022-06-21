@@ -1,10 +1,11 @@
 import { defineComponent, KeepAlive, Suspense, Transition } from 'vue'
+import type { VNode } from 'vue'
 import { NLayout, NLayoutContent, NSpin } from 'naive-ui'
 import BaseSider from '@/components/layouts/BaseSider'
 import BaseHeader from '@/components/layouts/BaseHeader'
 import GlobalDraw from '@/components/GlobalDraw'
 import { useSettingStore } from '@/store'
-import { RouterView } from 'vue-router'
+import { RouteLocationNormalizedLoaded, RouterView } from 'vue-router'
 
 const PageLayout = defineComponent({
   name: 'PageLayout',
@@ -12,15 +13,25 @@ const PageLayout = defineComponent({
     const settingStore = useSettingStore()
     const { isShowLogo, isFixedHeader } = storeToRefs(settingStore)
 
-    const supSlots = (Component, route) => {
+    const supSlots = (
+      Component: VNode,
+      route: RouteLocationNormalizedLoaded
+    ) => {
       return {
-        default: () => <Component key={route.path} />,
-        fallback: () => <NSpin size={'large'} />
+        // default: () => <Component key={route.path} />,
+        default: () => h(Component, { key: route.path }),
+        fallback: () => <NSpin size={'large'} key={route.path} />
       }
     }
 
     const slots = {
-      default: ({ Component, route }) =>
+      default: ({
+        Component,
+        route
+      }: {
+        Component: VNode
+        route: RouteLocationNormalizedLoaded
+      }) =>
         Component && (
           <Transition name="fade" mode="out-in">
             <KeepAlive>
