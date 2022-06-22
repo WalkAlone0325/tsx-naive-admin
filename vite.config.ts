@@ -7,6 +7,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // test build vercel
   optimizeDeps: {
     include: ['vue', 'vue-router', 'pinia']
   },
