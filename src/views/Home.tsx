@@ -7,24 +7,7 @@ const HomeView = defineComponent({
       <div>
         home Content
         <NButton onClick={() => {}}>打开设置</NButton>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
-        <NH2>海淀桥</NH2>
+        <NH2>首页</NH2>
       </div>
     )
   }

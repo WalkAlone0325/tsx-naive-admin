@@ -15,7 +15,7 @@ export default {
     {
       path: 'basic',
       name: 'basic',
-      component: () => import('@/views/profile/basic'),
+      component: () => import('@/views/profile/basic/basic'),
       meta: {
         locale: 'menu.profile.basic',
         requiresAuth: true,

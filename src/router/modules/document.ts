@@ -3,7 +3,7 @@ import type { RouteRecordRaw } from 'vue-router'
 export default {
   path: '/document',
   name: 'document',
-  component: () => import('@/views/document'),
+  component: () => import('@/views/document/document'),
   meta: {
     locale: 'document',
     requiresAuth: false,

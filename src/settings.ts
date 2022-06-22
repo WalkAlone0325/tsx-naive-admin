@@ -21,7 +21,7 @@ export default {
   isShowDraw: false,
   isShowLogo: true,
   isFixedHeader: true,
-  isCollapse: true,
+  isCollapse: false,
   isShowTagViews: true,
   isShowBreadcrumb: true,
   isShowBreadcrumbIcon: true,

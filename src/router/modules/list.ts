@@ -15,7 +15,7 @@ export default {
     {
       path: 'search-table', // The midline path complies with SEO specifications
       name: 'searchTable',
-      component: () => import('@/views/list/search-table'),
+      component: () => import('@/views/list/search-table/search-table'),
       meta: {
         locale: 'menu.list.searchTable',
         requiresAuth: true,
@@ -27,7 +27,7 @@ export default {
     {
       path: 'card',
       name: 'card',
-      component: () => import('@/views/list/card'),
+      component: () => import('@/views/list/card/card'),
       meta: {
         locale: 'menu.list.cardList',
         requiresAuth: true,
@@ -39,7 +39,7 @@ export default {
         {
           path: 'card1',
           name: 'card1',
-          component: () => import('@/views/list/card'),
+          component: () => import('@/views/list/card/card'),
           meta: {
             locale: 'menu.list.cardList',
             requiresAuth: true,
@@ -51,7 +51,7 @@ export default {
         {
           path: 'card2',
           name: 'card2',
-          component: () => import('@/views/list/card'),
+          component: () => import('@/views/list/card/card'),
           meta: {
             locale: 'menu.list.cardList',
             requiresAuth: true,
@@ -63,7 +63,7 @@ export default {
             {
               path: 'card2-1',
               name: 'card2-1',
-              component: () => import('@/views/list/card'),
+              component: () => import('@/views/list/card/card'),
               meta: {
                 locale: 'menu.list.cardList',
                 requiresAuth: true,
@@ -75,7 +75,7 @@ export default {
             {
               path: 'card2-2',
               name: 'card2-2',
-              component: () => import('@/views/list/card'),
+              component: () => import('@/views/list/card/card'),
               meta: {
                 locale: 'menu.list.cardList',
                 requiresAuth: true,
