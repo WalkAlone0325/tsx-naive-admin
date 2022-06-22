@@ -14,16 +14,24 @@ import {
 import { renderIcon } from '@/utils'
 import { useSettingStore } from '@/store'
 import TriggerCollapse from '../TriggerCollapse'
-import type { TriggerStyle } from '@/settings'
+import type { MenuMode, TriggerStyle } from '@/settings'
 import Breadcrumb from '../Breadcrumb'
 import { isFullscreen, toggleScreen } from '@/hooks'
+import Menu from './Menu'
+import BaseLogo from './BaseLogo'
 
 const BaseHeader = defineComponent({
   name: 'BaseHeader',
   props: {
     isCollapse: Boolean,
     isInverted: Boolean,
-    triggerStyle: String as PropType<TriggerStyle>
+    triggerStyle: String as PropType<TriggerStyle>,
+    collapsedWidth: Number,
+    collapsedIconSize: Number,
+    menuMode: {
+      type: String as PropType<MenuMode>,
+      default: 'vertical'
+    }
   },
   setup(props) {
     const settingStore = useSettingStore()
@@ -78,24 +86,41 @@ const BaseHeader = defineComponent({
         bordered
         inverted={props.isInverted}
         class={styles.headerContainer}
+        style={
+          props.menuMode === 'horizontal'
+            ? { width: '1280px', margin: '0 auto' }
+            : {}
+        }
       >
-        <NSpace align="center" justify="center">
-          {props.triggerStyle === 'custom' && (
-            <TriggerCollapse
-              isCollapse={props.isCollapse}
-              onChangeSetting={settingStore.changeSetting}
-            />
-          )}
+        {props.menuMode === 'vertical' ? (
+          <NSpace align="center" justify="center">
+            {props.triggerStyle === 'custom' && (
+              <TriggerCollapse
+                isCollapse={props.isCollapse}
+                onChangeSetting={settingStore.changeSetting}
+              />
+            )}
 
-          {isShowBreadcrumb && (
-            <Breadcrumb
-              style={
-                props.triggerStyle !== 'custom' ? { marginLeft: '10px' } : {}
-              }
-              isShowBreadcrumbIcon={isShowBreadcrumbIcon}
+            {isShowBreadcrumb && (
+              <Breadcrumb
+                style={
+                  props.triggerStyle !== 'custom' ? { marginLeft: '10px' } : {}
+                }
+                isShowBreadcrumbIcon={isShowBreadcrumbIcon}
+              />
+            )}
+          </NSpace>
+        ) : (
+          <NSpace style={{ height: '50px' }} align="center">
+            <BaseLogo />
+            <Menu
+              isInverted={props.isInverted}
+              collapsedIconSize={props.collapsedIconSize}
+              collapsedWidth={props.collapsedWidth}
+              menuMode={props.menuMode}
             />
-          )}
-        </NSpace>
+          </NSpace>
+        )}
 
         <NSpace style={{ height: '50px' }} align="center" justify="center">
           {isFullscreen.value ? (

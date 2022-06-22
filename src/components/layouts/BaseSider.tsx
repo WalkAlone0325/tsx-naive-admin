@@ -1,7 +1,7 @@
 import { NLayoutSider } from 'naive-ui'
 import Menu from './Menu'
 import BaseLogo from './BaseLogo'
-import { TriggerStyle } from '@/settings'
+import { MenuMode, TriggerStyle } from '@/settings'
 import type { PropType } from 'vue'
 
 type Trigger = boolean | 'bar' | 'arrow-circle'
@@ -14,7 +14,11 @@ const BaseSider = defineComponent({
     isCollapse: Boolean,
     isInverted: Boolean,
     collapsedWidth: Number,
-    collapsedIconSize: Number
+    collapsedIconSize: Number,
+    menuMode: {
+      type: String as PropType<MenuMode>,
+      default: 'vertical'
+    }
   },
   emits: ['changeCollapsed'],
   setup(props, { emit }) {
@@ -50,6 +54,7 @@ const BaseSider = defineComponent({
           isInverted={props.isInverted}
           collapsedIconSize={props.collapsedIconSize}
           collapsedWidth={props.collapsedWidth}
+          menuMode={props.menuMode}
         />
       </NLayoutSider>
     )

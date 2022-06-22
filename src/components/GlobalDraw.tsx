@@ -48,7 +48,8 @@ const GlobalDraw = defineComponent({
       triggerStyle,
       collapsedWidth,
       collapsedIconSize,
-      globalTheme
+      globalTheme,
+      menuMode
     } = $(storeToRefs(settingStore))
 
     // 折叠菜单风格
@@ -65,6 +66,12 @@ const GlobalDraw = defineComponent({
       // { label: '红色', value: 'red' }
       { label: '亮色主题', value: 'lightTheme' },
       { label: '暗色主题', value: 'darkTheme' }
+    ])
+
+    // 菜单风格
+    const menuStyleOptions = $ref<SelectOption[]>([
+      { label: '侧栏菜单', value: 'vertical' },
+      { label: '顶栏菜单', value: 'horizontal' }
     ])
 
     return () => (
@@ -109,11 +116,19 @@ const GlobalDraw = defineComponent({
               <NSwitch v-model:value={isInverted} />
             </DescSetting>
 
-            <DescSetting title="折叠菜单风格">
+            <DescSetting title="折叠图标风格">
               <NSelect
                 style={{ width: '50%' }}
                 v-model:value={triggerStyle}
                 options={triggerOptions}
+              />
+            </DescSetting>
+
+            <DescSetting title="菜单风格">
+              <NSelect
+                style={{ width: '50%' }}
+                v-model:value={menuMode}
+                options={menuStyleOptions}
               />
             </DescSetting>
 

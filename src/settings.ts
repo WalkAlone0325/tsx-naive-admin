@@ -1,4 +1,5 @@
 export type TriggerStyle = 'bar' | 'arrow-circle' | 'custom'
+export type MenuMode = 'vertical' | 'horizontal'
 
 export interface SettingConfig {
   isShowDraw: boolean
@@ -12,6 +13,7 @@ export interface SettingConfig {
   collapsedIconSize: number
   collapsedWidth: number
   globalTheme: 'darkTheme' | 'lightTheme'
+  menuMode: MenuMode
   triggerStyle: TriggerStyle
 }
 
@@ -27,5 +29,6 @@ export default {
   collapsedIconSize: 24,
   collapsedWidth: 50,
   globalTheme: 'lightTheme',
+  menuMode: 'horizontal',
   triggerStyle: 'custom'
 } as SettingConfig

@@ -17,7 +17,8 @@ const PageLayout = defineComponent({
       isInverted,
       triggerStyle,
       collapsedIconSize,
-      collapsedWidth
+      collapsedWidth,
+      menuMode
     } = $(storeToRefs(settingStore))
 
     const contentStyle = $computed(() => {
@@ -34,21 +35,27 @@ const PageLayout = defineComponent({
 
     return () => (
       <NLayout hasSider position="absolute">
-        <BaseSider
-          isShowLogo={isShowLogo}
-          triggerStyle={triggerStyle}
-          isCollapse={isCollapse}
-          isInverted={isInverted}
-          onChangeCollapsed={settingStore.changeSetting}
-          collapsedIconSize={collapsedIconSize}
-          collapsedWidth={collapsedWidth}
-        />
+        {menuMode === 'vertical' && (
+          <BaseSider
+            isShowLogo={isShowLogo}
+            triggerStyle={triggerStyle}
+            isCollapse={isCollapse}
+            isInverted={isInverted}
+            collapsedIconSize={collapsedIconSize}
+            collapsedWidth={collapsedWidth}
+            menuMode={menuMode}
+            onChangeCollapsed={settingStore.changeSetting}
+          />
+        )}
 
         <NLayout nativeScrollbar={false}>
           <BaseHeader
             isCollapse={isCollapse}
             triggerStyle={triggerStyle}
             isInverted={isInverted}
+            collapsedIconSize={collapsedIconSize}
+            collapsedWidth={collapsedWidth}
+            menuMode={menuMode}
           />
 
           {isShowTagViews && (

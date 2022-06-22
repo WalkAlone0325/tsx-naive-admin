@@ -1,15 +1,20 @@
 import { renderIcon } from '@/utils'
 import { NMenu } from 'naive-ui'
 import { MenuOption } from 'naive-ui'
-import type { Component } from 'vue'
+import type { Component, PropType } from 'vue'
 import { RouteRecordRaw } from 'vue-router'
+import type { MenuMode } from '@/settings'
 
 const Menu = defineComponent({
   name: 'Menu',
   props: {
     isInverted: Boolean,
     collapsedWidth: Number,
-    collapsedIconSize: Number
+    collapsedIconSize: Number,
+    menuMode: {
+      type: String as PropType<MenuMode>,
+      default: 'vertical'
+    }
   },
   setup(props) {
     const route = useRoute()
@@ -58,6 +63,7 @@ const Menu = defineComponent({
 
     return () => (
       <NMenu
+        mode={props.menuMode}
         indent={20}
         collapsedWidth={props.collapsedWidth}
         collapsedIconSize={props.collapsedIconSize}
