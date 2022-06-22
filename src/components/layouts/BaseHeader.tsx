@@ -86,72 +86,78 @@ const BaseHeader = defineComponent({
         bordered
         inverted={props.isInverted}
         class={styles.headerContainer}
-        style={
-          props.menuMode === 'horizontal'
-            ? { width: '1280px', margin: '0 auto' }
-            : {}
-        }
       >
-        {props.menuMode === 'vertical' ? (
-          <NSpace align="center" justify="center">
-            {props.triggerStyle === 'custom' && (
-              <TriggerCollapse
-                isCollapse={props.isCollapse}
-                onChangeSetting={settingStore.changeSetting}
-              />
-            )}
+        <div
+          class={styles.headerContainer}
+          style={
+            props.menuMode === 'horizontal'
+              ? { width: '1280px', margin: '0 auto' }
+              : {}
+          }
+        >
+          {props.menuMode === 'vertical' ? (
+            <NSpace align="center" justify="center">
+              {props.triggerStyle === 'custom' && (
+                <TriggerCollapse
+                  isCollapse={props.isCollapse}
+                  onChangeSetting={settingStore.changeSetting}
+                />
+              )}
 
-            {isShowBreadcrumb && (
-              <Breadcrumb
-                style={
-                  props.triggerStyle !== 'custom' ? { marginLeft: '10px' } : {}
-                }
-                isShowBreadcrumbIcon={isShowBreadcrumbIcon}
-              />
-            )}
-          </NSpace>
-        ) : (
-          <NSpace style={{ height: '50px' }} align="center">
-            <BaseLogo />
-            <Menu
-              isInverted={props.isInverted}
-              collapsedIconSize={props.collapsedIconSize}
-              collapsedWidth={props.collapsedWidth}
-              menuMode={props.menuMode}
-            />
-          </NSpace>
-        )}
-
-        <NSpace style={{ height: '50px' }} align="center" justify="center">
-          {isFullscreen.value ? (
-            <TipIcon
-              iconName={FullscreenExitOutlined}
-              tipContent={'退出全屏'}
-              onClickIcon={toggleScreen}
-            />
+              {isShowBreadcrumb && (
+                <Breadcrumb
+                  style={
+                    props.triggerStyle !== 'custom'
+                      ? { marginLeft: '10px' }
+                      : {}
+                  }
+                  isShowBreadcrumbIcon={isShowBreadcrumbIcon}
+                />
+              )}
+            </NSpace>
           ) : (
-            <TipIcon
-              iconName={FullscreenOutlined}
-              tipContent={'进入全屏'}
-              onClickIcon={toggleScreen}
-            />
+            <NSpace style={{ height: '50px' }} align="center">
+              <BaseLogo />
+              <Menu
+                isInverted={props.isInverted}
+                collapsedIconSize={props.collapsedIconSize}
+                collapsedWidth={props.collapsedWidth}
+                menuMode={props.menuMode}
+              />
+            </NSpace>
           )}
-          <TipIcon iconName={ProfileOutlined} tipContent={'Docs'} />
-          <TipIcon
-            iconName={GithubOutlined}
-            tipContent={'GitHub'}
-            onClickIcon={goToGithub}
-          />
 
-          <NDropdown options={dropOptions} showArrow onSelect={handleSelect}>
-            <NAvatar
-              round
-              size="medium"
-              src={userUrl}
-              style={{ cursor: 'pointer' }}
+          <NSpace style={{ height: '50px' }} align="center" justify="center">
+            {isFullscreen.value ? (
+              <TipIcon
+                iconName={FullscreenExitOutlined}
+                tipContent={'退出全屏'}
+                onClickIcon={toggleScreen}
+              />
+            ) : (
+              <TipIcon
+                iconName={FullscreenOutlined}
+                tipContent={'进入全屏'}
+                onClickIcon={toggleScreen}
+              />
+            )}
+            <TipIcon iconName={ProfileOutlined} tipContent={'Docs'} />
+            <TipIcon
+              iconName={GithubOutlined}
+              tipContent={'GitHub'}
+              onClickIcon={goToGithub}
             />
-          </NDropdown>
-        </NSpace>
+
+            <NDropdown options={dropOptions} showArrow onSelect={handleSelect}>
+              <NAvatar
+                round
+                size="medium"
+                src={userUrl}
+                style={{ cursor: 'pointer' }}
+              />
+            </NDropdown>
+          </NSpace>
+        </div>
       </NLayoutHeader>
     )
   }

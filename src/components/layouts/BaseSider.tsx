@@ -43,6 +43,7 @@ const BaseSider = defineComponent({
         {props.isShowLogo && (
           <BaseLogo
             isCollapse={props.isCollapse}
+            class={props.menuMode === 'vertical' ? 'logoFixedBorder' : ''}
             style={
               props.isCollapse ? { maxWidth: `${props.collapsedWidth}px` } : {}
             }

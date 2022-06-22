@@ -1,13 +1,9 @@
 // 用固定不是很完美，滚动条还是算在里面
 .logo-container {
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // width: 200px;
-  // height: 50px;
-  // max-width: 200px;
-  // border-right: solid 1px var(--n-border-color);
-  // border-bottom: solid 1px var(--n-border-color);
+  width: 200px;
+  height: 50px;
+  max-width: 200px;
+  border-bottom: solid 1px var(--n-border-color);
   background-color: var(--n-color);
   z-index: 2;
   transition: color 0.3s var(--n-bezier), border-color 0.3s var(--n-bezier),
@@ -32,7 +28,8 @@
       opacity: 1;
       overflow: hidden;
       white-space: nowrap;
-      transition: color 0.3s var(--n-bezier), opacity 0.3s var(--n-bezier);
+      margin-left: 10px;
+      transition: margin-left 0.3s var(--n-bezier), color 0.3s var(--n-bezier), opacity 0.3s var(--n-bezier);
     }
   }
 }
