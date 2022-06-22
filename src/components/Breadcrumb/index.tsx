@@ -16,7 +16,7 @@ const Breadcrumb = defineComponent({
           href: i.path,
           clickable: !!i.redirect && !!i.children.length
         }
-      })
+      }).filter(i => i.href !== '/')
     })
 
     return () => (

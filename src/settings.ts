@@ -29,6 +29,6 @@ export default {
   collapsedIconSize: 24,
   collapsedWidth: 50,
   globalTheme: 'lightTheme',
-  menuMode: 'horizontal',
+  menuMode: 'vertical',
   triggerStyle: 'custom'
 } as SettingConfig

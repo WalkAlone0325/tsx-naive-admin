@@ -4,6 +4,7 @@ import BaseHeader from '@/components/layouts/BaseHeader'
 import GlobalDraw from '@/components/GlobalDraw'
 import { useSettingStore } from '@/store'
 import AppMain from '@/components/layouts/AppMain'
+import TagsView from '@/components/TagsView'
 
 const PageLayout = defineComponent({
   name: 'PageLayout',
@@ -67,7 +68,7 @@ const PageLayout = defineComponent({
                 transition: 'all 0.3s var(--cubic-bezier-ease-in-out)'
               }}
             >
-              tagviews
+              <TagsView />
             </NEl>
           )}
 
