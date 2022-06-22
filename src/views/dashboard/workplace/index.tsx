@@ -5,7 +5,7 @@ const WorkPlaceView = defineComponent({
   name: 'WorkPlaceView',
   setup() {
     const settingStore = useSettingStore()
-    let { isShowLogo } = $(storeToRefs(settingStore))
+    const { isShowLogo } = $(storeToRefs(settingStore))
 
     const click = () => {
       settingStore.changeSetting('isShowLogo', !isShowLogo)

@@ -1,8 +1,8 @@
 import { renderIcon } from '@/utils'
 import { NMenu } from 'naive-ui'
-import { MenuOption } from 'naive-ui'
+import type { MenuOption } from 'naive-ui'
 import type { Component, PropType } from 'vue'
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 import type { MenuMode } from '@/settings'
 
 const Menu = defineComponent({

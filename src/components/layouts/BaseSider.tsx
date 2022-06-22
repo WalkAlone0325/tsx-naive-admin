@@ -1,7 +1,7 @@
 import { NLayoutSider } from 'naive-ui'
 import Menu from './Menu'
 import BaseLogo from './BaseLogo'
-import { MenuMode, TriggerStyle } from '@/settings'
+import type { MenuMode, TriggerStyle } from '@/settings'
 import type { PropType } from 'vue'
 
 type Trigger = boolean | 'bar' | 'arrow-circle'

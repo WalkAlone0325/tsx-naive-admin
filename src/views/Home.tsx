@@ -1,4 +1,4 @@
-import { NButton, NH2 } from "naive-ui"
+import { NButton, NH2 } from 'naive-ui'
 
 const HomeView = defineComponent({
   name: 'HomeView',

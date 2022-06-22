@@ -9,14 +9,16 @@ const Breadcrumb = defineComponent({
     const route = useRoute()
 
     const breadList = $computed(() => {
-      return route.matched.map((i) => {
-        return {
-          title: i.meta.title,
-          icon: i.meta.icon,
-          href: i.path,
-          clickable: !!i.redirect && !!i.children.length
-        }
-      }).filter(i => i.href !== '/')
+      return route.matched
+        .map((i) => {
+          return {
+            title: i.meta.title,
+            icon: i.meta.icon,
+            href: i.path,
+            clickable: !!i.redirect && !!i.children.length
+          }
+        })
+        .filter((i) => i.href !== '/')
     })
 
     return () => (
@@ -27,9 +29,11 @@ const Breadcrumb = defineComponent({
             clickable={i.clickable}
             key={i.href}
           >
-            {props.isShowBreadcrumbIcon &&
-              <NIcon component={typeof i.icon === 'string' ? h(i.icon) : i.icon}/>
-            }
+            {props.isShowBreadcrumbIcon && (
+              <NIcon
+                component={typeof i.icon === 'string' ? h(i.icon) : i.icon}
+              />
+            )}
             {i.title}
           </NBreadcrumbItem>
         ))}
