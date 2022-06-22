@@ -1,40 +1,40 @@
-# typescript-jsx-router-pinia
+# 正在改版，用了 纯粹的 TSX + Pinia，感觉更完美了
 
-This template should help get you started developing with Vue 3 in Vite.
+# TSX-NAIVE-ADMIN
 
-## Recommended IDE Setup
+临时起意，恰好有点时间，就瞎搞了，也遇到不少问题
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+1. `vite + tsx` 的写法 热更新会有一些问题(可能是自己太菜吧，哪里写的不对)
 
-## Type Support for `.vue` Imports in TS
+2. `naive-ui` tsx 的写法，提示真的很爽，也因此发现了不少 [naive-ui](http://www.naiveui.com) 的小问题，也蹭了几个 `PR`
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+3. 还有等等，想起来再说吧
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## 临时查看：
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+1. `git clone git@github.com:WalkAlone0325/tsx-naive-admin.git`
+2. `cd tsx-naive-admin`
+3. `yarn serve`
+4. 或者使用 `serve` 等静态服务，如 `serve dist/`
 
-## Customize configuration
+## 如何使用：
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+1. `git clone git@github.com:WalkAlone0325/tsx-naive-admin.git`
+2. `cd tsx-naive-admin`
+3. `yarn`
+4. `yarn dev`
 
-## Project Setup
+## TSX + naive-ui + Vue3 + Vite
 
-```sh
-pnpm install
-```
+后台管理系统基本架子
 
-### Compile and Hot-Reload for Development
+## 包含内容
 
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
+1. Vuex + Vue-Router + Naive-UI
+2. 主题色
+3. 全局配置组件
+4. 多标签
+5. 多级菜单
+6. 面包屑
+7. 侧边折叠
+8. 等吧
