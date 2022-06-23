@@ -1,27 +1,30 @@
-const useDropdown = (options, visitedList) => {
+import type { TagView } from '@/store'
+import type { DropdownOption } from 'naive-ui'
+
+const useDropdown = (options: DropdownOption[], visitedList: TagView[]) => {
   const showDropRef = ref(false)
   const x = ref(0)
   const y = ref(0)
+  const dropOptions = ref<DropdownOption[]>([])
 
   // 选择
   const handleSelect = (key: string | number) => {
     showDropRef.value = false
+    // eslint-disable-next-line no-console
     console.log(key)
   }
 
   // 右击 tag
-  const dropOptions = ref(options)
-
-  const isLastTag = (tag) => {
-    const index = visitedList.value.findIndex(
+  const isLastTag = (tag: { fullPath: any }) => {
+    const index = visitedList.findIndex(
       (item) => tag.fullPath === item.fullPath
     )
-    if (index !== -1 && index + 1 !== visitedList.value.length) return false
+    if (index !== -1 && index + 1 !== visitedList.length) return false
     else return true
   }
 
   // 判断返回的 options
-  const checkDropOptions = (tag) => {
+  const checkDropOptions = (tag: { fullPath: any }) => {
     if (tag.fullPath === '/home') {
       // 点击的是首页，不显示关闭当前
       dropOptions.value = options.filter((item) => item.key !== 'current')
@@ -32,7 +35,7 @@ const useDropdown = (options, visitedList) => {
     }
   }
 
-  const handleContextMenu = async (e: MouseEvent, tag) => {
+  const handleContextMenu = async (e: MouseEvent, tag: any) => {
     e.preventDefault()
     showDropRef.value = false
     await nextTick()

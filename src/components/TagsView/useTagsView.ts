@@ -1,4 +1,5 @@
 import { useTagsViewStore } from '@/store'
+import type { TagView } from '@/store'
 
 const useTagsView = () => {
   const route = useRoute()
@@ -15,7 +16,10 @@ const useTagsView = () => {
 
   // 固定首页
   const initTags = () => {
-    const tag = { ...homeView?.meta, fullPath: homeView?.path }
+    const tag = {
+      ...homeView?.meta,
+      fullPath: homeView?.path
+    } as TagView
     tagsViewStore.addVisitedView(tag)
   }
   // 添加
@@ -25,19 +29,19 @@ const useTagsView = () => {
       tagsViewStore.addVisitedView({ ...route.meta, fullPath: route.fullPath })
   }
   // 上一个 tag
-  const toLastView = (i) => {
+  const toLastView = () => {
     const latestView = visitedViews.value.slice(-1)[0]
     latestView && router.push(latestView.fullPath)
   }
 
   // 点击 Tag
-  const handleClickTag = (i) => {
-    router.push(i.fullPath)
+  const handleClickTag = (tag: TagView) => {
+    router.push(tag.fullPath)
   }
   // 点击关闭
-  const handleClose = async (i) => {
-    await tagsViewStore.delView(i)
-    toLastView(i)
+  const handleClose = async (tag: TagView) => {
+    await tagsViewStore.delView(tag)
+    toLastView()
   }
 
   // 路由变化添加
@@ -45,10 +49,6 @@ const useTagsView = () => {
     () => route.fullPath,
     () => addTags()
   )
-
-  watchEffect(() => {
-    console.log(visitedViews)
-  })
 
   return {
     visitedList: visitedViews,

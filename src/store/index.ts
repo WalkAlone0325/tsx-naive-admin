@@ -1,4 +1,5 @@
 import type { App } from 'vue'
+export type { TagView } from './types'
 export { useSettingStore } from './modules/setting'
 export { useTagsViewStore } from './modules/tagsView'
 

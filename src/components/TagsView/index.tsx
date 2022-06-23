@@ -1,5 +1,5 @@
 import { useTagsViewStore } from '@/store'
-import { NDropdown, NIcon, NSpace, NTag } from 'naive-ui'
+import { DropdownOption, NDropdown, NSpace, NTag } from 'naive-ui'
 import useDropdown from './useDropdown'
 import useTagsView from './useTagsView'
 
@@ -9,9 +9,9 @@ const TagsView = defineComponent({
     const route = useRoute()
     // const tagsViewStore = useTagsViewStore()
     // const { visitedViews, cachedViews } = $(storeToRefs(tagsViewStore))
-    const { initTags, addTags, handleClickTag, handleClose, visitedList } =
+    const { initTags, addTags, handleClickTag, handleClose, visitedList } = $(
       useTagsView()
-    const s = useTagsView()
+    )
 
     /********** */
     const options = [
@@ -44,7 +44,7 @@ const TagsView = defineComponent({
       handleContextMenu,
       clickoutSide,
       dropOptions
-    } = $(useDropdown(options, s.visitedList))
+    } = $(useDropdown(options, visitedList))
 
     onMounted(() => {
       initTags()
@@ -57,7 +57,7 @@ const TagsView = defineComponent({
         align="center"
         style={{ height: '34px', margin: '0 5px' }}
       >
-        {s.visitedList.value.map((i) => (
+        {visitedList.map((i) => (
           <NTag
             key={i.fullPath}
             bordered={false}
