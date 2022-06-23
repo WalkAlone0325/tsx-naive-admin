@@ -9,6 +9,7 @@ export default {
     locale: 'document',
     requiresAuth: false,
     icon: HomeOutlined,
-    title: '首页'
+    title: '首页',
+    isAffix: true
   }
 } as RouteRecordRaw

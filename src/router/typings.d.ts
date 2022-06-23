@@ -3,11 +3,12 @@ import 'vue-router'
 
 declare module 'vue-router' {
   interface RouteMeta {
+    icon: string | Component
+    title: string
     role?: string[]
     requiresAuth?: boolean
-    icon: string | Component
     locale?: string
-    title: string
+    isAffix?: boolean
     // menu select key
     menuSelectKey?: string
   }

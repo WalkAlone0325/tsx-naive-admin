@@ -1,30 +1,65 @@
-import type { TagView } from '..'
+import type { TagView } from '../types'
 
 export const useTagsViewStore = defineStore('tagsView', () => {
-  const visitedViews = ref<TagView[]>([])
-  const cachedViews = ref([])
+  let visitedViews = $ref<TagView[]>([])
+  const cachedViews = $ref([])
 
-  // 添加访问过的
+  // 添加 visited
   const addVisitedView = (view: TagView) => {
-    const hasView = visitedViews.value.find((i) => i.fullPath === view.fullPath)
+    const hasView = visitedViews.some((i) => i.fullPath === view.fullPath)
     if (hasView) return
-    visitedViews.value.push(view)
+    visitedViews.push(view)
+  }
+  // 添加 cached
+  const addCachedView = (view: TagView) => {}
+  // 添加
+  const addView = (view: TagView) => {
+    addVisitedView(view)
+    addCachedView(view)
   }
 
   // 删除
   const delView = (view: TagView) => {
-    return new Promise((resolve) => {
-      visitedViews.value = visitedViews.value.filter(
-        (i) => i.fullPath !== view.fullPath
-      )
-      resolve(undefined)
+    return new Promise<void>((resolve) => {
+      visitedViews = visitedViews.filter((i) => i.fullPath !== view.fullPath)
+      resolve()
     })
   }
 
-  return {
+  // 关闭右侧
+  const closeRightView = (view: TagView) => {
+    return new Promise<void>((resolve) => {
+      const index = visitedViews.findIndex((i) => i.fullPath === view.fullPath)
+      visitedViews = visitedViews.slice(0, index + 1)
+      resolve()
+    })
+  }
+
+  // 关闭其它
+  const closeOtherView = (view: TagView) => {
+    return new Promise<void>((resolve) => {
+      visitedViews = visitedViews.filter(
+        (i) => i.fullPath === view.fullPath || i.isAffix
+      )
+      resolve()
+    })
+  }
+
+  // 关闭所有
+  const closeAllView = () => {
+    return new Promise<void>((resolve) => {
+      visitedViews = visitedViews.filter((i) => i.isAffix)
+      resolve()
+    })
+  }
+
+  return $$({
     visitedViews,
     cachedViews,
-    addVisitedView,
-    delView
-  }
+    addView,
+    delView,
+    closeRightView,
+    closeOtherView,
+    closeAllView
+  })
 })

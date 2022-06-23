@@ -1,5 +1,5 @@
 import { useTagsViewStore } from '@/store'
-import { DropdownOption, NDropdown, NSpace, NTag } from 'naive-ui'
+import { NDropdown, NSpace, NTag } from 'naive-ui'
 import useDropdown from './useDropdown'
 import useTagsView from './useTagsView'
 
@@ -9,33 +9,8 @@ const TagsView = defineComponent({
     const route = useRoute()
     // const tagsViewStore = useTagsViewStore()
     // const { visitedViews, cachedViews } = $(storeToRefs(tagsViewStore))
-    const { initTags, addTags, handleClickTag, handleClose, visitedList } = $(
-      useTagsView()
-    )
+    const { handleClickTag, handleClose, visitedList } = $(useTagsView())
 
-    /********** */
-    const options = [
-      {
-        label: '刷新页面',
-        key: 'refresh'
-      },
-      {
-        label: '关闭当前',
-        key: 'current'
-      },
-      {
-        label: '关闭右侧',
-        key: 'right'
-      },
-      {
-        label: '关闭其它',
-        key: 'other'
-      },
-      {
-        label: '关闭所有',
-        key: 'all'
-      }
-    ]
     const {
       showDropRef,
       x,
@@ -44,12 +19,7 @@ const TagsView = defineComponent({
       handleContextMenu,
       clickoutSide,
       dropOptions
-    } = $(useDropdown(options, visitedList))
-
-    onMounted(() => {
-      initTags()
-      addTags()
-    })
+    } = $(useDropdown(toRaw(visitedList)))
 
     return () => (
       <NSpace
@@ -61,7 +31,7 @@ const TagsView = defineComponent({
           <NTag
             key={i.fullPath}
             bordered={false}
-            closable={i.fullPath !== '/home'}
+            closable={!i?.isAffix}
             onClose={() => handleClose(i)}
             color={
               i.fullPath === route.fullPath
@@ -88,7 +58,7 @@ const TagsView = defineComponent({
           trigger={'manual'}
           x={x}
           y={y}
-          options={dropOptions}
+          options={dropOptions as any}
           show={showDropRef}
           onClickoutside={clickoutSide}
           onSelect={handleSelect}
