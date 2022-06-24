@@ -23,7 +23,8 @@ export default {
         requiresAuth: true,
         role: ['*'],
         title: '工作站',
-        icon: DashboardFilled
+        icon: DashboardFilled,
+        noCache: true
       }
     },
     {

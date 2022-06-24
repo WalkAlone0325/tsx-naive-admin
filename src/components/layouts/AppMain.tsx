@@ -1,3 +1,4 @@
+import type { PropType } from 'vue'
 import { KeepAlive, Suspense, Transition } from 'vue'
 import { RouterView } from 'vue-router'
 import type { VNode } from 'vue'
@@ -6,7 +7,10 @@ import { NSpin } from 'naive-ui'
 
 const AppMain = defineComponent({
   name: 'AppMain',
-  setup() {
+  props: {
+    cachedViews: Array as PropType<string[]>
+  },
+  setup(props) {
     const routerSlots = {
       default: ({
         Component,
@@ -17,7 +21,7 @@ const AppMain = defineComponent({
       }) =>
         Component && (
           <Transition name="fade" mode="out-in">
-            <KeepAlive>
+            <KeepAlive include={props.cachedViews}>
               {/* handle multi root component warning */}
               <div>{h(Component, { key: route.path })}</div>
             </KeepAlive>

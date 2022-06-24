@@ -9,6 +9,7 @@ declare module 'vue-router' {
     requiresAuth?: boolean
     locale?: string
     isAffix?: boolean
+    noCache?: boolean
     // menu select key
     menuSelectKey?: string
   }

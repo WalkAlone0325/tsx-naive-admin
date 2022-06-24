@@ -2,7 +2,7 @@ import { NEl, NLayout, NLayoutContent } from 'naive-ui'
 import BaseSider from '@/components/layouts/BaseSider'
 import BaseHeader from '@/components/layouts/BaseHeader'
 import GlobalDraw from '@/components/GlobalDraw'
-import { useSettingStore } from '@/store'
+import { useSettingStore, useTagsViewStore } from '@/store'
 import AppMain from '@/components/layouts/AppMain'
 import TagsView from '@/components/TagsView'
 
@@ -21,6 +21,12 @@ const PageLayout = defineComponent({
       collapsedWidth,
       menuMode
     } = $(storeToRefs(settingStore))
+    const tagsViewStore = useTagsViewStore()
+    const { visitedViews, cachedViews } = storeToRefs(tagsViewStore)
+
+    watchEffect(() => {
+      console.log(cachedViews.value)
+    })
 
     const contentStyle = $computed(() => {
       if (isFixedHeader) {
@@ -78,7 +84,7 @@ const PageLayout = defineComponent({
             nativeScrollbar={false}
             contentStyle={{ padding: '20px' }}
           >
-            <AppMain />
+            <AppMain cachedViews={cachedViews.value} />
           </NLayoutContent>
         </NLayout>
 
