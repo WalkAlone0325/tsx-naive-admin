@@ -1,3 +1,4 @@
+import { AppstoreFilled } from '@vicons/antd'
 import type { RouteRecordRaw } from 'vue-router'
 
 export default {
@@ -7,7 +8,7 @@ export default {
   meta: {
     locale: 'document',
     requiresAuth: false,
-    icon: 'AppstoreFilled',
+    icon: AppstoreFilled,
     title: '文档管理'
   }
 } as RouteRecordRaw

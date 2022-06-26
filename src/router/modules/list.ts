@@ -1,4 +1,5 @@
 import BlankLayout from '@/layout/BlankLayout'
+import { ClusterOutlined } from '@vicons/antd'
 import type { RouteRecordRaw } from 'vue-router'
 
 export default {
@@ -8,7 +9,7 @@ export default {
   meta: {
     locale: 'menu.list',
     requiresAuth: true,
-    icon: 'ClusterOutlined',
+    icon: ClusterOutlined,
     title: '表格管理'
   },
   children: [
@@ -21,7 +22,7 @@ export default {
         requiresAuth: true,
         role: ['*'],
         title: '查询表格',
-        icon: 'ClusterOutlined'
+        icon: ClusterOutlined
       }
     },
     {
@@ -33,7 +34,7 @@ export default {
         requiresAuth: true,
         role: ['*'],
         title: '卡片管理',
-        icon: 'ClusterOutlined'
+        icon: ClusterOutlined
       },
       children: [
         {
@@ -45,7 +46,7 @@ export default {
             requiresAuth: true,
             role: ['*'],
             title: '卡片第一级1',
-            icon: 'ClusterOutlined'
+            icon: ClusterOutlined
           }
         },
         {
@@ -57,7 +58,7 @@ export default {
             requiresAuth: true,
             role: ['*'],
             title: '卡片第一级2',
-            icon: 'ClusterOutlined'
+            icon: ClusterOutlined
           },
           children: [
             {
@@ -69,7 +70,7 @@ export default {
                 requiresAuth: true,
                 role: ['*'],
                 title: '卡片第二级2-1',
-                icon: 'ClusterOutlined'
+                icon: ClusterOutlined
               }
             },
             {
@@ -81,7 +82,7 @@ export default {
                 requiresAuth: true,
                 role: ['*'],
                 title: '卡片第二级2-2',
-                icon: 'ClusterOutlined'
+                icon: ClusterOutlined
               }
             }
           ]
