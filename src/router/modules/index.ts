@@ -3,5 +3,6 @@ import list from './list'
 import profile from './profile'
 import document from './document'
 import home from './home'
+import base from './base'
 
-export default [home, dashboard, list, document, profile]
+export default [home, dashboard, base, list, document, profile]

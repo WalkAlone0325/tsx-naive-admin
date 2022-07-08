@@ -1,13 +1,9 @@
-import { NButton, NH2 } from 'naive-ui'
-
 const HomeView = defineComponent({
   name: 'HomeView',
   setup() {
     return () => (
       <div>
-        home Content
-        <NButton onClick={() => {}}>打开设置</NButton>
-        <NH2>首页</NH2>
+        <h3>首页不知道写什么嗨，先就这样空着吧</h3>
       </div>
     )
   }

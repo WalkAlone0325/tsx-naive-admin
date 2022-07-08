@@ -3,7 +3,7 @@ import { UserOutlined } from '@vicons/antd'
 import type { RouteRecordRaw } from 'vue-router'
 
 export default {
-  path: 'profile',
+  path: '/profile',
   name: 'profile',
   component: BlankLayout,
   meta: {
@@ -14,7 +14,7 @@ export default {
   },
   children: [
     {
-      path: 'basic',
+      path: '/basic',
       name: 'basic',
       component: () => import('@/views/profile/basic/basic'),
       meta: {
