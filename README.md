@@ -2,6 +2,8 @@
 
 白嫖部署 `vercel`，具体预览：[https://tsx-naive-admin.vercel.app](https://tsx-naive-admin.vercel.app)
 
+`vercel` 现在需要翻，国内网络可以访问: [https://tsx-naive-admin.netlify.app/](https://tsx-naive-admin.netlify.app/)
+
 ## 用了 纯粹的 TSX + Pinia + Reactivity Transform，感觉更完美了
 
 临时起意，恰好有点时间，就瞎搞了，也遇到不少问题
