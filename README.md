@@ -1,4 +1,4 @@
-# TSX-NAIVE-ADMIN (还没写完，欢迎大佬提交代码，让小弟观摩)
+# tsx-naive-admin
 
 白嫖部署 `vercel`，具体预览：[https://tsx-naive-admin.vercel.app](https://tsx-naive-admin.vercel.app)
 
