@@ -20,7 +20,7 @@ const PageLayout = defineComponent({
       collapsedIconSize,
       collapsedWidth,
       menuMode
-    } = $(storeToRefs(settingStore))
+    } = storeToRefs(settingStore)
     const tagsViewStore = useTagsViewStore()
     const { visitedViews, cachedViews } = storeToRefs(tagsViewStore)
 
@@ -28,7 +28,7 @@ const PageLayout = defineComponent({
       console.log(cachedViews.value)
     })
 
-    const contentStyle = $computed(() => {
+    const contentStyle = computed(() => {
       if (isFixedHeader) {
         if (isShowTagViews) {
           return { marginTop: '84px' }
@@ -42,27 +42,27 @@ const PageLayout = defineComponent({
 
     return () => (
       <NLayout hasSider position="absolute">
-        {menuMode === 'vertical' && (
+        {menuMode.value === 'vertical' && (
           <BaseSider
-            isShowLogo={isShowLogo}
-            triggerStyle={triggerStyle}
-            isCollapse={isCollapse}
-            isInverted={isInverted}
-            collapsedIconSize={collapsedIconSize}
-            collapsedWidth={collapsedWidth}
-            menuMode={menuMode}
+            isShowLogo={isShowLogo.value}
+            triggerStyle={triggerStyle.value}
+            isCollapse={isCollapse.value}
+            isInverted={isInverted.value}
+            collapsedIconSize={collapsedIconSize.value}
+            collapsedWidth={collapsedWidth.value}
+            menuMode={menuMode.value}
             onChangeCollapsed={settingStore.changeSetting}
           />
         )}
 
         <NLayout nativeScrollbar={false}>
           <BaseHeader
-            isCollapse={isCollapse}
-            triggerStyle={triggerStyle}
-            isInverted={isInverted}
-            collapsedIconSize={collapsedIconSize}
-            collapsedWidth={collapsedWidth}
-            menuMode={menuMode}
+            isCollapse={isCollapse.value}
+            triggerStyle={triggerStyle.value}
+            isInverted={isInverted.value}
+            collapsedIconSize={collapsedIconSize.value}
+            collapsedWidth={collapsedWidth.value}
+            menuMode={menuMode.value}
           />
 
           {isShowTagViews && (
@@ -79,7 +79,7 @@ const PageLayout = defineComponent({
           )}
 
           <NLayoutContent
-            style={contentStyle}
+            style={contentStyle.value}
             position={isFixedHeader ? 'absolute' : 'static'}
             nativeScrollbar={false}
             contentStyle={{ padding: '20px' }}

@@ -8,10 +8,10 @@ export default defineComponent({
   name: 'App',
   setup() {
     const settingStore = useSettingStore()
-    const { globalTheme } = $(storeToRefs(settingStore))
+    const { globalTheme } = storeToRefs(settingStore)
 
-    const theme = $computed(() => {
-      if (globalTheme === 'darkTheme') {
+    const theme = computed(() => {
+      if (globalTheme.value === 'darkTheme') {
         return darkTheme
       } else {
         return null
@@ -19,7 +19,7 @@ export default defineComponent({
     })
 
     return () => (
-      <NConfigProvider theme={theme} locale={zhCN} dateLocale={dateZhCN}>
+      <NConfigProvider theme={theme.value} locale={zhCN} dateLocale={dateZhCN}>
         <GlobalProvider>
           <RouterView />
         </GlobalProvider>

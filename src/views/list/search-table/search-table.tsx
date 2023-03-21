@@ -117,7 +117,7 @@ const SearchTable = defineComponent({
   name: 'SearchTable',
   setup() {
     const message = useMessage()
-    let size = $ref('medium')
+    let size = ref('medium')
 
     // const { columns, data, pagination } = useDataTable()
     const data = createData()
@@ -167,7 +167,7 @@ const SearchTable = defineComponent({
 
           <RightTool
             onChangeSize={(payload) => {
-              size = payload
+              size.value = payload
             }}
           />
           {/* <NSpace size={'small'}>
@@ -193,7 +193,7 @@ const SearchTable = defineComponent({
         </NSpace>
         {/* 数据表格 */}
         <NDataTable
-          size={size as string}
+          size={size.value}
           columns={columns}
           data={data}
           pagination={pagination}

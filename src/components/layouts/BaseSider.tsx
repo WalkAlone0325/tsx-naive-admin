@@ -22,7 +22,7 @@ const BaseSider = defineComponent({
   },
   emits: ['changeCollapsed'],
   setup(props, { emit }) {
-    const triggerStyle = $computed(() =>
+    const triggerStyle = computed(() =>
       props.triggerStyle === 'custom' ? false : props.triggerStyle
     )
 
@@ -31,7 +31,7 @@ const BaseSider = defineComponent({
         width={200}
         bordered
         nativeScrollbar={false}
-        showTrigger={triggerStyle as Trigger}
+        showTrigger={triggerStyle.value as Trigger}
         collapseMode="width"
         collapsedWidth={props.collapsedWidth}
         collapsed={props.isCollapse}

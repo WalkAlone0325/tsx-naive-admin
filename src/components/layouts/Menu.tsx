@@ -21,11 +21,11 @@ const Menu = defineComponent({
     const router = useRouter()
 
     // 高亮菜单
-    let activeKey = $ref(route.name)
+    let activeKey = ref(route.name)
     watch(
       () => route.fullPath,
       () => {
-        activeKey = route.name as string
+        activeKey.value = route.name as string
       }
     )
 
@@ -34,13 +34,13 @@ const Menu = defineComponent({
     }
 
     // root menu
-    const appRoute = $computed(() =>
+    const appRoute = computed(() =>
       router.getRoutes().find((route) => route.name === 'root')
     )
 
-    const menuTree = $computed(() => {
+    const menuTree = computed(() => {
       // const copyRoutes = JSON.parse(JSON.stringify(appRoute?.children))
-      const copyRoutes = [...appRoute!.children]
+      const copyRoutes = [...appRoute.value!.children]
 
       function travel(routes: RouteRecordRaw[], layer: number) {
         return routes.map((route) => {
@@ -67,10 +67,10 @@ const Menu = defineComponent({
         indent={20}
         collapsedWidth={props.collapsedWidth}
         collapsedIconSize={props.collapsedIconSize}
-        options={menuTree as MenuOption[]}
+        options={menuTree.value as MenuOption[]}
         onUpdateValue={handleClickItem}
         inverted={props.isInverted}
-        v-model:value={activeKey}
+        v-model:value={activeKey.value}
         style={{ zIndex: 1 }}
       ></NMenu>
     )

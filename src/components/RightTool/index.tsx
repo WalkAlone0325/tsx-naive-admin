@@ -47,7 +47,7 @@ const RightTool = defineComponent({
       emit('queryTable')
     }
     // 列
-    const showPop = $ref(false)
+    const showPop = ref(false)
     const handleColumns = () => {
       //
     }
@@ -57,12 +57,12 @@ const RightTool = defineComponent({
       emit('changeSize', key)
     }
 
-    const allShowColumn = $ref(true)
-    const canSelect = $ref(false)
+    const allShowColumn = ref(true)
+    const canSelect = ref(false)
     const popHeader = () => (
       <NSpace>
-        <NCheckbox v-model:checked={allShowColumn}>列展示</NCheckbox>
-        <NCheckbox v-model:checked={canSelect}>勾选列</NCheckbox>
+        <NCheckbox v-model:checked={allShowColumn.value}>列展示</NCheckbox>
+        <NCheckbox v-model:checked={canSelect.value}>勾选列</NCheckbox>
         <NButton text type={'primary'}>
           重置
         </NButton>
@@ -127,7 +127,7 @@ const RightTool = defineComponent({
                 <div>
                   <NPopover
                     placement={'bottom'}
-                    v-model:value={showPop}
+                    v-model:value={showPop.value}
                     trigger={'click'}
                     v-slots={popSlots(click, icon)}
                   />

@@ -35,9 +35,7 @@ const BaseHeader = defineComponent({
   },
   setup(props) {
     const settingStore = useSettingStore()
-    const { isShowBreadcrumb, isShowBreadcrumbIcon } = $(
-      storeToRefs(settingStore)
-    )
+    const { isShowBreadcrumb, isShowBreadcrumbIcon } = storeToRefs(settingStore)
 
     const userUrl = 'https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg'
 
@@ -104,14 +102,14 @@ const BaseHeader = defineComponent({
                 />
               )}
 
-              {isShowBreadcrumb && (
+              {isShowBreadcrumb.value && (
                 <Breadcrumb
                   style={
                     props.triggerStyle !== 'custom'
                       ? { marginLeft: '10px' }
                       : {}
                   }
-                  isShowBreadcrumbIcon={isShowBreadcrumbIcon}
+                  isShowBreadcrumbIcon={isShowBreadcrumbIcon.value}
                 />
               )}
             </NSpace>

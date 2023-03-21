@@ -8,8 +8,8 @@ const TagsView = defineComponent({
   setup() {
     const route = useRoute()
     // const tagsViewStore = useTagsViewStore()
-    // const { visitedViews, cachedViews } = $(storeToRefs(tagsViewStore))
-    const { handleClickTag, handleClose, visitedList } = $(useTagsView())
+    // const { visitedViews, cachedViews } = storeToRefs(tagsViewStore)
+    const { handleClickTag, handleClose, visitedList } = useTagsView()
 
     const {
       showDropRef,
@@ -19,7 +19,7 @@ const TagsView = defineComponent({
       handleContextMenu,
       clickoutSide,
       dropOptions
-    } = $(useDropdown(toRaw(visitedList)))
+    } = useDropdown(toRaw(visitedList.value))
 
     return () => (
       <NSpace
@@ -27,7 +27,7 @@ const TagsView = defineComponent({
         align="center"
         style={{ height: '34px', margin: '0 5px' }}
       >
-        {visitedList.map((i) => (
+        {visitedList.value.map((i) => (
           <NTag
             key={i.fullPath}
             bordered={false}
@@ -56,10 +56,10 @@ const TagsView = defineComponent({
           placement={'bottom-start'}
           showArrow
           trigger={'manual'}
-          x={x}
-          y={y}
-          options={dropOptions as any}
-          show={showDropRef}
+          x={x.value}
+          y={y.value}
+          options={dropOptions.value as any}
+          show={showDropRef.value}
           onClickoutside={clickoutSide}
           onSelect={handleSelect}
         />

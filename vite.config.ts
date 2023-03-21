@@ -13,7 +13,7 @@ export default defineConfig({
   },
   plugins: [
     vue({
-      reactivityTransform: true
+      // reactivityTransform: true
     }),
     vueJsx(),
     AutoImport({

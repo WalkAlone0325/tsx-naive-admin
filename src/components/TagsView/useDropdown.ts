@@ -36,7 +36,7 @@ const useDropdown = (visitedList: TagView[]) => {
   const x = ref(0)
   const y = ref(0)
   // 点击的 tag
-  let currentTag = $ref<TagView>()
+  let currentTag = ref<TagView>()
   const dropOptions = ref<DropdownOption[]>([])
 
   // 选择
@@ -44,22 +44,22 @@ const useDropdown = (visitedList: TagView[]) => {
     showDropRef.value = false
     switch (key) {
       case 'refresh':
-        if (currentTag.fullPath === route.fullPath) {
+        if (currentTag.value?.fullPath === route.fullPath) {
           router.go(0)
         } else {
-          router.push(currentTag.fullPath)
+          router.push(currentTag.value!.fullPath)
         }
         break
       case 'current':
-        handleClose(currentTag)
+        handleClose(currentTag.value!)
         break
       case 'right':
-        await closeRightView(currentTag)
-        router.push(currentTag.fullPath)
+        await closeRightView(currentTag.value!)
+        router.push(currentTag.value!.fullPath)
         break
       case 'other':
-        await closeOtherView(currentTag)
-        router.push(currentTag.fullPath)
+        await closeOtherView(currentTag.value!)
+        router.push(currentTag.value!.fullPath)
         break
       case 'all':
         await closeAllView()
@@ -91,7 +91,7 @@ const useDropdown = (visitedList: TagView[]) => {
   }
 
   const handleContextMenu = async (e: MouseEvent, tag: TagView) => {
-    currentTag = tag
+    currentTag.value = tag
     e.preventDefault()
     showDropRef.value = false
     await nextTick()

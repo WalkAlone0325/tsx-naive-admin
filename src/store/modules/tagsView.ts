@@ -1,24 +1,26 @@
 import type { TagView } from '../types'
 
 export const useTagsViewStore = defineStore('tagsView', () => {
-  let visitedViews = $ref<TagView[]>([])
-  let cachedViews = $ref<string[]>([])
+  let visitedViews = ref<TagView[]>([])
+  let cachedViews = ref<string[]>([])
 
   // 添加
   const addView = (view: TagView) => {
-    const hasView = visitedViews.some((i) => i.fullPath === view.fullPath)
+    const hasView = visitedViews.value.some((i) => i.fullPath === view.fullPath)
     if (hasView) return
-    visitedViews.push(view)
+    visitedViews.value.push(view)
     if (!view.noCache) {
-      cachedViews.push(view.name)
+      cachedViews.value.push(view.name)
     }
   }
 
   // 删除
   const delView = (view: TagView) => {
     return new Promise<void>((resolve) => {
-      visitedViews = visitedViews.filter((i) => i.fullPath !== view.fullPath)
-      cachedViews = cachedViews.filter((i) => i !== view.name)
+      visitedViews.value = visitedViews.value.filter(
+        (i) => i.fullPath !== view.fullPath
+      )
+      cachedViews.value = cachedViews.value.filter((i) => i !== view.name)
       resolve()
     })
   }
@@ -26,9 +28,11 @@ export const useTagsViewStore = defineStore('tagsView', () => {
   // 关闭右侧
   const closeRightView = (view: TagView) => {
     return new Promise<void>((resolve) => {
-      const index = visitedViews.findIndex((i) => i.fullPath === view.fullPath)
-      visitedViews = visitedViews.slice(0, index + 1)
-      cachedViews = cachedViews.slice(0, index + 1)
+      const index = visitedViews.value.findIndex(
+        (i) => i.fullPath === view.fullPath
+      )
+      visitedViews.value = visitedViews.value.slice(0, index + 1)
+      cachedViews.value = cachedViews.value.slice(0, index + 1)
       resolve()
     })
   }
@@ -36,11 +40,11 @@ export const useTagsViewStore = defineStore('tagsView', () => {
   // 关闭其它
   const closeOtherView = (view: TagView) => {
     return new Promise<void>((resolve) => {
-      visitedViews = visitedViews.filter(
+      visitedViews.value = visitedViews.value.filter(
         (i) => i.fullPath === view.fullPath || i.isAffix
       )
       // cachedViews = cachedViews.filter((i) => i === view.name || i === 'home')
-      cachedViews = visitedViews.map((i) => i.name)
+      cachedViews.value = visitedViews.value.map((i) => i.name)
       resolve()
     })
   }
@@ -48,13 +52,13 @@ export const useTagsViewStore = defineStore('tagsView', () => {
   // 关闭所有
   const closeAllView = () => {
     return new Promise<void>((resolve) => {
-      visitedViews = visitedViews.filter((i) => i.isAffix)
-      cachedViews = visitedViews.map((i) => i.name)
+      visitedViews.value = visitedViews.value.filter((i) => i.isAffix)
+      cachedViews.value = visitedViews.value.map((i) => i.name)
       resolve()
     })
   }
 
-  return $$({
+  return {
     visitedViews,
     cachedViews,
     addView,
@@ -62,5 +66,5 @@ export const useTagsViewStore = defineStore('tagsView', () => {
     closeRightView,
     closeOtherView,
     closeAllView
-  })
+  }
 })

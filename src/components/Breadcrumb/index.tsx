@@ -8,7 +8,7 @@ const Breadcrumb = defineComponent({
   setup(props) {
     const route = useRoute()
 
-    const breadList = $computed(() => {
+    const breadList = computed(() => {
       return route.matched
         .map((i) => {
           return {
@@ -23,7 +23,7 @@ const Breadcrumb = defineComponent({
 
     return () => (
       <NBreadcrumb separator="/">
-        {breadList.map((i) => (
+        {breadList.value.map((i) => (
           <NBreadcrumbItem
             href={i.clickable ? i.href : undefined}
             clickable={i.clickable}

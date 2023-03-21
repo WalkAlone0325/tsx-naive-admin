@@ -8,13 +8,13 @@ const useTagsView = () => {
   const { visitedViews } = storeToRefs(tagsViewStore)
 
   // 固定页
-  const affixViews = $computed(() =>
+  const affixViews = computed(() =>
     router.getRoutes().filter((item) => item.meta?.isAffix)
   )
 
   // 固定页
   const initTags = () => {
-    affixViews.forEach((route) => {
+    affixViews.value.forEach((route) => {
       tagsViewStore.addView({
         ...route.meta,
         fullPath: route?.path,
