@@ -12,7 +12,7 @@
 
 2. [naive-ui](http://www.naiveui.com) tsx 的写法，提示真的很爽，也因此发现了几个小问题，也蹭了几个 `PR`
 
-3. 对于 `Reactivity Ttransform`，说说看法，这个玩意不熟属实有点坑，尤其在你做封装导出的再用的时候，不能准确把握数据的类型，就特别容易出 现不在响应式的 `bug`，在 `tsx` 的写法中尤其需要注意
+3. **这一项已经不再推荐使用，新的提交 commit close reactivityTransform 已经关闭**  对于 `Reactivity Ttransform`，说说看法，这个玩意不熟属实有点坑，尤其在你做封装导出的再用的时候，不能准确把握数据的类型，就特别容易出 现不在响应式的 `bug`，在 `tsx` 的写法中尤其需要注意
 
 4. 关于 [Suspense](https://vuejs.org/guide/built-ins/suspense.html#suspense)，代码中写到的应该正确的方式。不知道在 `vue` 官网还是在 `vue-router` 官网看的的两一种写法，在 `tsx` 中是会出现 `KeepAlive` 重复性渲染视图的问题
 
