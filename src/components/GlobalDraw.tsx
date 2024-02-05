@@ -82,7 +82,7 @@ const GlobalDraw = defineComponent({
             <DescSetting title="主题色">
               <NSelect
                 style={{ width: '50%' }}
-                v-model:value={globalTheme}
+                v-model:value={globalTheme.value}
                 options={themeOptions.value}
               />
             </DescSetting>
